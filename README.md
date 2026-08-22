@@ -1,4 +1,4 @@
-# FS_Forums_Archive
+# FS Forums Archive
 
 Unofficial archive of the [Fatshark Games forums](https://forums.fatsharkgames.com/), created for historical preservation purposes. 
 All content, trademarks, and copyrights remain the property of [Fatshark AB](https://www.fatshark.se/) and their respective authors.
