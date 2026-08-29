@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Probably Missing "Achievement" Stuff that could be added - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Probably Missing "Achievement" Stuff that could be added</span></h1><div class="meta">4 Posts &bull; 395 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/froh/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/froh/">Froh</a></strong> &bull; 2020-03-24 22:34:52 </div><div class="cooked"><p>Ok this is to be a bit logical with the rest of the challenges =p<br> This is not “needed”, but it could be a nice gesture for veterans and some nice goals to look for; for experienced players.</p><ul><li>Keep Banners for Drachenfels free update maps</li><li>Frame for Drachenfels free update maps (Cata maybe)</li><li>Keep Banners for Winds of Magic (either the only map there, or counting map + Winds of Magic until 120, or QP Weave until Cata, etc)</li><li>Trophy for Winds of Magic beastman map.</li><li>Something for “A quiet Drink map” until cata (like a beer mug, or something funny)</li><li>Cata Piedestal for trophy room.</li><li>Ravaged arts (the 3 arts and 30 ) challenges for all the new maps (Dark Omens and the 3 new Drachenfels one).</li><li>Cataclysm color skin for each career (can also be a frame, or something else)</li><li>A new piedestal color for Cataclysm trophies (if it exists, I just can’t tell the difference between it and the legend one)</li><li>Frame for “All Drachenfels” challenges done. (can include Cata)</li><li>Frame for “Helmgart” Cata challenges.</li></ul><p>Frames for cata can be swapped to others cool ideas like weapons skins with a different colors and stuff like this.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/soui23/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/soui23/">souI23</a></strong> &bull; 2020-03-24 23:01:57 </div><div class="cooked"><p>Totally agree… specially about this:</p><aside class="quote no-group" data-username="Froh" data-post="1" data-topic="38895"><div class="title"><div class="quote-controls"></div><a href="../../users/froh/">Froh</a>:</div><blockquote><p>Frame for “Helmgart” Cata challenges.</p></blockquote></aside><p>P.s this would be nice too… But you can’t add challenge about a mod that isn’t avaible anymore. Better wait the next year.</p><aside class="quote no-group" data-username="Froh" data-post="1" data-topic="38895"><div class="title"><div class="quote-controls"></div><a href="../../users/froh/">Froh</a>:</div><blockquote><p>Something for “A quiet Drink map” until cata (like a beer mug, or something funny)</p></blockquote></aside></div></div></div><div class="post"><div class="avatar"><a href="../../users/froh/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/froh/">Froh</a></strong> &bull; 2020-03-24 23:06:27 </div><div class="cooked"><p>As it is a trophy. It can appear without being linked to a specific challenge. So it could be done before next year.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/whereisbaodur/" style="color:#fff;text-decoration:none;">W</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/whereisbaodur/">WhereIsBaoDur</a></strong> &bull; 2020-03-25 02:42:18 </div><div class="cooked"><p>Cask of Bugman XXXX in the trophy room (if we can get drunk off it all the better)<br> Keep Banners for Drachenfels would be nice</p></div></div></div></div></div></body></html>

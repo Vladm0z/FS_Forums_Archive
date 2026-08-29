@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Elf cheating/hacking issue - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Elf cheating/hacking issue</span></h1><div class="meta">5 Posts &bull; 1097 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/bentye/" style="color:#fff;text-decoration:none;">B</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/bentye/">Bentye</a></strong> &bull; 2018-03-24 23:44:49 </div><div class="cooked"><p>Re posting this due to people hijacking my thread to argue about useless unrelated things:</p><p>Not 100% sure where to put this topic but it is a big enough issue that I made an account just to mention it. Has anyone else been running into the ever increasing number of elf ultimate spammers. I have had 10 players over the last 3 days that for the entire 5min or less before I kicked them or left had 100% up time on there trueflight ability. They didn’t stop casting the ability, this isn’t some mix of CD properties and pots this was next level stuff and clearly cheating or hacking.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/maud/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/maud/">Maud</a></strong> &bull; 2018-03-24 23:59:13 </div><div class="cooked"><p>Erm it’s just a normal cheat. Anyone could use that. And there were a lot or threads about cheaters already. I think FatShark pretty much aware about this issue.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/ren/" style="color:#fff;text-decoration:none;">r</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ren/">ren</a></strong> &bull; 2018-03-27 21:58:16 </div><div class="cooked"><p>I played champion “quickplay” just few mins ago and everyone in the party is invincible and the host keep spamming his ulti w/o cooldown.</p><p>I thought it just a bug or something but after it’s done the host just casually start the next run, so I just check it again and it’s just the same as before everyone invincible and the host can spam his ulti.</p><p>Too many cheater will ruin the game and give negative impression especially to new players (like me), it’s not like I really care about fair game or not since the game is about PvE not PvP or competitive game, atleast there should be a way to report those cheater.</p><p>I love this game and still waiting for new DLC, just don’t want to see this game dead because this issue.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/flashfuzz/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/flashfuzz/">FlashFuzz</a></strong> &bull; 2018-03-27 22:20:28 </div><div class="cooked"><p>What is interesting to me is that all the hackers seem to be using a trainer by CH. who are a well known and well established cheating website. They seem to have active developers that work overnight to bring out trainers for new patches. However, their policy states that their cheats are made for private use only.</p><p>I think FS should get in touch with these assholes and give them a stern talking to. It’s bad enough that people are probably working on injectors right now to sell to other inbred pillocks all over the world.</p><p>Some more trivia: one of the founders of the website is called Peter Ekstrom and he is… Swedish!</p><p>edit: removed hyperlink of website just in case.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/maud/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/maud/">Maud</a></strong> &bull; 2018-03-28 02:28:56 </div><div class="cooked"><aside class="quote no-group" data-username="FlashFuzz" data-post="4" data-topic="20460"><div class="title"><div class="quote-controls"></div><a href="../../users/flashfuzz/">FlashFuzz</a>:</div><blockquote><p>I think FS should get in touch with these assholes and give them a stern talking to. It’s bad enough that people are probably working on injectors right now to sell to other inbred pillocks all over the world.</p></blockquote></aside><p>FS kinda want mod support in this game. That basically means future anarchy. It would be nice if they put all cheaters in special queue thought.</p></div></div></div></div></div></body></html>

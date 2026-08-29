@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Benchmark still crashing - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Benchmark still crashing</span></h1><div class="meta">3 Posts &bull; 1093 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/slacker/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/slacker/">Slacker</a></strong> &bull; 2020-02-06 17:26:23 </div><div class="cooked"><p>Despite the changelog for 2.1.1 states that a benchmark crash has been addressed, it still keeps crashing for me (even with clean settings) on 2.1.1 with:</p><details><summary> Console log</summary> <pre><code>&lt;&lt;Script Error&gt;&gt;scripts/managers/conflict_director/conflict_director.lua:2168: attempt to index field 'debug_breed_picker' (a nil value)&lt;&lt;/Script Error&gt;&gt;
+&lt;&lt;Lua Stack&gt;&gt;  [1] @scripts/managers/conflict_director/conflict_director.lua:2168: in function get_debug_breed_name
+  [2] @scripts/managers/conflict_director/conflict_director.lua:3330: in function update_server_debug
+  [3] @scripts/managers/conflict_director/conflict_director.lua:1422: in function update
+  [4] @scripts/game_state/state_ingame.lua:944: in function hook_chain
+  [5] @scripts/mods/vmf/modules/core/hooks.lua:180: in function update
+  [6] @foundation/scripts/util/state_machine.lua:145: in function update
+  [7] @scripts/boot.lua:788: in function game_update
+  [8] @scripts/boot.lua:552:in function &lt;scripts/boot.lua:550&gt;
+&lt;&lt;/Lua Stack&gt;&gt;
+&lt;&lt;Lua Locals&gt;&gt;  [1] self = table: 000000000DA02730
+  [2] self = table: 000000000DA02730; t = 0.12332974374294281; dt = 0.12332974374294281; side = table: 00000000001A80F0; player_positions = table: 00000000000D9F50
+  [3] self = table: 000000000DA02730; dt = 0.12332974374294281; t = 0.12332974374294281; script_data = table: 0000000000011DA0; conflict_settings = table: 0000000003491EC0; pacing = table: 0000000002A0F410; side = table: 00000000001A80F0; player_and_bot_positions = table: 0000000000230940; recycler_positions = table: 000000000788D890
+  [4] self = table: 00000000006179B0; dt = 0.12332974374294281; main_t = 33.117958105634898; is_server = true; Managers = \n\tsmoketest\n\tsimple_popup\n\ttwitch\n\tauto_test\n\tpopup\n\tsave\n\trcon\n\ttransition\n\tmusic\n\ttime\n\tfree_flight\n\tirc\n\tmatchmaking\n\tlight_fx\n\tmechanism\n\tweave\n\tcurl\n\trazer_chroma\n\tinput\n\tinvite\n\tsteam\n\tpackage\n\tstate_machine\n\turl_loader\n\teac\n\tparty\n\taccount\n\tworld\n\tdebug_updator\n\tlobby\n\tbackend\n\tnews_ticker\n\tload_time\n\tdeed\n\ttelemetry\n\tchat\n\ttoken\n\tunlock\n\tplay_go\n\tvmf\n\tadmin\n\tlocalizer\n\tmod\n\tperfhud\n\tplayer\n; t = 0.12332974374294281
+  [5] hook_chain = [function]
+  [6] self = table: 0000000002595340; dt = 0.12332974374294281; t = 33.117958105634898
+  [7] self = table: 0000000000091D30; real_world_dt = 0.12332974374294281; dt = 0.12332974374294281; t = 33.117958105634898
+  [8] dt = 0.12332974374294281
+&lt;&lt;/Lua Locals&gt;&gt;
+&lt;&lt;Lua Self&gt;&gt;  [1] _rushing_checks = table: 000000000C6044D0; threat_value = 0; _alive_bosses = table: 0000000002A0F710; _next_progression_percent = 0.10000000000000001; _next_rush_check = inf; patrol_analysis = table: 000000000A7689D0; current_conflict_settings = "default"; num_aggroed = 0; _horde_ends_at = inf; in_safe_zone = true; rushing_intervention_data = table: 000000000C605560; _crumbs = table: 0000000002A0F770; _num_spawned_during_event = 0; _num_spawned_by_breed = table: 000000000DA02890; _alive_specials = table: 0000000002A0F6E0; _next_horde_time = inf; _level_key = "military"; director_is_ai_ready = true; world_gui = [Gui]; _player_directions = table: 0000000002A0F7A0; nav_tag_volume_handler = table: 000000000A768D60; _next_pacing_update = 0.4942362904548645; level_settings = table: 00000000001FA8A0; _next_mini_patrol_timer = 15; _main_path_obstacles = table: 000000000C605530; main_path_player_info = table: 000000000C604530; _rushing_intervention_travel_dist = 50; _mini_patrol_state = "waiting"; enemy_package_loader = table: 000000000065D6F0; _next_rushing_intervention_time = 5.0999999999999996; _current_debug_list_index = 1; nav_world = [unknown light userdata]; _num_angry_bosses = 0; default_enemy_side_id = 2; pack_members = table: 0000000008594610; first_spawn_index = 1; _spawned_units_by_breed = table: 000000000DA028F0; _alive_standards = table: 0000000002A0F740; _network_event_delegate = table: 0000000000600060; _pack_rotations = table: 00000000085945E0; specials_pacing = table: 0000000009A172E0; spawn_queue_size = 0; horde_spawner = table: 0000000007BF3700; num_queued_spawn_by_breed = table: 000000000DA01230; _living_horde = 0; _drop_crumb_time = 0; _spawn_pos_list = table: 0000000008594580; level_analysis = table: 000000000C603D90; _cluster_and_loneliness = table: 00000000000C1FF0; _time = 0.12332974374294281; _spawned = table: 000000000DA02760; breed_freezer = table: 0000000007BF53E0; speed_running_intervention_data = table: 0000000002B774B0; _spawned_lookup = table: 000000000DA02790; _zone_data_list = table: 0000000008594640; _pack_sizes = table: 00000000085945B0; spawn_queue_id = 0; enemy_recycler = table: 0000000007BE55F0; spawn_zone_baker = table: 000000000A485520; spawn_queue = table: 000000000C604500; pacing = table: 0000000002A0F410; _next_threat_update = 0.59423629045486448; _hero_side = table: 00000000001A80F0; disabled = false; main_path_info = table: 000000000C604560; _player_areas = table: 0000000002A0F7D0; frozen_intensity_decay_until = 0; _next_speed_running_intervention_time = 5.0999999999999996; _debug_list = table: 0000000007BF5370; _num_spawned_by_breed_during_event = table: 000000000DA028C0; _world = [World]; delay_horde_threat_value = 40; delay_mini_patrol_threat_value = 35; delay_specials_threat_value = 40; default_hero_side_id = 1; navigation_group_manager = table: 0000000002A0F540; 
+  [2] _rushing_checks = table: 000000000C6044D0; threat_value = 0; _alive_bosses = table: 0000000002A0F710; _next_progression_percent = 0.10000000000000001; _next_rush_check = inf; patrol_analysis = table: 000000000A7689D0; current_conflict_settings = "default"; num_aggroed = 0; _horde_ends_at = inf; in_safe_zone = true; rushing_intervention_data = table: 000000000C605560; _crumbs = table: 0000000002A0F770; _num_spawned_during_event = 0; _num_spawned_by_breed = table: 000000000DA02890; _alive_specials = table: 0000000002A0F6E0; _next_horde_time = inf; _level_key = "military"; director_is_ai_ready = true; world_gui = [Gui]; _player_directions = table: 0000000002A0F7A0; nav_tag_volume_handler = table: 000000000A768D60; _next_pacing_update = 0.4942362904548645; level_settings = table: 00000000001FA8A0; _next_mini_patrol_timer = 15; _main_path_obstacles = table: 000000000C605530; main_path_player_info = table: 000000000C604530; _rushing_intervention_travel_dist = 50; _mini_patrol_state = "waiting"; enemy_package_loader = table: 000000000065D6F0; _next_rushing_intervention_time = 5.0999999999999996; _current_debug_list_index = 1; nav_world = [unknown light userdata]; _num_angry_bosses = 0; default_enemy_side_id = 2; &lt;&lt;/Lua Self&gt;&gt;
+</code></pre> </details><p><code>crashify://8b54d590-96c6-4c88-b867-92c184d80e2a</code></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2020-02-06 19:13:51 </div><div class="cooked"><p>Just crashed for me too, hm. I’ve re-opened this with development. Thank you for reporting.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2020-02-13 19:13:53 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Crash at launch amdxc64 - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Crash at launch amdxc64</span></h1><div class="meta">4 Posts &bull; 786 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/winterae/" style="color:#fff;text-decoration:none;">W</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/winterae/">WinterAE</a></strong> &bull; 2025-10-25 00:21:42 </div><div class="cooked"><h3><a name="p-686635-issue-type-required-1" class="anchor" href="#p-686635-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Crash - on Launch</p><h3><a name="p-686635-issue-description-required-2" class="anchor" href="#p-686635-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>Using latest AMD Adrenalin driver 25.9.1.<br> Tried to recover files via steam. Nothing.<br> Reintalled Adrenalin with CleanUpUtility. Same.</p><p>RX7900XT<br> R7800x3d<br> Win11 25H2 26200.6901</p><h3><a name="p-686635-pc-do-you-use-mods-optional-3" class="anchor" href="#p-686635-pc-do-you-use-mods-optional-3" aria-label="Heading link"></a>[PC] Do You Use Mods? (Optional):</h3><p>No, I don’t use mods</p><h3><a name="p-686635-reproduction-rate-required-4" class="anchor" href="#p-686635-reproduction-rate-required-4" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Constant (100%)</p><h3><a name="p-686635-platform-required-5" class="anchor" href="#p-686635-platform-required-5" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p><h3><a name="p-686635-pc-crash-report-optional-6" class="anchor" href="#p-686635-pc-crash-report-optional-6" aria-label="Heading link"></a>[PC] Crash Report (Optional):</h3><h2><a name="p-686635-guid-54929d64-35c4-4c0d-b896-7438b8cc14fc-7" class="anchor" href="#p-686635-guid-54929d64-35c4-4c0d-b896-7438b8cc14fc-7" aria-label="Heading link"></a>GUID: 54929d64-35c4-4c0d-b896-7438b8cc14fc</h2><p>Log File:<br> Info Type:</p><p>[Engine Error]: Access violation (0xc0000005) in build fb0f6d54fb7ca448cb818f78892c15c7a24f961a<br> accessing address 00000261DD6D0000 from 00007FF856AA6535</p><p>The crash occurred in module ‘amdxc64’. This module is related to AMD graphics driver. If this is a recurring issue you could try AMD Cleanup Utility tool <a href="https://www.amd.com/en/support/kb/faq/gpu-601" class="inline-onebox" rel="noopener nofollow ugc">Drivers and Support for Processors and Graphics</a> to see if that helps.</p><hr></div></div></div><div class="post"><div class="avatar"><a href="../../users/winterae/" style="color:#fff;text-decoration:none;">W</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/winterae/">WinterAE</a></strong> &bull; 2025-10-25 19:08:00 </div><div class="cooked"><p>I saw post about this problem. I don’t know where I can found RTX Global Illumination. I think I disabled it but problem still appears.<br> Here is my user_setting.config</p> <pre><code class="lang-auto">max_worker_threads = 8
+mesh_streamer_settings = {
+}
+network_settings = {
+	try_nat64 = false
+}
+performance_settings = {
+	decal_lifetime = 10
+	max_blood_decals = 15
+	max_footstep_decals = 15
+	max_impact_decals = 15
+	max_ragdolls = 5
+}
+render_settings = {
+	ao_enabled = true
+	async_xe_gtao = false
+	baked_ddgi = true
+	bloom_enabled = true
+	cacao_enabled = false
+	cacao_quality = 4
+	cpp_modifiers_enabled = false
+	decals_enabled = true
+	display_noise_enabled = true
+	dlss_enabled = false
+	dlss_g_enabled = false
+	dlss_g_frames_to_generate = 1
+	dlss_model = "default"
+	dof_enabled = false
+	dof_high_quality = false
+	dxr = false
+	ffx_frame_gen_enabled = true
+	ffx_swapchain = true
+	fsr_enabled = false
+	fsr_quality = 0
+	fsr2_enabled = false
+	fxaa_enabled = false
+	gamma = 2.2
+	gtao_denoiser = 1
+	gtao_enabled = true
+	gtao_quality = 0
+	hdr_paper_white_nits = 400
+	hdr_rgb_format = "R11G11B10F"
+	jitter_enabled = false
+	lens_flares_enabled = false
+	lens_quality_color_fringe_enabled = false
+	lens_quality_distortion_enabled = false
+	lens_quality_enabled = false
+	light_shafts_enabled = false
+	local_lights_max_dynamic_shadow_distance = 50
+	local_lights_max_non_shadow_casting_distance = 0
+	local_lights_max_static_shadow_distance = 100
+	local_lights_shadow_atlas_size = [
+		512
+		512
+	]
+	local_lights_shadow_map_filter_quality = "low"
+	local_lights_shadows_enabled = true
+	lod_object_multiplier = 2
+	lod_scatter_density = 0.25
+	motion_blur_enabled = false
+	nv_framerate_cap = 90
+	nv_low_latency_boost = false
+	nv_low_latency_markers = true
+	nv_low_latency_mode = true
+	outline_enabled = false
+	particles_capacity_multiplier = 1
+	particles_simulation_lod = 0
+	reflex_warp_enabled = false
+	rough_transparency_enabled = false
+	rt_checkerboard_reflections = false
+	rt_light_quality = false
+	rt_mixed_reflections = false
+	rt_particle_reflections_enabled = false
+	rt_reflections_enabled = false
+	rt_shadow_ray_multiplier = 0
+	rt_transparent_reflections_enabled = false
+	rtxgi_enabled = false
+	rtxgi_scale = false
+	sharpen_enabled = true
+	sharpness = 0
+	skin_material_enabled = false
+	ssr_enabled = false
+	ssr_high_quality = false
+	static_sun_shadow_map_size = [
+		2048
+		2048
+	]
+	static_sun_shadows = true
+	sun_flare_enabled = false
+	sun_shadow_map_filter_quality = "low"
+	sun_shadow_map_size = [
+		4
+		4
+	]
+	sun_shadows = false
+	taa_enabled = false
+	ui_bloom_enabled = true
+	upscaling_enabled = false
+	upscaling_mode = "none"
+	upscaling_quality = "quality"
+	vertical_fov = 68
+	volumetric_data_size = [
+		80
+		64
+		96
+	]
+	volumetric_extrapolation_high_quality = false
+	volumetric_extrapolation_volumetric_shadows = false
+	volumetric_lighting_local_lights = false
+	volumetric_reprojection_amount = 0.875
+	volumetric_volumes_enabled = true
+	world_interaction_size = [
+		512
+		512
+	]
+	world_space_motion_vectors = false
+	xess_enabled = false
+}
+screen_mode = "fullscreen"
+screen_resolution = [
+	2560
+	1440
+]
+</code></pre></div></div></div><div class="post"><div class="avatar"><a href="../../users/winterae/" style="color:#fff;text-decoration:none;">W</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/winterae/">WinterAE</a></strong> &bull; 2025-10-26 11:22:51 </div><div class="cooked"><p>Here is also launcher.log and crash dump<br><a class="attachment" href="/uploads/short-url/vrD5E49umdzXHa7CcVdh7gol3rT.log">darktide_launcher.log</a> (39.5 KB)<br><a class="attachment" href="/uploads/short-url/4ELEee6JSLcV2sOlySD8Esg12Mv.dmp">crash_dump-2025-10-26-11.15.00-1c1a4333-559a-4e5e-9cd9-170bb1620e37.dmp</a> (529.9 KB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2025-10-27 11:18:17 </div><div class="cooked"><p>Sorry to see this Winter, I’ve had to raise this as an issue to our database for our developers to look in to.</p><p>In the meantime, the discussion here may be of help to you:</p><aside class="quote" data-post="3" data-topic="113679"><div class="title"><div class="quote-controls"></div><div class="quote-title__text-content"><a href="https://forums.fatsharkgames.com/t/amd-crash-on-launch/113679/3">AMD crash on launch</a><a class="badge-category__wrapper " href="/c/darktide/technical-issues/93"><span data-category-id="93" style="--category-badge-color: #57E8F6; --category-badge-text-color: #000000; --parent-category-badge-color: #57e8f6;" data-parent-category-id="66" data-drop-close="true" class="badge-category --style-square --has-parent" title="Technical issues, including (but not limited to) crashes, errors, problems launching Darktide and other issues that require our support are to be posted here."><span class="badge-category__name">Technical Support</span></span></a></div></div><blockquote> Did you install the latest Windows update? KB5066835 changed some security stuff and other things and in common Microsoft fashion it’s causing a lot of issues. </blockquote></aside></div></div></div></div></div></body></html>

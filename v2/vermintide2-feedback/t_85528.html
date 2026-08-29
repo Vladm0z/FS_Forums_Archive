@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Chaos Wastes simple update concept - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Chaos Wastes simple update concept</span></h1><div class="meta">1 Posts &bull; 204 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/uroseta/" style="color:#fff;text-decoration:none;">U</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/uroseta/">Uroseta</a></strong> &bull; 2023-10-28 11:36:36 </div><div class="cooked"><p>Yo just joined this forum place cuz i planned this update in my head and its so cool i wanted to share it, i dont even know if this is the right place to share this but lets see.</p><p>Cursed Chest of Trials: Basically the same as a normal chest but enemies are buffed ( similar to halloween event skull thing ) and it rewards you with a Cursed Boon.</p><p>Cursed Boon: Extra powerful boon ( maybe limited to 1 ), which also has some big downsides:</p><p>-Using your career skill grants all nearby allies a free use of their career skill<br> Curse: Using your career skill incapacitates you for 5 seconds<br> -All nearby enemies take damage equal to 200% of your healing done<br> Curse: Taking damage reduces healing by 70% for 15 seconds ( just some ideas )</p><p>Legendary Chest of Trials:<br> Chest of trials with new encounters that grants a new tier of boon:</p><p>-Pushing creates a shockwave staggering even the strongest of foes<br> -All of your damage applies a bleed<br> -Blocking an attack reflects 50% of the damage back to the attacker<br> -Killing an elite spawns a skeleton for 10 seconds, max stacks 3<br> -You can break free of any grab if you survive it long enough ( maybe like 4 seconds )</p><p>Then to some features that im surprised arent in the mode yet:</p><p>Loops: Runs can be looped once instead of finished at the end of the expedition, making enemies harder, grudge marking all bosses ( maybe 2x aswell ), cursing all maps but retaining all upgrades and boons.<br> Loop victory grants 2 max tier chests ( of the difficulty you are playing on ) and the same amount of xp as the first run ( and new challenges would be added as rewards too )</p><p>Boon stacking: Most boons can be stacked ( to work with the new loop system ) doesnt apply to some boons with complex efects. ( chances to get the same boon are small until you have nearly all of them )<br> Example:<br> x2 Standing still grants 60% damage reduction: You take 100 damage → 40 damage ( 60% more from a stack of the same boon ) → 24 damage</p><p>Ability to give coins to teammates at a store. Just way too many times i have been short like 3 coins.</p><p>Custom Modifiers: The host can apply custom modifiers to shake up gameplay, reducing or increasing rewards based on choices.<br> Examples:</p><p>God Run: All boons grant 1 random extra boon of the same rarity - 50% xp decrease half chest rewards<br> Little Help: All players can choose 3 starting boons out of 5 - 25% xp decrease -1 chest reward<br> Skeleton Army: Killing enemies spawns skeletons, max 5 per player ( Necromancer skeletons are seperate ) - 70% xp decrease half chest rewards</p><p>Trials: Normal Trial Chests give all 3 rewards but spawn double the enemies - 5% xp decrease<br> Illusion: Everyone can play the same hero, but not the same class - 10% xp decrease -1 chest reward<br> Randomizer: Using your career skill grants you a new career skill of a random class - 15% xp decrease -1 chest reward<br> VIP: Every enemy will target a chosen player, if the player dies the run is failed</p><p>Misery: Taking damage ends the run and losing doesnt grant rewards or xp - 700% xp increase +20 chest rewards<br> Real Monsters: Every monster has grudge marks - 50% xp increase +2 chest rewards<br> Chaos Gods Curse: All maps are cursed by the chaos gods, curse effects are more frequent - 25% xp increase +1 chest reward<br> Curse of Gold: Take increased damage equal to your pilgrims coins - 30% xp increase + 2 chest rewards<br> Curse of the Shopper: You must buy at a store, or lose 50% of your current health - 10% xp increase<br> Endless Horde: Hordes keep coming, one after the other - 100% xp increase +2 chest rewards<br> Fear: Darkness surrounds you, you are granted a torch - 50% xp increase + 1 chest reward</p><p>Sorry for the wording, i wrote this as a fake patch note for fun. The numbers are ofcourse just a proof of concept I think modifiers could be locked behind challenges or some sort of currency that you can earn from victories, giving you more reason to play. I hope atleast some of these ideas sound cool, personally i think atleast different chests, boons and modifiers should be added. I do understand if looping and stacking is too complex to add, and i do also understand that chaos wastes isnt on the top of the priority list ( probably ).</p><p>Almost forgot, bots should have coins and they should buy anything you ping them to buy.</p></div></div></div></div></div></body></html>

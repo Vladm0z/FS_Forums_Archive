@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Crashing while playing exactly 7 minutes after start - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Crashing while playing exactly 7 minutes after start</span></h1><div class="meta">5 Posts &bull; 505 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/kuram/" style="color:#fff;text-decoration:none;">K</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kuram/">Kuram</a></strong> &bull; 2020-06-27 07:30:44 </div><div class="cooked"><p>I posted previously but it’s still pending approval and I can’t edit that post. I did a couple more games to try and figure out what’s going on, I was trying to disable different mods one by one. What I discovered was that the crashes occur exactly 7 minutes in. Here are 3 crash links and 4 console logs.</p><h2>GUID: 96611a53-6a9b-40ee-996a-b4dc71a38ce2<br> Log File:<br> Info Type:</h2><hr><h2>GUID: 6dbde37e-aa48-4224-8e8c-eb699373b5f0<br> Log File:<br> Info Type:</h2><hr><h2>GUID: bec5beb1-6558-4e00-8aae-d6b328d49793<br> Log File:<br> Info Type:</h2><hr><p><img src="https://europe1.discourse-cdn.com/flex013/uploads/fatshark/original/3X/3/3/3324bc70db7008dd95634c49e93f5d1b349da405.png" alt="EXCEL_2020-06-26_21-11-58" data-base62-sha1="7ir3zRMDgSwwGOBs6qINYlIP8EJ" width="284" height="113"><br><a class="attachment" href="/uploads/short-url/1r86QIZ2zkjr6CbJIMMRxBoDX0Y.log">console-2020-06-26-23.52.35-f6cf62ee-20fe-4b55-8c42-960811a8a389.log</a> (420.5 KB) <a class="attachment" href="/uploads/short-url/rvwwdpQ29v1QpVYFiDz9LD9hUgh.log">console-2020-06-27-00.07.19-99a08778-4df2-4b11-995d-7ce9a90f82f8.log</a> (792.9 KB) <a class="attachment" href="/uploads/short-url/fF1CS9hMhtGIWv6ThzPfs1OWu9H.log">console-2020-06-27-00.16.33-93ef3b2a-206d-443c-991a-606c433f0437.log</a> (513.9 KB) <a class="attachment" href="/uploads/short-url/jy5AJcZTIh32ZPEWDg5SRkJIrtj.log">console-2020-06-27-00.53.34-c01b37ba-a7f3-45d2-a4e3-57520d9f48e7.log</a> (639.1 KB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/empizza/" style="color:#fff;text-decoration:none;">E</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/empizza/">EmpIzza</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Hero</span> &bull; 2020-06-27 11:42:32 </div><div class="cooked"><p>Have you tried with / without EAC? (i.e. modded realm?)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kuram/" style="color:#fff;text-decoration:none;">K</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kuram/">Kuram</a></strong> &bull; 2020-06-27 17:17:19 </div><div class="cooked"><p>No, I don’t play modded.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2020-06-27 17:21:12 </div><div class="cooked"><p>Oh, I responded to your previous post without seeing this. We’ll continue the conversation there!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2020-06-27 17:21:18 </div><div class="cooked"></div></div></div></div></div></body></html>

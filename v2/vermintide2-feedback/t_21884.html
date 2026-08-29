@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Heroic Deeds - New Type Proposition - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Heroic Deeds - New Type Proposition</span></h1><div class="meta">4 Posts &bull; 422 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/vetinari01/" style="color:#fff;text-decoration:none;">v</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/vetinari01/">vetinari01</a></strong> &bull; 2018-04-13 22:56:31 </div><div class="cooked"><p>So, the current Heroic Deeds are rather fun, but drop rarely and the rewards can be lackluster. What I want to discuss is the fun aspect.</p><p>I propose a new type of heroic deeds: ones that dictate career choices and weapon choices.</p><p>It would be a great way to incentivize players to try out weapons and subclasses they have been avoiding and make them go out of their comfort zone whilst teaching them to use their full arsenal instead of a few choice weapons.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/yzneftamz/" style="color:#fff;text-decoration:none;">Y</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/yzneftamz/">Yzneftamz</a></strong> &bull; 2018-04-13 23:22:54 </div><div class="cooked"><p>Those might be interesting, but…</p><p>They would require a ton of fine-tuning. We have five characters and four players. They would have to specify at least four different careers, from four different characters. If chosen randomly, it might end up having some strange compositions, and (if limited to four careers) take away the original primary reason for including five characters: Choice. For weapons, there are similar considerations. While most stuff is at least usable, I’d still hate having to play Ironbreaker with 1-H Axe and Handgun. Not to speak about when you’re missing a particular weapon (except the Blacksmith version) and crafting mats to make it. So either every combination would have to be hand-crafted, or there would have to be a lot of conditions set for the possible outcomes. Maube both. Either one is a huge amount of work.</p><p>Also, the people who are set upon their favourite setups and/or the metagame won’t leave them for a Deed.</p><p>Don’t take me wrong, I do think that more needs to be done with Deeds (starting with giving them out a bit more), and things that give incentive for experimentation and breaking the metagame are certainly good. This one just might be too much work (for the devs) to be worth it.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/vetinari01/" style="color:#fff;text-decoration:none;">v</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/vetinari01/">vetinari01</a></strong> &bull; 2018-04-14 12:20:45 </div><div class="cooked"><aside class="quote no-group" data-username="Yzneftamz" data-post="2" data-topic="21884"><div class="title"><div class="quote-controls"></div><a href="../../users/yzneftamz/">Yzneftamz</a>:</div><blockquote><p>They would require a ton of fine-tuning. We have five characters and four players. They would have to specify at least four different careers, from four different characters. If chosen randomly, it might end up having some strange compositions, and (if limited to four careers) take away the original primary reason for including five characters: Choice.</p></blockquote></aside><p>That’s the thing, though. The current system is completely randomized but works. Code-wise, implementing my proposition (at least at the level of career restrictions) would be very easy. These are deeds, after all, they’re supposed to be more challenging than anything else. Even if they end up creating them manually and not procedurally, it would still take a non-unreasonable amount of time to create.</p><aside class="quote no-group" data-username="Yzneftamz" data-post="2" data-topic="21884"><div class="title"><div class="quote-controls"></div><a href="../../users/yzneftamz/">Yzneftamz</a>:</div><blockquote><p>Also, the people who are set upon their favourite setups and/or the metagame won’t leave them for a Deed.</p></blockquote></aside><p>I really don’t see how that’s a problem. If they want the challenge, they accept it. If not, of well. Honestly, I don’t think my propositions are as much work as you make them out to be.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/bumblebeepineapple/" style="color:#fff;text-decoration:none;">b</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/bumblebeepineapple/">bumblebeepineapple</a></strong> &bull; 2018-04-14 13:02:26 </div><div class="cooked"><p>That sounds cool. I am always open to things that make me try new builds or out of the box ideas. Would also add a challenge to the deeds too.</p></div></div></div></div></div></body></html>

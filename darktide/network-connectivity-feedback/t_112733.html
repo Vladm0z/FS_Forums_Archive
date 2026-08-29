@@ -1,0 +1,177 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backend Error after Bound by Duty Update - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Network & Connectivity Feedback</a></div><h1><span class="accent">Backend Error after Bound by Duty Update</span></h1><div class="meta">1 Posts &bull; 92 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/dernham/" style="color:#fff;text-decoration:none;">D</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dernham/">Dernham</a></strong> &bull; 2025-09-23 20:15:36 </div><div class="cooked"><h3><a name="p-677639-issue-description-required-1" class="anchor" href="#p-677639-issue-description-required-1" aria-label="Heading link"></a>Issue Description (Required):</h3><p>Cannot pass “Checking Inquisitorial Clearence” and cannot log into the game after the update. I get “Backend Error” “Error signing in” and I am not able to log in and play the game.</p><p>I have not updated or changed configuration of my pc since I last played or after the update. Please recite the appropriate soothing litanies and apply any required purity seals in order to soothe the belligerent machine spirit.</p><h3><a name="p-677639-attempted-solutions-optional-2" class="anchor" href="#p-677639-attempted-solutions-optional-2" aria-label="Heading link"></a>Attempted Solutions (Optional):</h3><p>Restarted PC, Restarted the access point, Cleared the DNS cache, Verified integrity of game files, checked Steam Region ( it was correct).</p><h3><a name="p-677639-platform-required-3" class="anchor" href="#p-677639-platform-required-3" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p><h3><a name="p-677639-pc-pc-specifications-optional-4" class="anchor" href="#p-677639-pc-pc-specifications-optional-4" aria-label="Heading link"></a>[PC] PC Specifications (Optional):</h3> <pre><code class="lang-auto">System:
+  Kernel: 6.14.0-29-generic arch: x86_64 bits: 64 compiler: gcc v: 13.3.0 clocksource: tsc
+  Desktop: Cinnamon v: 6.4.8 tk: GTK v: 3.24.41 wm: Muffin v: 6.4.1 vt: 7 dm: LightDM v: 1.30.0
+    Distro: Linux Mint 22.1 Xia base: Ubuntu 24.04 noble
+Machine:
+  Type: Desktop Mobo: ASUSTeK model: ROG STRIX X570-E GAMING WIFI II v: Rev X.0x
+    serial: &lt;superuser required&gt; part-nu: SKU uuid: &lt;superuser required&gt; UEFI: American Megatrends
+    v: 0309 date: 08/16/2021
+Battery:
+  Device-1: hidpp_battery_0 model: Logitech M720 Triathlon Multi-Device Mouse serial: &lt;filter&gt;
+    charge: 55% (should be ignored) rechargeable: yes status: discharging
+CPU:
+  Info: 16-core model: AMD Ryzen 9 5950X bits: 64 type: MT MCP smt: enabled arch: Zen 3+ rev: 2
+    cache: L1: 1024 KiB L2: 8 MiB L3: 64 MiB
+  Speed (MHz): avg: 2124 high: 3693 min/max: 550/5534 boost: disabled cores: 1: 1900 2: 3692
+    3: 3691 4: 1900 5: 1900 6: 1900 7: 3693 8: 1900 9: 1900 10: 1900 11: 1900 12: 1900 13: 1900
+    14: 1900 15: 1900 16: 1900 17: 1900 18: 1900 19: 1900 20: 1900 21: 1900 22: 1900 23: 1900
+    24: 1900 25: 3693 26: 1900 27: 1900 28: 1900 29: 1900 30: 1900 31: 1900 32: 1900
+    bogomips: 236340
+  Flags: avx avx2 ht lm nx pae sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3 svm
+Graphics:
+  Device-1: NVIDIA GA106 [GeForce RTX 3060 Lite Hash Rate] vendor: ASUSTeK driver: nvidia
+    v: 550.163.01 arch: Ampere pcie: speed: 2.5 GT/s lanes: 16 ports: active: none
+    off: HDMI-A-1,HDMI-A-2 empty: DP-1,DP-2,DP-3 bus-ID: 0b:00.0 chip-ID: 10de:2504 class-ID: 0300
+  Display: x11 server: X.Org v: 21.1.11 with: Xwayland v: 23.2.6 driver: X: loaded: nvidia
+    unloaded: fbdev,modesetting,nouveau,vesa gpu: nvidia,nvidia-nvswitch display-ID: :0 screens: 1
+  Screen-1: 0 s-res: 5760x2160 s-dpi: 81 s-size: 1806x686mm (71.10x27.01")
+    s-diag: 1932mm (76.06")
+  Monitor-1: HDMI-0 pos: right res: 3840x2160 dpi: 85 size: 1150x650mm (45.28x25.59")
+    diag: 1321mm (52.01") modes: N/A
+  Monitor-2: HDMI-1 pos: primary,left res: 1920x1080 hz: 60 dpi: 82
+    size: 598x336mm (23.54x13.23") diag: 686mm (27.01") modes: N/A
+  API: EGL v: 1.5 hw: drv: nvidia nouveau drv: nvidia platforms: device: 0 drv: nvidia device: 1
+    drv: nouveau device: 2 drv: swrast gbm: drv: nvidia surfaceless: drv: nvidia x11: drv: nvidia
+    inactive: wayland
+  API: OpenGL v: 4.6.0 compat-v: 4.5 vendor: nvidia mesa v: 550.163.01 glx-v: 1.4
+    direct-render: yes renderer: NVIDIA GeForce RTX 3060/PCIe/SSE2
+Audio:
+  Device-1: NVIDIA GA106 High Definition Audio vendor: ASUSTeK driver: snd_hda_intel v: kernel
+    pcie: speed: 16 GT/s lanes: 16 bus-ID: 0b:00.1 chip-ID: 10de:228e class-ID: 0403
+  Device-2: AMD Starship/Matisse HD Audio vendor: ASUSTeK driver: snd_hda_intel v: kernel pcie:
+    speed: 16 GT/s lanes: 16 bus-ID: 0d:00.4 chip-ID: 1022:1487 class-ID: 0403
+  API: ALSA v: k6.14.0-29-generic status: kernel-api
+  Server-1: PipeWire v: 1.0.5 status: active with: 1: pipewire-pulse status: active
+    2: wireplumber status: active 3: pipewire-alsa type: plugin
+Network:
+  Device-1: MEDIATEK MT7921K Wi-Fi 6E 80MHz driver: mt7921e v: kernel pcie: speed: 5 GT/s lanes: 1
+    bus-ID: 05:00.0 chip-ID: 14c3:0608 class-ID: 0280
+  IF: wlp5s0 state: down mac: &lt;filter&gt;
+  Device-2: Realtek RTL8125 2.5GbE vendor: ASUSTeK driver: r8169 v: kernel pcie: speed: 5 GT/s
+    lanes: 1 port: e000 bus-ID: 06:00.0 chip-ID: 10ec:8125 class-ID: 0200
+  IF: enp6s0 state: up speed: 1000 Mbps duplex: full mac: &lt;filter&gt;
+  Device-3: Intel I211 Gigabit Network vendor: ASUSTeK driver: igb v: kernel pcie:
+    speed: 2.5 GT/s lanes: 1 port: d000 bus-ID: 07:00.0 chip-ID: 8086:1539 class-ID: 0200
+  IF: enp7s0 state: down mac: &lt;filter&gt;
+  IF-ID-1: docker0 state: down mac: &lt;filter&gt;
+  IF-ID-2: lxcbr0 state: down mac: &lt;filter&gt;
+Bluetooth:
+  Device-1: MediaTek Wireless_Device driver: btusb v: 0.8 type: USB rev: 2.1 speed: 480 Mb/s
+    lanes: 1 bus-ID: 1-6:3 chip-ID: 0e8d:0608 class-ID: e001 serial: &lt;filter&gt;
+  Report: hciconfig ID: hci0 rfk-id: 0 state: up address: &lt;filter&gt; bt-v: 5.2 lmp-v: 11
+    sub-v: 2402 hci-v: 11 rev: 1911 class-ID: 7c0104
+Drives:
+  Local Storage: total: 1.82 TiB used: 1.37 TiB (75.4%)
+  ID-1: /dev/nvme0n1 vendor: Samsung model: SSD 980 1TB size: 931.51 GiB speed: 31.6 Gb/s
+    lanes: 4 tech: SSD serial: &lt;filter&gt; fw-rev: 1B4QFXO7 temp: 38.9 C scheme: GPT
+  ID-2: /dev/nvme1n1 vendor: Samsung model: SSD 980 1TB size: 931.51 GiB speed: 31.6 Gb/s
+    lanes: 4 tech: SSD serial: &lt;filter&gt; fw-rev: 1B4QFXO7 temp: 38.9 C scheme: GPT
+Partition:
+  ID-1: / size: 93.31 GiB used: 79.65 GiB (85.4%) fs: ext4 dev: /dev/nvme0n1p1
+  ID-2: /boot/efi size: 975.1 MiB used: 6.1 MiB (0.6%) fs: vfat dev: /dev/nvme0n1p3
+Swap:
+  ID-1: swap-1 type: partition size: 30.52 GiB used: 0 KiB (0.0%) priority: -2 dev: /dev/nvme0n1p2
+USB:
+  Hub-1: 1-0:1 info: hi-speed hub with single TT ports: 6 rev: 2.0 speed: 480 Mb/s lanes: 1
+    chip-ID: 1d6b:0002 class-ID: 0900
+  Hub-2: 1-5:2 info: Genesys Logic Hub ports: 4 rev: 2.0 speed: 480 Mb/s lanes: 1 power: 100mA
+    chip-ID: 05e3:0608 class-ID: 0900
+  Device-1: 1-6:3 info: MediaTek Wireless_Device type: bluetooth driver: btusb interfaces: 3
+    rev: 2.1 speed: 480 Mb/s lanes: 1 power: 100mA chip-ID: 0e8d:0608 class-ID: e001 serial: &lt;filter&gt;
+  Hub-3: 2-0:1 info: super-speed hub ports: 4 rev: 3.1 speed: 10 Gb/s lanes: 1 chip-ID: 1d6b:0003
+    class-ID: 0900
+  Hub-4: 3-0:1 info: hi-speed hub with single TT ports: 6 rev: 2.0 speed: 480 Mb/s lanes: 1
+    chip-ID: 1d6b:0002 class-ID: 0900
+  Device-1: 3-1:2 info: Logitech Unifying Receiver type: keyboard,mouse,HID
+    driver: logitech-djreceiver,usbhid interfaces: 3 rev: 2.0 speed: 12 Mb/s lanes: 1 power: 98mA
+    chip-ID: 046d:c52b class-ID: 0300
+  Hub-5: 3-2:3 info: Terminus Hub ports: 4 rev: 2.0 speed: 480 Mb/s lanes: 1 power: 100mA
+    chip-ID: 1a40:0101 class-ID: 0900
+  Device-1: 3-2.4:5 info: Weltrend wired Keyboard [Dynex DX-WRK1401] type: keyboard,mouse
+    driver: hid-generic,usbhid interfaces: 2 rev: 1.1 speed: 1.5 Mb/s lanes: 1 power: 100mA
+    chip-ID: 040b:2000 class-ID: 0301
+  Device-2: 3-4:4 info: ASUSTek AURA LED Controller type: HID driver: hid-generic,usbhid
+    interfaces: 2 rev: 2.0 speed: 12 Mb/s lanes: 1 power: 16mA chip-ID: 0b05:18f3 class-ID: 0300
+    serial: &lt;filter&gt;
+  Device-3: 3-5:6 info: Corsair H115iRGBPROXT type: keyboard driver: hid-generic,usbhid
+    interfaces: 1 rev: 2.0 speed: 12 Mb/s lanes: 1 power: 100mA chip-ID: 1b1c:0c21 class-ID: 0300
+  Hub-6: 4-0:1 info: super-speed hub ports: 4 rev: 3.1 speed: 10 Gb/s lanes: 1 chip-ID: 1d6b:0003
+    class-ID: 0900
+  Hub-7: 5-0:1 info: hi-speed hub with single TT ports: 4 rev: 2.0 speed: 480 Mb/s lanes: 1
+    chip-ID: 1d6b:0002 class-ID: 0900
+  Hub-8: 6-0:1 info: super-speed hub ports: 4 rev: 3.1 speed: 10 Gb/s lanes: 1 chip-ID: 1d6b:0003
+    class-ID: 0900
+Sensors:
+  System Temperatures: cpu: 41.6 C mobo: N/A gpu: nvidia temp: 45 C
+  Fan Speeds (rpm): N/A gpu: nvidia fan: 0%
+Repos:
+  Packages: 3090 pm: dpkg pkgs: 3060 pm: flatpak pkgs: 30
+  No active apt repos in: /etc/apt/sources.list
+  No active apt repos in: /etc/apt/sources.list.d/appimagelauncher-team-stable-jammy.list
+  Active apt repos in: /etc/apt/sources.list.d/docker.list
+    1: deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https: //download.docker.com/linux/ubuntu jammy stable
+  No active apt repos in: /etc/apt/sources.list.d/librewolf.list
+  Active apt repos in: /etc/apt/sources.list.d/official-package-repositories.list
+    1: deb http: //packages.linuxmint.com xia main upstream import backport
+    2: deb http: //archive.ubuntu.com/ubuntu noble main restricted universe multiverse
+    3: deb http: //archive.ubuntu.com/ubuntu noble-updates main restricted universe multiverse
+    4: deb http: //archive.ubuntu.com/ubuntu noble-backports main restricted universe multiverse
+    5: deb http: //security.ubuntu.com/ubuntu/ noble-security main restricted universe multiverse
+Info:
+  Memory: total: 32 GiB available: 31.24 GiB used: 6.5 GiB (20.8%)
+  Processes: 544 Power: uptime: 9m states: freeze,mem,disk suspend: deep wakeups: 0
+    hibernate: platform Init: systemd v: 255 target: graphical (5) default: graphical
+  Compilers: gcc: 13.3.0 alt: 9/11/12 Client: Unknown python3.12 client inxi: 3.3.34</code></pre></div></div></div></div></div></body></html>

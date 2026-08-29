@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Lootboxes suck and your implementation of them really sucks - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Lootboxes suck and your implementation of them really sucks</span></h1><div class="meta">5 Posts &bull; 819 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/morpheis/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/morpheis/">Morpheis</a></strong> &bull; 2018-11-16 08:50:15 </div><div class="cooked"><p>Been playing awhile and I just wanted to create an account to log on and tell you that your lootbox system f<em>cking sucks. Get this canc</em>r out of your game, you can do better.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/riwillion/" style="color:#fff;text-decoration:none;">R</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/riwillion/">Riwillion</a></strong> &bull; 2018-11-16 09:07:12 </div><div class="cooked"><p>I think a lot of people would agree with you based on what I´ve read, I personally am cool with the loot system, but in any case, you should probably pinpoint what exactly you think is wrong with the system and ideally propose a better alternative. Just saying.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/funkypotato/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/funkypotato/">FunkyPotato</a></strong> &bull; 2018-11-16 09:53:29 </div><div class="cooked"><p>For me the problem these days is that there’s no noticeable difference between levels. Gen Vs emp vaults? I do not care as 2 blue and one orange 297 trinket is what I’m getting either way.</p><p>Also there’s the woeful drop rate of anything interesting. In the last six weeks I’ve opened dozens and dozens of vaults and got a couple of red trinkets, one red weapon (that I had two copies of already) and zero cosmetics. I also got one deed. It’s totally worthless to the extent that I prefer to wipe memorably because it’s the only interesting thing about the game to me now.</p><p>I still love the game but if there was no loot system at all I wouldn’t feel I had lost anything. It is a dead, rotting, gangrenous limb hanging off an otherwise well designed (if unforgivably buggy) game.</p><p>If the game was free to play with the current loot system but you can buy items you want as in Warframe it would make a lot more sense. I’ve said this on here before but it seems obvious to me that the business model got changed close to release and the mechanics were not updated to reflect that.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/smokert69/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/smokert69/">SmokerT69</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Hero</span> &bull; 2018-11-16 10:42:13 </div><div class="cooked"><p>As I’ve said before, putting in a weekly challenge that gives you a hat and another for a red weapon would at least help a bit. I don’t think they’re going to get rid of the RNG element of the game, they’ve stated this several times. Also, the way you worded your feedback is more likely to get the thread locked than actually have them consider it…</p><p>I personally dislike RNG as well, 800 hours into the game, only opening legend boxes on the elf. I finally got my last red… Meanwhile I had like 6 of the shades xbows and 7 two handed swords. Then I start opening vaults on my other characters, not a single dup for Kruber, got all the weapons I wanted. Same for Sienna, whom I got 4 of the reds I wanted back to back, 2 in each vault. Salty I got 1 of everything and 3 xbows which I needed for extra builds. So, in less than 100 hours, I got all the reds I needed for every other class I play, meanwhile took me 800 hours to get a glaive on the elf xD</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatshark_hedge/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatshark_hedge/">Fatshark_Hedge</a></strong> &bull; 2018-11-16 10:43:24 </div><div class="cooked"><p>Please try to follow the guidelines when posting feedback. Also, tell us what you don’t like about something rather than just tell us that you don’t like it. Thank you.</p></div></div></div></div></div></body></html>

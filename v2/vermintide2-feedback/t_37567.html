@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>No HUD Weekly Event and Engaging Finales - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">No HUD Weekly Event and Engaging Finales</span></h1><div class="meta">3 Posts &bull; 616 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/visulth/" style="color:#fff;text-decoration:none;">V</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/visulth/">Visulth</a></strong> &bull; 2019-12-20 21:15:34 </div><div class="cooked"><p>One of the recent changes to game regarding Finales was the buff to spawned enemies to make them more difficult - that is, to make them more engaging. Some events prior to this patch were boring with little else but routinely tick some boxes.</p><p>Playing the weekly event this week has illustrated another way to make them more engaging: don’t hold the players’ hands so tightly. Having to do Fort BB or Blightreaper Finales on Legend with No HUD was far more fun, rewarding, and engaging than just following a giant “GO HERE” sign.</p><p>For Fort, we had to move as a group and check every cannonball spawn point. It forced us to stick together, no one got overwhelmed like is typical with Fort BB’s finale-spike, we found the cannonball and slowly brought it back to the cannon. Actually having to look through the level and investigate was a completely new sensation. The normal design leaves almost nothing for you to do except go to Point A (the ball) and back to Point B (the cannon) as quickly as possible.</p><p>For Blightreaper - a liiiittle less polished, sure, since it’s very hard to remember where the books are and you can’t tell by looking at them (and they won’t light up), but having to hold the stairs while your designated scout madly looks through books was a blast.</p><p>Obviously I don’t think it should be as hard as these cases, but I think instead of saying exactly where the key items are, being more vague can be more fun. Maybe light up all the books and say “oh it’s one of them!” and so you have to check, and each time fewer and fewer books light up. Or for the cannon, indicate the areas the cannonball may be instead of a giant sign “IT’S RIGHT HERE”.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/perteks/" style="color:#fff;text-decoration:none;">P</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/perteks/">Perteks</a></strong> &bull; 2019-12-21 00:59:16 </div><div class="cooked"><p>Its not that its not bad, but you are familiar with what you must do, imagine doing blightreaper for first time and switches are not lighted out.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kaelusvonsestiaf/" style="color:#fff;text-decoration:none;">K</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kaelusvonsestiaf/">KaelusVonSestiaf</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Hero</span> &bull; 2019-12-21 21:32:12 </div><div class="cooked"><p>No but he’s got a point. Blightreaper for instance could be changed to only show you the icon that points you to the switch when you’re sufficiently close to it, so that you have to search around for it each time, but it’s not impossible or easy to miss, you just don’t know which it is until you’re there.</p><p>There’s definitely ways that this can be implemented to increase the difficulty without being obnoxious and, most importantly, it can be done on a per-difficulty basis. Something like, Recruit and Veteran do the same handholding we currently have, champion and legend only show objective markers when you’re really close to the objective proper (to make it hard to miss when you do find the item, while still making it hard to find) and cataclysm could either give you the finger or work just like Legend/Champion, whichever works best.</p></div></div></div></div></div></body></html>

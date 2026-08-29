@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Would a playeable Bestigor work for this mode? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 Versus &raquo; <a href="index.html">General Discussion</a></div><h1><span class="accent">Would a playeable Bestigor work for this mode?</span></h1><div class="meta">3 Posts &bull; 52 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/vror/" style="color:#fff;text-decoration:none;">V</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/vror/">Vror</a></strong> &bull; 2025-01-07 01:34:33 </div><div class="cooked"><p>So I have been thinking for a while, “Versus is such a fun gamemode, but I feel there’s something missing for the rats”…</p><p>So after thoughts and thoughts, I realized we’re lacking a <strong>Rush in disruptor</strong></p><p>With the current categorization (that I pulled out of my a-), we have:</p><ul><li>2 Disablers (Packmaster and Assassin)</li><li>2 Long Range Support / Damage (Ratling and Globadier)</li><li>1 Disruptor (Flamerat)</li></ul><p>So I was thinking, I think it would be cool if we could have a Disruptor that targeted 1 player, and this is where the idea of the Bestigor being playeable came in my mind</p><p>So the Bestigor would be similar to either L4D2 Charger or Darktide Mutant</p><p>How would he play?</p><p>Starting with the following data:</p><ul><li>60 HP, Infantry armor type (So he can’t be 1 shotted by handgun, and still have some HP to tank something like a fireball left click or BoP)</li><li>He would make no noise when spawning</li><li>He would start a charge just like a normal bestigor, doing the animation first on startup (feet stomping) + their distinctive noise, and then the player would be able to control the direction</li><li>During charge, Bestigor becomes completely immune to stagger</li><li>Charge can be cancelled with R/M2 key (depends on what fatshark would think it’s ideal)</li><li>After the charge is over, there’s a 6s cooldown to charge again, and during that time the Bestigor would win a speed boost</li><li>Hitting a Hero with the charge, would deal instant 30 damage (even if they’re blocking) and would send them flying (Exactly like a Heavy attack from a Troll)</li></ul><p>His role would basically be a semi-tank that can go in for inmediate damage, and is useful to push players away from their team or into dangerous areas (Instakills as well! That sounds very fun!)</p><p>(Of course adding this as playeable would mean removing the Bestigor NPC from spawning on versus)</p><p>What do you all think of this idea?</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/starcitydragon/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/starcitydragon/">StarCityDragon</a></strong> &bull; 2025-01-07 11:36:50 </div><div class="cooked"><p>Im not a vs player <em>at all</em>, but im just interested: how would bestigor deal with dodge ? Its really easy to see him running, especially if hé is running towards you while staggering every single enemy nearby, and then just dodge him. Also helmgart maps such as screaming Bell and righteous stand dont have bestigors on them… not sure its a problem xD</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/vror/" style="color:#fff;text-decoration:none;">V</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/vror/">Vror</a></strong> &bull; 2025-01-07 14:12:42 </div><div class="cooked"><p>Well you can’t Dodge packmaster in versus so I suppose the same logic would apply here</p></div></div></div></div></div></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>"Overcharged" Necromancer challenge - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">"Overcharged" Necromancer challenge</span></h1><div class="meta">4 Posts &bull; 111 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/gryregaest/" style="color:#fff;text-decoration:none;">G</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gryregaest/">Gryregaest</a></strong> &bull; 2025-11-08 14:28:17 </div><div class="cooked"><p>Generating 400 overcharge in 18 seconds; does anyone know if this is even possible and/or working correctly? I’m doing all the things mentioned everywhere, attack speed talents and charms, speed potion, coruscation/beam staff, etc. And I could swear I’m doing it in enough time. It’s sort of hard to tell, short of recording it and going frame by frame, plus the overcharge is not represented numerically, anyways.</p><p>There’s mention of the coruscation staff being changed and making it non-viable and people doing it with the beam staff instead, but I can’t find anything on the internet about this challenge that’s less than two years old and a lot of changes and bugs can happen in that time.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/harridas/" style="color:#fff;text-decoration:none;">H</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/harridas/">Harridas</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Regular</span> &bull; 2025-11-08 15:20:50 </div><div class="cooked"><p>Yea it’s possible, if you want to make it easier then playing Twitch Mode, getting a speed boon and using a decanter speed potion at the same time should make it easy to get. You’re using the skeletons to vent overcharge right? Cause that’s absolutely necessary for the challenge.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/gryregaest/" style="color:#fff;text-decoration:none;">G</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gryregaest/">Gryregaest</a></strong> &bull; 2025-11-08 20:09:24 </div><div class="cooked"><p>Yes, venting the skeletons, and using the talents that give extra skeletons and attack speed for each skeleton alive, and decanter, and the attack speed buff on the charm. My attempts look very similar and take similar amounts of time to videos I’ve seen, but it’s not working. Hence my starting to think either the challenge isn’t working or it’s not reporting that it’s unlocked or something. I’ve tried it over and over again in the start of the tower of treachery level with the free potions, and it just doesn’t work.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/lmarcusl/" style="color:#fff;text-decoration:none;">l</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/lmarcusl/">lMarcusl</a></strong> &bull; 2025-11-09 12:13:29 </div><div class="cooked"><p>I can attest that the challenge definitely does work, as I helped a friend complete it a few months ago. But it’s not easy to do. Corruscation staff is indeed no longer viable, it was nerfed in terms of shotgun projectiles fired and with it also nerfed in terms of heat generation. We’ve tried the staff many, many times and couldn’t do it. The beam staff shotgun does work tho. It seems like you’re doing all the right things, what with potions, attack speed stacking from talent etc. For things that you didn’t mention (but I’m assuming you’re doing them anyway) make sure you don’t have an overcharge reduction on your staff.</p><p>Do you have friends you could coop with? A Ranger Veteran with Ale drops, proxy and the attack speed ult (Exhilirating Vapours) will help you stack more speed and keep it up for longer. That’s the way we ended up doing it with my friend. But I also did it solo back before the Corusc nerf, so an ally shouldn’t be strictly necessary I don’t think.</p><p>Worth pointing out, the challenge is pretty…weird in terms of its behaviour. Both times I got the challenge it popped up way later than I would have expected. I summoned Army of the Dead, popped my speed pot, started spamming and sacrificed skellies at the right times as fast as I could. The speed potion lasts 15 seconds with Decanter. My potion was long gone, I had lost my attack speed bonus from having enough skellies up, Bardin ult was gone, proxy ran out, but I kept on spamming and the challenge completion popped up a solid 10 seconds after I was already past my attack speed peak. I seem to remember a similar behaviour back when I did it for myself solo. So it might also be possible you’re giving up “too early" when you don’t see the challenge completing. I think I was down to like 1-2 skeletons (from 12) when it finally appeared.</p></div></div></div></div></div></body></html>

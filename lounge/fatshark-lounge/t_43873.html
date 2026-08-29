@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Outcast Engineer Challenge Targeting Array - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Miscellaneous &raquo; <a href="index.html">Fatshark Lounge</a></div><h1><span class="accent">Outcast Engineer Challenge Targeting Array</span></h1><div class="meta">4 Posts &bull; 966 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/dylster1253/" style="color:#fff;text-decoration:none;">D</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dylster1253/">Dylster1253</a></strong> &bull; 2021-02-28 20:26:47 </div><div class="cooked"><p>Does anybody have some tips or tricks to complete the challenge targeting array for outcast engineer?</p><p>I been trying to complete this challenge for a couple of days now but it has been very frustrating to complete.</p><p>The challenge guides for Outcast Engineer has not been very helpful because they just talk about a glitch that happened with the challnege, where you only needed to score 5 headshots to complete or a exploit on the pit. I play on Xbox, so when the outcast engineer launched on console, the challenge was already fixed.</p><p>I just find it very hard to hit headshots constantly with the masterwork pistol. The pistol is not really meant to be accurate at long range. Also, the trigger delay doesn’t really help either. It’s also really frustrating when the bots get into your way.</p><p>I will try to beat the challenge with my cataclysm squad. If anybody has some advice on how to complete the challenge, that would be much appreciated.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/alsozara/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/alsozara/">alsozara</a></strong> &bull; 2021-02-28 20:53:46 </div><div class="cooked"><p>Bro this challenge has been talked about in so many threads here. Did you try, like, searching the forum before creating a new thread? Hard to believe that wouldn’t have turned something up.</p><p>It’s a bad challenge but advice I see pop up a lot is:<br> a) crouching improves accuracy a LOT with MW Pistol<br> b) you can change to melee between shots no issue, just make sure that whenever you do get the pistol out you hit a head.</p><p>Can’t remember for sure but I have a feeling armour piercing rounds might interfere with the challenge somewhat (by piercing an elite then bodyshotting what’s behind them, resetting the counter).</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/adelion/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/adelion/">Adelion</a></strong> &bull; 2021-02-28 21:20:14 </div><div class="cooked"><aside class="quote no-group" data-username="alsozara" data-post="2" data-topic="43873"><div class="title"><div class="quote-controls"></div><a href="../../users/alsozara/">alsozara</a>:</div><blockquote><p>Bro this challenge has been talked about in so many threads here.</p></blockquote></aside><p>Well, as he said he comes from Xbox. So he most likely doesnt frequent the forum to often. And most of the threads only deal with the five headshots scenario and not the all new and improved whatever the hit-number is now challenge.</p><p>Granted, there isn’t really much to do other than crouching and hoping your bots dont lure in your targets. Maybe, he just didnt want to spend the time searching for other threads, maybe he saw theam already but hoped that there is some other magical trick.</p><p>But yea OP. Other than crouching and praying, there isnt much you can do. I fathom that this is double annoying with a controller instead of a mouse.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/saryk/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/saryk/">Saryk</a></strong> &bull; 2021-02-28 22:13:55 </div><div class="cooked"><p>There literally is another thread two positions down in the list of most recent activity, in which I posted, an hour before this thread was created, <a href="https://forums.fatsharkgames.com/t/let-s-talk-targeting-array/43448/10">this</a>.</p><aside class="quote no-group" data-username="alsozara" data-post="2" data-topic="43873"><div class="title"><div class="quote-controls"></div><a href="../../users/alsozara/">alsozara</a>:</div><blockquote><p>It’s a bad challenge but advice I see pop up a lot is:<br> a) crouching improves accuracy a LOT with MW Pistol<br> b) you can change to melee between shots no issue, just make sure that whenever you do get the pistol out you hit a head.</p></blockquote></aside><p>Î this + get a troll down and go crazy, his head doesn’t move anyway. Be careful about piercing damage, I’d recommend aiming for the side of its head to avoid getting a bodyshot counting too (you never know)</p></div></div></div></div></div></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Vermintide 2 Crashing Mid-Game - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Vermintide 2 Crashing Mid-Game</span></h1><div class="meta">5 Posts &bull; 900 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/dizlegion/" style="color:#fff;text-decoration:none;">d</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dizlegion/">dizlegion</a></strong> &bull; 2020-05-29 15:18:40 </div><div class="cooked"><p>Hi,</p><p>I need a some assistance with Vermintide 2 which I just purchased tonight through Steam. Whenever I join my buddies game or I host a game either they crash out of my game or I crash mid-way through the playthrough. This happens every single time I join game. I’ve tried multiple graphics settings and confirmed my GPU is not getting above 77 degrees on extreme setting and not getting above 61 degrees on medium setting.</p><ul><li>I’m currently getting 764 Mbps downloads and 860 Mbps uploads</li><li>I have the newest Nvidia Driver</li><li>In game I have small packets turned on and maximum bandwidth</li><li>I do not have problems with ANY other game on my computer. This is literally the first problem I’ve ever had in the 2 years Ive owned this computer</li></ul><p>I’ve attached all my logs and my dxdiag. Please let me know what is going on as it very frustrating to have lost 4 hours worth of playtime due to crashes.<br><a class="attachment" href="/uploads/short-url/uQu8kP3l3wNlW8h45urdkJwKI7q.log">console-2020-05-28-23.17.19-6b2ab4c5-2d65-4aac-913a-39beecf848c9.log</a> (113.5 KB) <a class="attachment" href="/uploads/short-url/dD831DIgPZRL1SXQtLgAZv1gUYM.log">console-2020-05-29-00.57.23-3e9a90cd-3331-4083-aee6-a8a358b2823e.log</a> (1.3 MB) <a class="attachment" href="/uploads/short-url/sFDGqtB5jMxdFvSAR4eCbMCM8n4.log">console-2020-05-29-01.24.45-c3d40b48-7743-4ace-940e-9c0118b2f120.log</a> (480.1 KB) <a class="attachment" href="/uploads/short-url/rYx31QDcQJSy8B1ESUFALYsBmhc.log">console-2020-05-29-01.50.58-c57804c7-7212-45e4-aa93-01afb4053a79.log</a> (492.7 KB) <a class="attachment" href="/uploads/short-url/6wXh7CDBUz3toAdeJbR1D6DRKXO.log">console-2020-05-29-02.20.07-fef4e190-64f4-4d08-9aeb-f79f4a32db93.log</a> (119.0 KB) <a class="attachment" href="/uploads/short-url/psN29zcpEs6GgSCmdA1C1lainlb.log">console-2020-05-29-02.34.01-e3f53db2-9458-432c-b69a-a7d853fc7d6c.log</a> (769.1 KB) <a class="attachment" href="/uploads/short-url/bBMn3VHZcLEN6IcUUUQ7tt652kA.txt">DxDiag.txt</a> (81.3 KB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2020-05-29 15:23:08 </div><div class="cooked"><p>Unfortunately the console logs don’t contain the information I need to see.</p><p>Next time, please provide us with a crash report instead - after the crash occurs, a window should be displayed prompting you to enter what you were doing prior to the crash occurring. Once submitted, another window containing a long ‘GUID’ string and an option to ‘Copy to Clipboard’ should be displayed.</p><p>Please click the ‘Copy to Clipboard’ button and paste it in here. Thank you in advance.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/dizlegion/" style="color:#fff;text-decoration:none;">d</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dizlegion/">dizlegion</a></strong> &bull; 2020-06-01 10:58:26 </div><div class="cooked"><p>I do not get any sort of pop up stating that I have crashed and my crash directory is completely empty. What are my options here because as it stands I cannot play the game.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2020-06-01 14:28:23 </div><div class="cooked"><p>It’s a shot in the dark, but try lowering your ‘Worker Thread’ count within the launcher’s ‘Settings’ menu down to <strong>6</strong>.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2020-06-08 14:28:25 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

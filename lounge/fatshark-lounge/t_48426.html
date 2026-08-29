@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ride Together, Die Together - Mechanics Question - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Miscellaneous &raquo; <a href="index.html">Fatshark Lounge</a></div><h1><span class="accent">Ride Together, Die Together - Mechanics Question</span></h1><div class="meta">4 Posts &bull; 340 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/adelion/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/adelion/">Adelion</a></strong> &bull; 2022-03-29 21:57:37 </div><div class="cooked"><p>So inspired by a video of a player doing the Feed me Sinner - Cataclysm challenge with bots on Warrior Priest, I thought why not try that. After a few deaths on the way there, I actually managed to get the challenge done the first time I made it to the final. Granted I had three concentration potions and the bots died a horrible death at the end. But I made it. Also little bonus information: Getting downed does not affect the challenge.</p><p>With that motivation I looked which other Helmgart challenges I missed. So next target was Cage Breaker. After dying dozen of horrible deaths as Handmaiden because of horrible mistakes and suspiciously well-placed Blightstorms coupled with open field Ratling Gunner crossfire, I decided to powergame it and took Zealot with Griffon Foot and Axe&amp;Falchion. With no notable resistance by the enemies I completed this challenge then with Zealot.</p><p>Which leaves me hanging now with Ride Together, Die Together. Due to the bots poor behavious towards warpstone imbued ratling guns, I am sure I will not be able to do this with bots. Nonetheless, I would like for clarification on some of the mechanics to consider a suitable strategy:</p><ul><li>Can Rasknitt be downed from Deathrattler without damaging Death Rattler? As far as I know no form of stagger like a FK dash can do this. So is it something which just automatically happens after certain damage (total / % ?) or time?</li><li>When does Rasknitt remount Deathrattler? You can completely ignore Rasknitt and it happens eventually. So is time based or based on damage done to Deathrattler? Is there a damage cap for Rasknitt (if you go for him) when he remounts?</li><li>Pretty sure this being a no. Can Rasknitt be wounded while playing horse?</li></ul><p>It just seems that the window of opportunity is very small. Even if the whole team concentrates on Rasknitt in the down phase and career skills the hell out of him, it is still a close call.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/harridas/" style="color:#fff;text-decoration:none;">H</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/harridas/">Harridas</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Regular</span> &bull; 2022-03-30 01:30:07 </div><div class="cooked"><p>Yea the opportunity window is small.</p><p>AFAIK Rasknitt falls off after certain HP thresholds with Deathrattler, and no Rasknitt’s not falling off without you damage Deathrattler. There’s only a certain amount of times that Rasknitt can fall off, I believe 3 times, could be 4, you could make this less by continuously bursting Deathrattler.</p><p>A strat you may wanna try is having a non-burst attack Deathrattler after it’s lost around a 20+ percentage of its health, have the burst careers on stand-by and focus on bursting Rasknitt when he falls off, ignoring Deathrattler while Rasknitt’s off.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/adelion/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/adelion/">Adelion</a></strong> &bull; 2022-03-30 12:01:51 </div><div class="cooked"><p>Well, that answers the first part of the questions which helps already. So I really won’t get around of having a team for this one.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/jayjay/" style="color:#fff;text-decoration:none;">J</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/jayjay/">JayJay</a></strong> &bull; 2022-03-31 18:24:04 </div><div class="cooked"><p>Rasknitt goes down from Deathrattler after it lost 25% of it’s health, so it’s only possible a maximum amount of 3 times. He remounts it after 30 seconds or if Rasknitt loses 25% of his health. This is very old info though, from this <a href="https://www.reddit.com/r/Vermintide/comments/aj9fvx/the_events_of_vermintide_2_and_their_inner/" rel="noopener nofollow ugc">reddit post</a> by Grimalackt. Much stuff has changed since then, but some still holds up, and i believe for skittergate all remains the same.</p></div></div></div></div></div></body></html>

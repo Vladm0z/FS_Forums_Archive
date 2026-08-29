@@ -1,0 +1,70 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Trapper net erroneously checks for Psyker domes after having checked if a player is caught - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Trapper net erroneously checks for Psyker domes after having checked if a player is caught</span></h1><div class="meta">1 Posts &bull; 52 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/hoxi/" style="color:#fff;text-decoration:none;">h</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/hoxi/">hoxi</a></strong> &bull; 2025-07-05 23:08:24 </div><div class="cooked"><h3><a name="p-658759-issue-type-required-1" class="anchor" href="#p-658759-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Enemy Mechanics</p><h3><a name="p-658759-issue-description-required-2" class="anchor" href="#p-658759-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>The following check in bt_shoot_net_action.lua, in function BtShootNetAction._update_shooting:</p> <pre><code>if scratchpad.force_field_system:is_object_inside_force_field(new_sweep_position, radius, true) then
+	scratchpad.internal_state = "shot_finished"
+
+	return
+end
+</code></pre> <p>Is done after checking if a player was caught or not, rather than being done right after checking for geometry obstacles.</p><p>This can result in Trappers netting players inside a Psyker dome while standing right at the edge. This is both unintuitive and inconsistent.</p><p>For reference, the net checks things in the following order:</p><ol><li>Line raycast for geometry. This is why the net can go through obstacles (it’s not some weird physics issue, it’s intentional). I do hope it’s reconsidered to have it use a small spherecast/sphere raycast.</li><li>Finds player targets that overlap with the net.</li><li>Gets the first player detected by the overlap search, the rest are ignored.</li><li>If this player isn’t dodging and isn’t currently being disabled by other enemies, put them in the netted state. If the player is dodging, check if they’re inside a slightly smaller radius of the net (0.35 instead of 0.5), using horizontal distance.</li><li>Check for Psyker domes.</li><li>Check if the net has reached its maximum travel distance.</li></ol><p>Another small oversight is that in this bit here:</p> <pre><code>local hit_actors, actor_count = PhysicsWorld.immediate_overlap(physics_world, "shape", "sphere", "position", new_sweep_position, "size", radius, "types", "dynamics", "collision_filter", "filter_player_detection")
+
+if actor_count &gt; 0 then
+	local hit_actor = hit_actors[1]
+	local hit_unit = Actor.unit(hit_actor)
+	local is_valid_hit = self:_evaluate_collision(action_data, hit_unit, new_sweep_position)
+
+	if is_valid_hit then
+		self:_start_dragging(unit, t, scratchpad, action_data, hit_unit)
+	end
+end
+</code></pre> <p>There should be a return statement inside the if is_valid_hit block, to avoid overriding the scratchpad.internal_state variable.</p><p>I attached a txt file pointing out both issues (not sure if it’ll actually upload since it gave me an error message but still showed up..).</p><h3><a name="p-658759-steps-to-reproduce-required-3" class="anchor" href="#p-658759-steps-to-reproduce-required-3" aria-label="Heading link"></a>Steps to Reproduce (Required):</h3><ol><li>Place a Psyker dome when a Trapper is nearby.</li><li>Stand right at the edge, closest to where the Trapper is coming towards you, but while still inside the dome. Ranged attacks should be blocked.</li><li>Let the Trapper shoot her net.</li><li>Notice that you can be caught by it despite being inside the dome.</li></ol><h3><a name="p-658759-reproduction-rate-required-4" class="anchor" href="#p-658759-reproduction-rate-required-4" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Constant (100%)</p><h3><a name="p-658759-platform-required-5" class="anchor" href="#p-658759-platform-required-5" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p><h3><a name="p-658759-upload-supporting-evidence-optional-6" class="anchor" href="#p-658759-upload-supporting-evidence-optional-6" aria-label="Heading link"></a>Upload Supporting Evidence (Optional):</h3><p><a class="attachment" href="/uploads/short-url/q3ho2mRkoOExePTKSBOgF1WGAdw.txt">net bug.txt</a> (3.42 KB)</p></div></div></div></div></div></body></html>

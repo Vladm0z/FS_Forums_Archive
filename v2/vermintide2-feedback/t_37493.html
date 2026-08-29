@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Slayer's Grimnir's Focus - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Slayer's Grimnir's Focus</span></h1><div class="meta">4 Posts &bull; 738 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/sleezy/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sleezy/">Sleezy</a></strong> &bull; 2019-12-18 17:55:40 </div><div class="cooked"><p>Let me start off by saying that I think Fatshark intended to buff slayer. However, that is not really what happened. I know that there was a lot of feedback by people saying they died randomly on slayer. However, there are some problems with the current iteration of Grimnir’s focus.</p><ol><li><p>Forcing charge attacks does not synergize with most of Slayer’s weapon choices. Although a slight dps drop, any dps loss on slayer is not really reasonable at this time. outside of the DK build, Slayer’s damage output is sub-par as it is.</p></li><li><p>This does nothing to fix the DK build. You can still murder the whole world and you just have to heavy once every 10 or so hits.</p></li><li><p>It’s somewhat of a nerf because it is less DR and you can’t use it to avoid taking damage from stuff like gunners, storms, and gas rats. This is impossible because you need to connect with the hit to proc the talent.</p></li></ol><p>Proposed Change:</p><p>Slayer used to have a talent that gave him 10% DR for every stack. Just make Grimnir’s Focus do that. It would be 30%-40% DR depending on which talent you took. In addition, you could maintain it by hitting enemies with heavies or lights so there is no artifical dps loss.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/perteks/" style="color:#fff;text-decoration:none;">P</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/perteks/">Perteks</a></strong> &bull; 2019-12-18 18:16:32 </div><div class="cooked"><p>I propose use correct subforum, and yes its buff its synergise with way more weapons and its more reliable</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/flinlock/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/flinlock/">Flinlock</a></strong> &bull; 2019-12-18 18:54:24 </div><div class="cooked"><aside class="quote no-group" data-username="Sleezy" data-post="1" data-topic="37493"><div class="title"><div class="quote-controls"></div><a href="../../users/sleezy/">Sleezy</a>:</div><blockquote><p>Slayer used to have a talent that gave him 10% DR for every stack. Just make Grimnir’s Focus do that. It would be 30%-40% DR depending on which talent you took. In addition, you could maintain it by hitting enemies with heavies or lights so there is no artifical dps loss.</p></blockquote></aside><p>+1, excellent suggestion, I loved that talent when we had it before.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/gitgud/" style="color:#fff;text-decoration:none;">G</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gitgud/">GitGud</a></strong> &bull; 2019-12-20 09:05:22 </div><div class="cooked"><p>When i first read the changes i was pretty hyped and to be honnest i though it would be a buff because the change makes the talent more consistent and so more reliable.</p><p>Well i was totaly wrong, i play mainly with 2h hammers and dual axes and it s just a plain nerf. Even worse than that, if you analyse every single slayer weapon you ll see that this talent always has a crazy downside.</p><p>Depending on your weapon you either take normal damage from hordes or normal damage from elites. At first, from a balance point, it seems to be well thought (because you cant just take 1 talent that constantly give you damage reduction against everything) but in practise it just sucks. I feel forced to do heavy attacks, this coupled with the 2 talents that gives you buffs depending on your 2 melee weapons just nails it.</p><p>Feeling forced to play X weapon, feeling forced to do Y type of attack. Unfun.</p></div></div></div></div></div></body></html>

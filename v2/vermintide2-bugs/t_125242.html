@@ -1,0 +1,78 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Assassin pounce did 60 damage on champion? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Assassin pounce did 60 damage on champion?</span></h1><div class="meta">3 Posts &bull; 23 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/xxponage/" style="color:#fff;text-decoration:none;">x</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/xxponage/">xxponage</a></strong> &bull; 2026-08-29 00:25:49 </div><div class="cooked"><h3><a name="p-775992-issue-type-required-1" class="anchor" href="#p-775992-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Enemy Mechanics</p><h3><a name="p-775992-issue-description-required-2" class="anchor" href="#p-775992-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>the attached video is playing solo on champion. with no extra modifiers I get pounced by an assassin and it does 60 damage? then with barkskin it does an extra 10 damage with its next attacks which seems normal.</p><p>I am rechecking the recording but I can’t find any other source of damage that could have caused this. my first though was bardin trollhammer friendly fire but he does not fire it, the enemies behind me didnt aggro until after, its just the one assassin.</p><p>I believe an assassinpounce should only do like 20 damage on champion but correct me if I am wrong.</p><div class="youtube-onebox lazy-video-container" data-video-id="koyIPn7MDsM" data-video-title="Warhammer Vermintide 2 2026 08 27 11 29 59 AM" data-video-start-time="" data-video-list-id="" data-provider-name="youtube"><a href="https://www.youtube.com/watch?v=koyIPn7MDsM" target="_blank" class="video-thumbnail" rel="noopener nofollow ugc"><img class="youtube-thumbnail" src="https://img.youtube.com/vi/koyIPn7MDsM/maxresdefault.jpg" title="Warhammer Vermintide 2 2026 08 27 11 29 59 AM" width="690" height="388"></a></div><h3><a name="p-775992-platform-required-3" class="anchor" href="#p-775992-platform-required-3" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/rwc/" style="color:#fff;text-decoration:none;">R</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/rwc/">RwC</a></strong> &bull; 2026-08-29 00:49:55 </div><div class="cooked"><p>The pounce damage scales with distance.</p><aside class="onebox githubblob" data-onebox-src="https://github.com/Aussiemon/Vermintide-2-Source-Code/blob/fd46866fe4d9aad8a1f1480fad4be6b960d4f83e/scripts/settings/breeds/breed_skaven_gutter_runner.lua#L35"><header class="source"><a href="https://github.com/Aussiemon/Vermintide-2-Source-Code/blob/fd46866fe4d9aad8a1f1480fad4be6b960d4f83e/scripts/settings/breeds/breed_skaven_gutter_runner.lua#L35" target="_blank" rel="noopener nofollow ugc">github.com/Aussiemon/Vermintide-2-Source-Code</a></header><article class="onebox-body"><h4><a href="https://github.com/Aussiemon/Vermintide-2-Source-Code/blob/fd46866fe4d9aad8a1f1480fad4be6b960d4f83e/scripts/settings/breeds/breed_skaven_gutter_runner.lua#L35" target="_blank" rel="noopener nofollow ugc">scripts/settings/breeds/breed_skaven_gutter_runner.lua</a></h4><div class="git-blob-info"><a href="https://github.com/Aussiemon/Vermintide-2-Source-Code/blob/fd46866fe4d9aad8a1f1480fad4be6b960d4f83e/scripts/settings/breeds/breed_skaven_gutter_runner.lua#L35" rel="noopener nofollow ugc"><code>fd46866fe</code></a></div> <pre class="onebox"><code class="lang-lua">
+      <ol class="start lines" start="25" style="counter-reset: li-counter 24 ;">
+          <li>	is_always_spawnable = true,</li>
+          <li>	is_bot_aid_threat = true,</li>
+          <li>	jump_gravity = 9.82,</li>
+          <li>	jump_range = 20,</li>
+          <li>	jump_speed = 25,</li>
+          <li>	minion_detection_radius = 10,</li>
+          <li>	no_stagger_duration = true,</li>
+          <li>	perception = "perception_all_seeing_re_evaluate",</li>
+          <li>	player_locomotion_constrain_radius = 0.7,</li>
+          <li>	poison_resistance = 100,</li>
+          <li class="selected">	pounce_bonus_dmg_per_meter = 1,</li>
+          <li>	pounce_impact_damage = 5,</li>
+          <li>	proximity_system_check = true,</li>
+          <li>	race = "skaven",</li>
+          <li>	radius = 1,</li>
+          <li>	run_speed = 9,</li>
+          <li>	smart_object_template = "special",</li>
+          <li>	smart_targeting_height_multiplier = 1.6,</li>
+          <li>	smart_targeting_outer_width = 0.6,</li>
+          <li>	smart_targeting_width = 0.3,</li>
+          <li>	special = true,</li>
+      </ol>
+    </code></pre> </article><div class="onebox-metadata"></div><div style="clear: both"></div></aside></div></div></div><div class="post"><div class="avatar"><a href="../../users/xxponage/" style="color:#fff;text-decoration:none;">x</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/xxponage/">xxponage</a></strong> &bull; 2026-08-29 00:52:12 </div><div class="cooked"><p>Ah I had no idea that was a mechanic. In that case in this area with the huge sightlines I would believe it jumped from far enough away to cause that much damage.</p></div></div></div></div></div></body></html>

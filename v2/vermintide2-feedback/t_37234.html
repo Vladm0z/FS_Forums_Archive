@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Unchained Needs Love - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Unchained Needs Love</span></h1><div class="meta">2 Posts &bull; 508 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/randomlurker/" style="color:#fff;text-decoration:none;">R</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/randomlurker/">RandomLurker</a></strong> &bull; 2019-11-26 19:36:17 </div><div class="cooked"><p>UC is supposed to be Sienna’s tanky, melee focused class. As of now, it’s not.</p><p>The problem lies in the core mechanics. 50% of damage is converted into overheat. The overheat pool is 40. In other words, 80 damage puts you into melt down, which will kill you unless you have Living Bomb to discharge it. Note that this is before damage reductions like Barkskin, which are only applied after the heat conversion. In addition, there’s a hidden 1-hit protection mechanic, in that no single hit can take you from orange or lower heat all the way to overload (same with spell casts, no single staff attack will do the same).</p><p>In 1.6, she had a talent that added 25% more overcharge pool, raising it to 50. In 2.0 she lost this.</p><p>Now, in 2.0, UC is very fragile. Gors can hit for up to 70 damage, and clan rats for up to 50. That’s a two hit death from a Gor, and 3 hit death from a Clan Rat - assuming you had 0 overheat to start with!</p><p>Which is a huge problem, because the other mechanic of the class is to deliberately build up overheat for a damage boost. It’s a risk/reward thing. However, the reward curve is way out of whack because heating up to 50% for 3 stacks of bonus reduces you to 2-hit-death territory vs most enemies. Add in the density of hordes, which can easily hit you 3 or 4 times simultaneously, and the built in 1-hit protection of the mechanic becomes irrelevant and UC starts to feel like it’s made of glass.</p><p>In comparison, a 100hp non-tanky class with Barkskin can easily take 3 or 4 simulataneous hits from a dense horde and still be standing and have a chance to recover. UC can only recover once per 3 minutes (Living Bomb), and then has to play completely defensively.</p><p>In 1.6, with a bigger overcharge pool, heating to 50% gave 4 stacks of damage boost, and still had enough heat capacity left to soak multiple hits. Without that larger pool, 4 stacks of bonus leaves you at 70% heat, which is very dangerous. There was also no Cata difficulty, which throws the damage absorption risk curve way out of balance with much higher enemy damage. The result is UC can not afford to stack heat on purpose, and loses it’s damage bonus.</p><p>Combine these issues, and both of UC’s core mechanics are undermined.</p><p>Compare UC to Sienna’s other two classes. BW has access to a 30% damage reduction talent (procced by igniting enemies), and Pyro can generate THP on demand and also gets a comparable melee damage boost, and gets that boost without the risk that UC must take on! Meaning Pyro can keep it’s melee bonus with 100% uptime while UC cannot. Both of them are comparable to UC in tankiness, and Pyro even matches it in melee damage. UC no longer has any purpose.</p><p>Some ideas to fix this: (mix/match, not all at once, that would be over the top)<br> -Increase UC base overcharge to 50.<br> -Reduce damage transfer to 30%.<br> -Increase melee bonus per stack to compensate for the much higher risk with a lot more reward.<br> -Change ‘Burning Dregs’ to work in a way that benefits the class.</p><p>Burning Dregs currently vents all heat any time you are reduced to 50% health. This is very bad, and works against the player. It tends to trigger when it’s not needed, pointlessly venting that carefully stored heat. It’s not just unhelpful, it’s detrimental, like a land mine talent to be carefully avoided. If it vented based on overheat level instead, it would be much more valuable. For example, by venting all heat when you meltdown, but at the cost of 30% base health, with a 60s internal timer. It’s thus much more costly to rely on then Living Bomb but more reliable, and not without risk of it’s own since the damage may still down you. This has the dual benefit of allowing riskier play and permitting offensive uses of Living Bomb.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2019-12-03 19:36:19 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

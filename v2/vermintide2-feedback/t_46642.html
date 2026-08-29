@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Khorne skull curse combined with +hordes and beastmen is a bit much - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Khorne skull curse combined with +hordes and beastmen is a bit much</span></h1><div class="meta">3 Posts &bull; 638 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/tamren/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/tamren/">Tamren</a></strong> &bull; 2021-08-27 10:22:05 </div><div class="cooked"><p>I don’t often complain about difficulty but I just had a CW mission that felt like I was trying to swim up a waterfall. I was going through the cinder peak map and the mutators were khorne’s skull curse, -roaming enemies and +hordes. I had a pretty OP build at the time too. Blessed shots consume no ammo, +reset blessed shots on kill +crits chain lightning, +50% health, +health regen, red duckfoot pistols that return ammo on headshots, the works basically. Any BH players reading this would understand how powerful that combo is.</p><p>And EVEN THEN I was struggling. I only got about 3/4 through the map before we all died and all I saw in that time was 100% beastmen. The hordes were spawning so fast that new hordes would spawn in before we could completely kill off the old hordes, and not only that but each horde had two banner bearers AND two chaos warriors mixed in. Deaths usually happened because there were so many beastmen pouring in from all directions that we simply couldn’t move.</p><p>It seems that the increase in hordes from the skull curse and the +hordes mutator from the map stack with each other. Either one of them is multiplying the speed of the other, or they are on two separate timers that can fire off at the same time. I think this should be toned down because it creates a difficulty spike that is well beyond anything you should see in legend. I’ve seen videos of cata onslaught games with less spawns than that.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/dragonfly/" style="color:#fff;text-decoration:none;">D</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dragonfly/">Dragonfly</a></strong> &bull; 2021-08-30 00:48:53 </div><div class="cooked"><p>Some modifier combinations make certain maps almost unwinnable, especially on legend/cata. The later the map, the more difficult it is in terms of horde frequency. Add Beastmen + horde modifier + a specific curse on a late map (3rd or even 4th) on legend/cata and you might as well instantly leave the expedition. Its just bad balancing.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/tamren/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/tamren/">Tamren</a></strong> &bull; 2021-08-30 12:34:49 </div><div class="cooked"><p>skull and tornado in particular are the worst ones for this because they do so much damage you can’t help but avoid them at all costs, unlike poison where you can dash through it if you have to with minimal damage. On open ground they’re not nearly as big of an issue. But a lot of maps are very constricted and often the totem/tornado is wider than the actual map the players are trying to get through. Every time they drop they effectively halt forward progress, which gives even more time for hordes to spawn, which stalls forward progress again.</p><p>Beastmen in particular are the worst for this. +horde maps with skaven and chaos are no picnic, but a solid wall of skavenslaves or fanatics will not impede an experienced party, whereas a solid wall of gors can and will stop the entire party dead because they still have horrible hyperdensity problems. Add the bonus to horde spawn rates from the skull totems and you can run into situations where even the use of meta boons like chain lightning and explode on crit can’t make forward progress. The nightmare scenario, which I’ve had to play several times now, is constricted second-to-last maps (citadel especially) with skull totems, +hordes and beastmen at the same time. I’ve seen parties get crushed like a bug because we have no choice but to move into constricted areas to progress. The deadliest type of situation is getting stuck in the dead end right after a dropoff where the map allows enemies to climb in from the sides as well.</p><p>At minimum i’d like them to rethink the frequency of skull totems combined with +hordes because they can stack to form nigh impossible situations where there are so many enemies you can’t physically move or kill them all. Can’t even imagine what that would be like on cata, legend is already bad enough.</p></div></div></div></div></div></body></html>

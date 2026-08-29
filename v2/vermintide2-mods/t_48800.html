@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Cata4 tweak suggestions - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Mod Discussion</a></div><h1><span class="accent">Cata4 tweak suggestions</span></h1><div class="meta">1 Posts &bull; 446 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/se1z/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/se1z/">se1z</a></strong> &bull; 2022-05-24 10:30:03 </div><div class="cooked"><p>I am fairly certain since Cata4+Empowered is still WIP which the HP buffs that Cata4 introduces were on purpose to be nerfed in the process.</p><p>However I checked the HP distribution of Cata4 and find it abit to much.</p><p>I was working on my own mod at the same time Cata4 was being developed.<br> Initially I wanted to create a intermediate difficulty between Cata3 and Onslaught but since I don’t have a key for Mod Frameworks I will just leave it here maybe it’s of some use to people:</p><p><strong>Average HP growth rate in % difficulty comparison</strong></p><div class="md-table"><table><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td></td><td><strong>Cataclysm 1 to Cata4</strong></td><td><strong>Cataclysm 3 to Cata4</strong></td><td><strong>Cataclysm 1 to Cata3+</strong></td><td><strong>Cataclysm 3 to Cata3+</strong></td></tr><tr><td><strong>Infantry</strong></td><td>300.97%</td><td>137.78%</td><td>83.45%</td><td>56.75%</td></tr><tr><td><strong>Elites</strong></td><td>244.75%</td><td>89.13%</td><td>178.15%</td><td>40.53%</td></tr><tr><td><strong>Specials</strong></td><td>208.22%</td><td>41.21%</td><td>178.10%</td><td>22.14%</td></tr><tr><td><strong>Monsters</strong></td><td>199,51%</td><td>25.00%</td><td>189.51%</td><td>18.75%</td></tr></tbody></table></div><p><strong>health step multipliers used for Cata3+</strong></p><div class="md-table"><table><thead><tr><th></th><th>health_step_multipliers</th></tr></thead><tbody><tr><td>horde</td><td>9.3</td></tr><tr><td>*generic</td><td>12</td></tr><tr><td>elite</td><td>10.4</td></tr><tr><td>boss</td><td>9.5</td></tr><tr><td>special</td><td>9</td></tr></tbody></table></div><p>*generic is the basic health_step_multiplier</p><div class="md-table"><table><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td><strong>Enemies</strong></td><td>Cataclysm 1</td><td>Cataclysm 3</td><td>Cataclysm 4</td><td>Cataclysm 3+</td></tr><tr><td>Skaven Slave</td><td>16.75</td><td>24</td><td>64</td><td>37.25</td></tr><tr><td>Clan Rat</td><td>33.5</td><td>48</td><td>128</td><td>74.5</td></tr><tr><td>Plague Monk</td><td>97.25</td><td>133.25</td><td>252</td><td>187.25</td></tr><tr><td>Stormvermin</td><td>86.5</td><td>118.5</td><td>224</td><td>166.5</td></tr><tr><td>Globadier</td><td>90</td><td>150</td><td>205</td><td>180</td></tr><tr><td>Gutter Runner</td><td>54</td><td>90</td><td>123</td><td>108</td></tr><tr><td>Warpfire Thrower</td><td>54</td><td>90</td><td>123</td><td>108</td></tr><tr><td>Ratling Gunner</td><td>54</td><td>90</td><td>123</td><td>108</td></tr><tr><td>Packmaster</td><td>112.5</td><td>187.5</td><td>256.25</td><td>225</td></tr><tr><td>Rat Ogre</td><td>4000</td><td>6400</td><td>8000</td><td>7600</td></tr><tr><td>Stormfiend</td><td>3000</td><td>4800</td><td>6000</td><td>5700</td></tr><tr><td>Skarrik</td><td>2500</td><td>4000</td><td>6000</td><td>5700</td></tr><tr><td>Deathrattler</td><td>3000</td><td>4800</td><td>6000</td><td>5700</td></tr><tr><td>Rasknitt</td><td>2500</td><td>4000</td><td>5000</td><td>4750</td></tr><tr><td>Fanatic</td><td>33.5</td><td>48</td><td>128</td><td>74.5</td></tr><tr><td>Marauder</td><td>72</td><td>120</td><td>216</td><td>192</td></tr><tr><td>Savage</td><td>97.25</td><td>133.25</td><td>252</td><td>187.25</td></tr><tr><td>Mauler</td><td>162</td><td>222</td><td>420</td><td>312</td></tr><tr><td>Chaos Warrior</td><td>248.5</td><td>340.5</td><td>644</td><td>478.5</td></tr><tr><td>Blightstormer</td><td>90</td><td>150</td><td>205</td><td>180</td></tr><tr><td>Lifeleech</td><td>90</td><td>150</td><td>205</td><td>180</td></tr><tr><td>Chaos Spawn</td><td>4000</td><td>6400</td><td>8000</td><td>7600</td></tr><tr><td>Troll</td><td>3000</td><td>4800</td><td>6000</td><td>5700</td></tr><tr><td>Bodvarr</td><td>3500</td><td>5600</td><td>7000</td><td>6650</td></tr><tr><td>Halescourge</td><td>4000</td><td>6400</td><td>8000</td><td>7600</td></tr><tr><td>Gatekeeper</td><td>4000</td><td>6400</td><td>8000</td><td>7600</td></tr><tr><td>Nurgloth</td><td>5000</td><td>8000</td><td>10000</td><td>9500</td></tr><tr><td>Gor</td><td>54</td><td>90</td><td>162</td><td>144</td></tr><tr><td>Ungor</td><td>25.25</td><td>36</td><td>96</td><td>55.75</td></tr><tr><td>Bestigor</td><td>108</td><td>148</td><td>280</td><td>208</td></tr><tr><td>Wargor</td><td>90</td><td>150</td><td>208</td><td>180</td></tr><tr><td>Minotaur</td><td>4000</td><td>6400</td><td>8000</td><td>7600</td></tr></tbody></table></div></div></div></div></div></div></body></html>

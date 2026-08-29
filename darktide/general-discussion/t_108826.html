@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Havoc 2.0 Class Roles? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">General Discussion</a></div><h1><span class="accent">Havoc 2.0 Class Roles?</span></h1><div class="meta">6 Posts &bull; 236 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/archon_dagoth/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/archon_dagoth/">Archon_Dagoth</a></strong> &bull; 2025-06-11 13:02:55 </div><div class="cooked"><p>So I haven’t played much of havoc 2.0 and would like to get back into it since I never grinded for True Survivor, what I know is from 1.0 gunners were the apex predators and basically each class would fill a role in a specific build like so:</p><p>Vet - VoC, Specialist picks with Plasma, ammo regen, Frag Spam</p><p>Zelot - Chorus, Boss/anti armour DPS trough flamer or bolter, Support (stims carrier, specialist picker)</p><p>Psyker - Anti-Horde trough Flamer staff, shield spam with heavy CDR, positioning/team lead (because of shield spots)</p><div class="spoiler"><p>Ogryn - Gets rejected from party finder</p></div><p>What I know from 2.0 is that enemies are very spongey via the modifiers and there’s a lot of boss spawns, so I assume boss dps is king? But then how the ammo economy works?</p><p>Any tips would be appreciated.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/dornivanotic/" style="color:#fff;text-decoration:none;">D</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dornivanotic/">DornIvanotic</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Regular</span> &bull; 2025-06-11 13:12:00 </div><div class="cooked"><p>Ogryn = win more than 50% of games</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/downer/" style="color:#fff;text-decoration:none;">D</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/downer/">Downer</a></strong> &bull; 2025-06-11 14:34:49 </div><div class="cooked"><p>Gunners still shred.<br> Vet is the same, but you may see that more vets bring smokes, but that’s can be problem if all your party don’t have new mod, that makes smoke invisible, shows it’s area of effect and smokes need talent that increase duration.<br> Survivalist helps with ammo.</p><p>Zealot - same + you can bring meta charge builds.</p><p>Psyker - Same.</p><p>Ogre is new meta, but still doesn’t guarntee win even if you play as full team of them, they are the boss killers and depending on builds, they are also tanks, additional horde clealers.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/archon_dagoth/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/archon_dagoth/">Archon_Dagoth</a></strong> &bull; 2025-06-13 21:35:41 </div><div class="cooked"><p>I gotta say I played a few matches (in havocs 30~38ish) and Ogryn feels like the carry class, no exagerations.</p><p>You still need game/class knowledge to perform well and survive, is not braindead. And if you are left alone against a horde/multiple bosses it still is GG but damn, Ogryn feels good to play on Havoc now.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/brad9191/" style="color:#fff;text-decoration:none;">B</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/brad9191/">Brad9191</a></strong> &bull; 2025-06-15 00:36:17 </div><div class="cooked"><p>For high Havocs, my <span class="hashtag-raw">#1</span> tip is to bring Brittleness Blessings on any melee or ranged weapon, it helps out for sure. You’ll have a much easier time with tougher enemies (armored, bosses, etc &amp; their inflated health pools). It basically cuts right through like a hot knife through butter.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2025-06-29 00:36:24 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

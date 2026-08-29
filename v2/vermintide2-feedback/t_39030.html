@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Backstab sound, PC's performance and priority... there is a link!? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Backstab sound, PC's performance and priority... there is a link!?</span></h1><div class="meta">5 Posts &bull; 506 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/soui23/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/soui23/">souI23</a></strong> &bull; 2020-04-04 01:21:43 </div><div class="cooked"><p>Do you know <strong>Battlefield</strong>? It’s a popular FPS… but if you don’t know it, don’t worry, the important thing to notice is already written. It’s an FPS like Vermintide… in some aspects they should be similar.</p><p>What’s the point? The point is that Battlefield has one problem that afflicts our game too: sounds are bugged. Sound of footsteps, gunfire…</p><p>About that, the developers said one thing: in game there are tons of sounds and a PC, mainly if it’s not so performing, can arbitrarily remove some of them because it can’t handle all of them.</p><p>Everyone knows that Vermintide’s sounds are bugged as well (backstabs, specials, hordes)… the question is: behind this problem there could be the same reason?</p><p>I think it could be a good start to fix the problem… Fatshark could apply a priority on certain sounds, the most important ones, to be sure that they can’t be removed.</p><p>Battlefield’s developers have taken this way… and it seems to work.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/raichu/" style="color:#fff;text-decoration:none;">R</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/raichu/">Raichu</a></strong> &bull; 2020-04-04 01:29:35 </div><div class="cooked"><p>Genuinely good idea, should be implemented all the way down to voice lines taking precedence over f ability shouts too, but that’s less vital.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/argonaut14/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/argonaut14/">Argonaut14</a></strong> &bull; 2020-04-04 01:51:20 </div><div class="cooked"><p>The connection speed in VT2 (network speed) either green/yellow/red or ping number is dictated by the performance of the host PC. So I’ve had green/&lt; 90 ping and suffered slaggy hits, and been on 180 &gt; ping and been ok. I am convinced that people who host and run their specs as too high for their PC to handle are causing the clients to suffer more than they should.</p><p>REAL problem is that somehow the FPS of the host is impacting the ping for the client.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/hgjw/" style="color:#fff;text-decoration:none;">h</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/hgjw/">hgjw</a></strong> &bull; 2020-04-04 05:33:58 </div><div class="cooked"><p>Well personally i’m hosting probably 90 % of the games i play so i rarely find these issues in the game but nearly every single time i do notice, it is because the person who is hosting has an absolute potato pc (could also be extremely high settings tanking fps) or has set the network max upload speed set to the absolute lowest value (which it is by default).<br> I do think that prioritizing important sounds over others to be good idea but the core issue really is who is hosting and if they do have enough horsepower to make the game run smoothly.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/soui23/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/soui23/">souI23</a></strong> &bull; 2020-04-05 00:03:43 </div><div class="cooked"><aside class="quote no-group" data-username="Raichu" data-post="2" data-topic="39030"><div class="title"><div class="quote-controls"></div><a href="../../users/raichu/">Raichu</a>:</div><blockquote><p>should be implemented all the way down to voice lines taking precedence over f ability shouts too, but that’s less vital.</p></blockquote></aside><p>I agree.</p><aside class="quote no-group" data-username="Argonaut14" data-post="3" data-topic="39030"><div class="title"><div class="quote-controls"></div><a href="../../users/argonaut14/">Argonaut14</a>:</div><blockquote><p>is dictated by the performance of the host PC</p></blockquote></aside><aside class="quote no-group" data-username="hgjw" data-post="4" data-topic="39030"><div class="title"><div class="quote-controls"></div><a href="../../users/hgjw/">hgjw</a>:</div><blockquote><p>the core issue really is who is hosting and if they do have enough horsepower to make the game run smoothly.</p></blockquote></aside><p>Ye, it’s true.</p></div></div></div></div></div></body></html>

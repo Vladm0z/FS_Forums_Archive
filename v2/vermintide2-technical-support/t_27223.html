@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>[PC] Launcher/game crashes after clicking play - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">[PC] Launcher/game crashes after clicking play</span></h1><div class="meta">4 Posts &bull; 2936 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/sirbattlecat/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sirbattlecat/">SirBattleCat</a></strong> &bull; 2018-09-13 19:14:13 </div><div class="cooked"><p>When I try to launch the game via Steam i get an error message:<br><img src="https://europe1.discourse-cdn.com/flex013/uploads/fatshark/original/3X/0/7/0735b3e5588ff4f0db1f431f255bfdccbee1244a.jpeg" alt="vermintideerror01" data-base62-sha1="11MoMYdCU4pUP7Mqf3CmeLYm3vc" width="468" height="165"><br> “The program couldn’t start correctly (…). Click OK to close it.”<br> and then I get this:<br><img src="https://europe1.discourse-cdn.com/flex013/uploads/fatshark/original/3X/9/e/9ed20dbd43e85ac6eee4266e60a328ae5bf93211.jpeg" alt="vermintideerror02" data-base62-sha1="mEZtEmnIoUlUwdBN14a2gLTa5rP" width="635" height="400"></p><p>General details:</p><ul><li>Running Windows 10 64 bit</li><li>Geforce 1060 Strix 6GB</li></ul><p>I’ve done the following:</p><ul><li>Installed the anti cheat software manually from within the game’s folder</li><li>Made sure I have .NET and DirectX up to date</li><li>Updated my graphics drivers to the newest (Geforce Game Ready 399.24)</li><li>Tried both the DirectX 11 + 12 versions</li><li>Copied the “C:\Users&lt;name&gt;\AppData\Roaming\Fatshark\Vermintide 2” from a previous Windows installation where the game worked</li><li>On first launch I noticed that Steam only installed 1 prerequisite and it only took a split second</li><li>Rolled back to a previous Geforce driver (doing a clean installation), testing, and updating to the newest driver again cleanly. No change.</li></ul><p>As far as I can tell the error 0xc0000142 indicates missing system files. My suspicion is that I might be missing some runtimes libraries or something, but I can’t find any info on what runtimes the game uses.</p><p><a class="attachment" href="https://europe1.discourse-cdn.com/flex013/uploads/fatshark/original/3X/a/c/acfd5a85b1c4b40382f1a8bbab5a37ef7f7174cf.log" rel="nofollow noopener">vermintide2_launcher.log</a> (13.3 KB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/sirbattlecat/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sirbattlecat/">SirBattleCat</a></strong> &bull; 2018-09-14 09:28:40 </div><div class="cooked"><p>I found out the game would start if I picked modded realms. The screen would just be completely green or black depending on which intro video was playing. After coming to the main menu the game would crash with a DirectX/Stingray error.</p><p>I tried rolling back the graphics driver with 4 different versions going all the way back to March. Then I reinstalled the newest on cleanly again, and now the game works perfectly if I pick modded realms. I’m still getting the same error if I start it on the normal realms.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/sirbattlecat/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sirbattlecat/">SirBattleCat</a></strong> &bull; 2018-09-15 00:00:31 </div><div class="cooked"><p>Finally solved the problem. For some reason Windows hadn’t been installing updates. In fact when I went and wanted to look for updates I was told I couldn’t install updates because my PC was turned off (I’m not kidding). I figured out that I was missing a major build update for Windows and found a separate installer for the newest build on Microsoft’s website. After installing that, everything works perfectly.</p><p>So it seems error 0xc000142 really does mean that system files are missing. Just posting the solution here in case anybody else happens to have the same problem.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2018-09-22 00:00:33 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

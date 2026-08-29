@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Incorrect Finesse Multiplier on Electrokinetic Staff - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Incorrect Finesse Multiplier on Electrokinetic Staff</span></h1><div class="meta">2 Posts &bull; 247 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/sixius/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sixius/">Sixius</a></strong> &bull; 2025-08-27 01:08:48 </div><div class="cooked"><h3><a name="p-672545-issue-type-required-1" class="anchor" href="#p-672545-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Weapons</p><h3><a name="p-672545-issue-description-required-2" class="anchor" href="#p-672545-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>EK Finesse</p><p>Per the in-game Attack Pattern view, an Electrokinetic Staff’s RMB does 660 base damage, and on a crit does:</p><ul><li>1064 damage to unarmored, infested, unyielding, and maniac</li><li>858 to flak</li><li>772 to carapace</li></ul><p>And a weakspot hit (ignoring that EK can’t hit weakspots, at least to my knowledge):</p><ul><li>858 damage to unarmored, infested, unyielding, and maniac</li><li>772 to carapace</li></ul><p>However, this appears to be using the default finesse multiplier rather than <code>boost_curve_multiplier_finesse = damage_lerp_values.lerp_1</code>, as this line is outside of the target brackets, which means it’s outside the index, and is thus ignored.</p> <pre><code class="lang-auto">default_target = {
+			boost_curve = PowerLevelSettings.boost_curves.default,
+		},
+		boost_curve_multiplier_finesse = damage_lerp_values.lerp_1,
+	},
+</code></pre> <p><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/equipment/weapon_templates/force_staffs/settings_templates/force_staff_damage_profile_templates.lua#L909" rel="noopener nofollow ugc">force_staff_damage_profile_templates.lua - line 906-910</a></p><p>versus the LMB on the same staff:</p> <pre><code class="lang-auto">targets = {
+		default_target = {
+			boost_curve_multiplier_finesse = 1.5,
+			boost_curve = PowerLevelSettings.boost_curves.default,
+			finesse_boost = {
+				[armor_types.unarmored] = 0.75,
+			},
+		},
+	},
+</code></pre> <p><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/equipment/weapon_templates/force_staffs/settings_templates/force_staff_damage_profile_templates.lua#L89" rel="noopener nofollow ugc">force_staff_damage_profile_templates.lua - lines 84-92</a></p><p>No other weapon appears to have <code>boost_curve_multiplier_finesse</code> outside of the target brackets. It seems like this was copied from the Smite damage templates, which cannot crit or hit weakspots, but never changed for critical hits.</p> <pre><code class="lang-auto">targets = {
+		default_target = {
+			boost_curve = PowerLevelSettings.boost_curves.default,
+		},
+		boost_curve_multiplier_finesse = damage_lerp_values.lerp_1,
+	},
+</code></pre> <p><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/damage/damage_profiles/archetypes/psyker_damage_profile_templates.lua#L467" rel="noopener nofollow ugc">psyker_damage_profile_templates.lua - lines 417-469</a></p><p>Below is some ancillary math about the missing damage.</p><p>Using the default values for a hypothetical RMB weakspot hit:</p> <pre><code class="lang-auto">power_level_settings.default_finesse_boost_amount = {
+	[armor_types.unarmored] = 0.5,
+	[armor_types.armored] = 0.5,
+	[armor_types.resistant] = 0.5,
+	[armor_types.player] = 0.5,
+	[armor_types.berserker] = 0.5,
+	[armor_types.super_armor] = 0.5,
+	[armor_types.disgustingly_resilient] = 0.5,
+	[armor_types.void_shield] = 0.5,
+}
+</code></pre> <p><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/damage/power_level_settings.lua#L142" rel="noopener nofollow ugc">power_level_settings.lua - lines 142-151</a></p><p>And bearing in mind the default boost curve:</p> <pre><code class="lang-auto">power_level_settings.boost_curves = {
+	default = {
+		0,
+		0.3,
+		0.6,
+		0.8,
+		1,
+	},
+}
+</code></pre> <p><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/damage/power_level_settings.lua#L123" rel="noopener nofollow ugc">power_level_settings.lua - lines 123-131</a></p><p>With no listed <code>finesse_boost</code>, it falls back to the default of 0.5, which equates to 0.6 on the curve. This is expected. But the boost_curve_multiplier_finesse also defaults to 0.5, rather than using the lerp value.</p><p>858 = 660 * 1.3<br> 1.3 = (0.6 * 0.5) + 1<br> So 0.6 from the curve * the default of 0.5.</p><p>The 772 for carapace is accounted for by the 0.9 ADM.</p><p>Assuming the lerp value is used instead, with 1 instead of 0.5:</p><p>660 * (1+(0.6 * 1)) = 1056</p><p>Comparing to the LMB from above, with a base damage listed as 138 and a weakspot of 304:</p><p>138 * (1+(0.8 * 1.5)) = 303.6, rounded to 304.</p><p>Extrapolating this into critical hits, which the EK staff can actually do:</p><ul><li>The crit damage increase for an 80% crit EK is 24% (0% for flak and carapace)</li><li>Base damage of 660</li><li>Expected damage of 1064 for unarmored, infested, unyielding, maniac</li><li>Expected damage of 858 for flak</li><li>Expected damage of 772 for carapace</li></ul><p>660 * (1 + 0.24) = 818.4<br> 818.4 * (1+(0.5 * 0.6)) = 1063.92</p><p>As flak and carapace do not have a <code>crit_mod</code>, they use the default of 0.5, which becomes 0.6 on the curve.</p><p>Using <code>lerp_1</code>, it becomes:</p><p>660 * (1 + 0.24) = 818.4<br> 818.4 * (1+(1 * 0.6)) = 1309.44</p><p>Whereas a crit for EK’s LMB:</p><ul><li>Crit mod of 31.5% rather than 24%</li><li>Expected damage of 345 for non-unyielding/carapace enemies</li><li>The 0.75 finesse_boost doesn’t apply to crits, only weakspots (<code>local use_finesse_boost = not damage_profile.no_finesse_boost and hit_weakspot</code>); instead we use 0.5 from <code>power_level_settings.default_crit_boost_amount = 0.5</code>, which is 0.6 on the curve</li></ul><p>138 * (1 + 0.315) = 181.47<br> 181.47 * (1+(1.5 * 0.6)) = 344.793, rounded to 345</p><p>For a sanity check, the same LMB on Voidstrike, using the default <code>crit_armor_mod</code> of 0.25 with an expected outcome of 328:</p><p>138 * (1 + (1.5 * 0.6)) = 327.75</p><p>This raises a secondary question: should the <code>crit_mod</code> for EK’s LMB replace the base <code>crit_mod</code> or add to it? As it stands, it seems to overwrite the <code>crit_armor_mod</code> from the basic <code>force_staff_ball</code> with the <code>crit_mod</code> from the staff, resulting in weaker LMB crits than default if the critical bonus is below 50 (<a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/utilities/attack/damage_profile.lua#L205-L220" rel="noopener nofollow ugc">damage_profile.lua - lines 205-220</a>).</p><p>Sources:</p><ul><li><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/utilities/attack/damage_calculation.lua" rel="noopener nofollow ugc">damage_calculation.lua</a></li><li><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/utilities/attack/damage_profile.lua" rel="noopener nofollow ugc">damage_profile.lua</a></li><li><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/damage/damage_profile_settings.lua" rel="noopener nofollow ugc">damage_profile_settings.lua</a></li><li><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/equipment/weapon_templates/force_staffs/settings_templates/force_staff_damage_profile_templates.lua" rel="noopener nofollow ugc">force_staff_damage_profile_templates.lua</a></li><li><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/damage/power_level_settings.lua" rel="noopener nofollow ugc">power_level_settings.lua</a></li><li><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/damage/damage_profiles/archetypes/psyker_damage_profile_templates.lua" rel="noopener nofollow ugc">psyker_damage_profile_templates.lua</a></li><li><a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f23235d2547a50adf1ad1cf6bdcb1af2f2a10333/scripts/settings/equipment/weapon_handling_templates/weapon_handling_templates.lua" rel="noopener nofollow ugc">weapon_handling_templates.lua</a></li></ul><h3><a name="p-672545-pc-do-you-use-mods-optional-3" class="anchor" href="#p-672545-pc-do-you-use-mods-optional-3" aria-label="Heading link"></a>[PC] Do You Use Mods? (Optional):</h3><p>Yes, but I haven’t tried disabling them</p><h3><a name="p-672545-reproduction-rate-required-4" class="anchor" href="#p-672545-reproduction-rate-required-4" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Constant (100%)</p><h3><a name="p-672545-platform-required-5" class="anchor" href="#p-672545-platform-required-5" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/dysphoria/" style="color:#fff;text-decoration:none;">D</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dysphoria/">Dysphoria</a></strong> &bull; 2025-10-03 21:47:07 </div><div class="cooked"><p>This really needs some looking into…<br> Electrokinetic was the only new staff since V2, and we haven’t had a new staff in 3 years.<br> Every singe patch / rework this staff falls further and further behind the others</p></div></div></div></div></div></body></html>

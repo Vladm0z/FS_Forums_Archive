@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>No Respite Blessing Provides No Extra Damage - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">No Respite Blessing Provides No Extra Damage</span></h1><div class="meta">2 Posts &bull; 242 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/dizzy721/" style="color:#fff;text-decoration:none;">D</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dizzy721/">Dizzy721</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Regular</span> &bull; 2026-04-05 05:16:20 </div><div class="cooked"><h3><a name="p-735730-issue-type-required-1" class="anchor" href="#p-735730-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Weapons</p><h3><a name="p-735730-issue-description-required-2" class="anchor" href="#p-735730-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>The No Respite weapon blessing applies bonus damage based on the number of staggers an enemy has received. This is not working at the moment.</p><p>In the previous version of the game, <a href="https://github.com/Aussiemon/Darktide-Source-Code/blob/f63d836657e78a049d326dbda6bd7fe7d09df543/scripts/utilities/attack/attack.lua#L292" data-bbcode="true">this section</a> had <code>target_stagger_count = stagger_component.count</code>, however as of the Expeditions update it is missing and target_stagger_count is always 0, thus No Respite gets no damage bonus.</p><h3><a name="p-735730-steps-to-reproduce-required-3" class="anchor" href="#p-735730-steps-to-reproduce-required-3" aria-label="Heading link"></a>Steps to Reproduce (Required):</h3><ol><li>Load into the Psykhanium with No Respite blessing on a Combat Shotgun</li><li>Shoot into a Mauler</li><li>Damage does not increase even though he’s being staggered</li></ol><h3><a name="p-735730-pc-do-you-use-mods-optional-4" class="anchor" href="#p-735730-pc-do-you-use-mods-optional-4" aria-label="Heading link"></a>[PC] Do You Use Mods? (Optional):</h3><p>Yes, but I haven’t tried disabling them</p><h3><a name="p-735730-reproduction-rate-required-5" class="anchor" href="#p-735730-reproduction-rate-required-5" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Constant (100%)</p><h3><a name="p-735730-platform-required-6" class="anchor" href="#p-735730-platform-required-6" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/crispybacon/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/crispybacon/">CrispyBacon</a></strong> &bull; 2026-08-18 23:22:24 </div><div class="cooked"><p>In case anyone’s still curious about whether this blessing got sorted out. From the <a href="https://forums.fatsharkgames.com/t/free-update-patch-1-12-0-out-now-skitarii-later-today/122573#:~:text=Fixed%20an%20issue%20where%20the%20%E2%80%98No%20respite%E2%80%99%20weapon%20Blessing%20would%20not%20apply%20its%20damage%20bonus.">1.20.0 patch notes</a>:</p><aside class="quote group-Community" data-username="FatsharkQuickpaw" data-post="1" data-topic="122573"><div class="title"><div class="quote-controls"></div><a href="https://forums.fatsharkgames.com/t/free-update-patch-1-12-0-out-now-skitarii-later-today/122573/1">Free Update - Patch 1.12.0 out now! Skitarii later today</a></div><blockquote><ul><li>Fixed an issue where the ‘No respite’ weapon Blessing would not apply its damage bonus.</li></ul></blockquote></aside></div></div></div></div></div></body></html>

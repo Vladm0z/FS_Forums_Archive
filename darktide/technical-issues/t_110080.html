@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ogryn is crashing to desktop - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Ogryn is crashing to desktop</span></h1><div class="meta">3 Posts &bull; 54 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/crestfallendeus/" style="color:#fff;text-decoration:none;">c</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/crestfallendeus/">crestfallenDeus</a></strong> &bull; 2025-06-30 05:12:56 </div><div class="cooked"><h3><a name="p-656196-issue-type-required-1" class="anchor" href="#p-656196-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Error - (Other)</p><h3><a name="p-656196-issue-description-required-2" class="anchor" href="#p-656196-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><h2><a name="p-656196-guid-778cc48f-f322-4d43-8203-f0312d0465ea-log-file-info-type-3" class="anchor" href="#p-656196-guid-778cc48f-f322-4d43-8203-f0312d0465ea-log-file-info-type-3" aria-label="Heading link"></a>GUID: 778cc48f-f322-4d43-8203-f0312d0465ea<br> Log File:<br> Info Type:</h2><p>[Script Error]: scripts/foundation/utilities/error.lua:37: [OutOfBoundsManager] Following units were out-of-bounds:<br> [Unit ‘<span class="hashtag-raw">#ID</span>[018473d8ef515635]’] (Vector3(1, -90.8676, 100)) is_owned_by_death_manager: false; level(nil)</p><hr><p>[PC] Do You Use Mods? (Optional):<br> Yes</p><p>Reproduction Rate (Required):<br> Main Menu &gt; Ogryn &gt; Start &gt; Morningstar &gt; Desktop 100% of the time</p><p>Platform (Required):<br> Steam (PC)</p><p>Player ID (Optional):<br> N/A</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/crestfallendeus/" style="color:#fff;text-decoration:none;">c</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/crestfallendeus/">crestfallenDeus</a></strong> &bull; 2025-06-30 05:34:38 </div><div class="cooked"><p>I think I found the culprit:</p><p>Below is the section from my crash log that mentions servo_friend mod:</p> <pre><code class="lang-auto">&lt;&lt;Script Error&gt;&gt;scripts/foundation/utilities/error.lua:37: [OutOfBoundsManager] Following units were out-of-bounds: 
+[Unit '#ID[018473d8ef515635]'] (Vector3(-2.68294, -85.9256, 100.12)) is_owned_by_death_manager: false; level(nil)
+&lt;&lt;/Script Error&gt;&gt;
+&lt;&lt;Lua Stack&gt;&gt;  [1] =[C]: in function error
+  [2] @scripts/foundation/utilities/error.lua:37: in function ferror
+  [3] @scripts/managers/out_of_bounds/out_of_bounds_manager.lua:44: in function out_of_bounds_error
+  [4] @scripts/managers/out_of_bounds/out_of_bounds_manager.lua:54: in function register_new_hard_oob_units
+  [5] @scripts/managers/out_of_bounds/out_of_bounds_manager.lua:85: in function func
+  [6] ./../mods/servo_friend/scripts/mods/servo_friend/extensions/servo_friend_out_of_bounds_extension.lua:127: in function hook_chain
+  [7] ./../mods/dmf/scripts/mods/dmf/modules/core/hooks.lua:198: in function pre_update
+  [8] @scripts/game_states/game/gameplay_sub_states/gameplay_state_run.lua:173: in function update
+  [9] @scripts/foundation/utilities/game_state_machine.lua:123: in function update
+  [10] @scripts/game_states/game/state_gameplay.lua:169: in function update
+  [11] @scripts/foundation/utilities/game_state_machine.lua:123: in function update
+  [12] @scripts/game_states/state_game.lua:643: in function update
+  [13] @scripts/foundation/utilities/game_state_machine.lua:123: in function update
+  [14] ./mod_loader:397: in function update
+  [15] ./mod_loader:437:in function &lt;[string "./mod_loader"]:436&gt;
+&lt;&lt;/Lua Stack&gt;&gt;
+
+...
+
+[Log end]
+</code></pre></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharklev/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharklev/">FatsharkLev</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2025-06-30 09:46:40 </div><div class="cooked"><p><a class="mention" href="../../users/crestfallendeus/">@crestfallenDeus</a>, yep this crash does appear to be mod-related. Please try disabling this mod until the mod owner can update it.</p></div></div></div></div></div></body></html>

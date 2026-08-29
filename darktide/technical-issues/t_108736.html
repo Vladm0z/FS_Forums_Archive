@@ -1,0 +1,148 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>File keeps disappearing causing crashes - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">File keeps disappearing causing crashes</span></h1><div class="meta">2 Posts &bull; 41 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/ziltoidtheomniscient/" style="color:#fff;text-decoration:none;">Z</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ziltoidtheomniscient/">ZiltoidTheOmniscient</a></strong> &bull; 2025-06-08 20:20:24 </div><div class="cooked"><h3><a name="p-645596-issue-type-required-1" class="anchor" href="#p-645596-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Crash - During Play</p><h3><a name="p-645596-issue-description-required-2" class="anchor" href="#p-645596-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>As the the title says, need to multiple times a day verify game files from Steam to load the file back.</p><p><strong>Crash error gives:</strong></p> <pre><code class="lang-auto">[Script Error] ...hud/elements/smart_tagging/
+hud_element_smart_tagging.lua:1358 attempt to index local 'tag_template' (a nil value)
+</code></pre> <p><strong>C:\Users(Username)\AppData\Roaming\Fatshark\Darktide\console_logs</strong><br><strong>gives this at the end of the log file:</strong></p> <pre><code class="lang-auto">&lt;&lt;Script Error&gt;&gt;
+
+...hud/elements/smart_tagging/hud_element_smart_tagging.lua:1358: attempt to index local 'tag_template' (a nil value)&lt;&lt;/Script Error&gt;&gt;
+
+
+&lt;&lt;Lua Stack&gt;&gt;  
+
+
+  [1] @scripts/ui/hud/elements/smart_tagging/hud_element_smart_tagging.lua:1358: in function _update_tag_interaction_information
+  
+  [2] @scripts/ui/hud/elements/smart_tagging/hud_element_smart_tagging.lua:976: in function _handle_interaction_draw
+  
+  [3] @scripts/ui/hud/elements/smart_tagging/hud_element_smart_tagging.lua:992: in function _draw_widgets
+  
+  [4] @scripts/ui/hud/elements/hud_element_base.lua:217: in function hook_chain
+  
+  [5] ./../mods/dmf/scripts/mods/dmf/modules/core/hooks.lua:198: in function draw
+  
+  [6] @scripts/managers/ui/ui_hud.lua:474: in function draw
+  
+  [7] @scripts/managers/ui/ui_manager.lua:1022: in function render
+  
+  [8] @scripts/game_states/state_game.lua:899: in function render
+  
+  [9] @scripts/foundation/utilities/game_state_machine.lua:134: in function render
+  
+  [10] ./mod_loader:401: in function render
+  
+  [11] ./mod_loader:441:in function &lt;[string "./mod_loader"]:440&gt;
+  
+  
+&lt;&lt;/Lua Stack&gt;&gt;
+
+
+&lt;&lt;Lua Locals&gt;&gt;  
+
+
+  [1] self = table: 000000000A94F200; active_interaction_data = table: 000000000CCCCC80; marker = table: 000000000DEADBB0; display_name = "n/a"; tag_id = 17; tag_template = nil; distance = 13.882696151733398; distance_text_localized = "13m"; description_text_localized = "&lt;unlocalized \"n/a\": string not found&gt;"; input_text_tag = ""; parent = table: 000000000895BBA0; player = table: 000000000641EAB0; smart_tag_system = table: 000000000805D0D0; tagger_player = table: 000000000B6539A0; is_my_tag = false
+  
+  [2] self = table: 000000000A94F200; dt = 0.01525569986552; t = 418.7980118027902; input_service = table: 0000000003695F00; ui_renderer = table: 000000000895A640; render_settings = table: 000000000895B740; can_present_tag_interaction = true; active_interaction_data = table: 000000000CCCCC80; marker = table: 000000000DEADBB0
+  
+  [3] self = table: 000000000A94F200; dt = 0.01525569986552; t = 418.7980118027902; input_service = table: 0000000003695F00; ui_renderer = table: 000000000895A640; render_settings = table: 000000000895B740
+  
+  [4] self = table: 000000000A94F200; dt = 0.01525569986552; t = 418.7980118027902; ui_renderer = table: 000000000895A640; render_settings = table: 000000000895B740; input_service = table: 0000000003695F00; ui_scenegraph = table: 000000000B773290
+  
+  [5] hook_chain = [function]
+  
+  [6] self = table: 000000000895BBA0; dt = 0.01525569986552; t = 418.7980118027902; input_service = table: 0000000003695F00; is_world_enabled = true; ui_renderer = table: 000000000895A640; default_ui_renderer = table: 000000000895A640; render_settings = table: 000000000895B740; saved_start_layer = 0; alpha_multiplier = nil; currently_visible_elements = table: 000000000895B710; elements_hud_scale_lookup = table: 000000000B59D7A0; elements_array = table: 000000000B59D770; elements_hud_retained_mode_lookup = table: 000000000895B5B0; hud_scale_applied = true; i = 32; element = table: 000000000A94F200; element_name = "HudElementSmartTagging"; use_retained_mode = nil
+  
+  [7] self = table: 00000000021C2010; dt = 0.01525569986552; t = 418.7980118027902; world = [World]; ui_constant_elements = table: 00000000030BA720; hud = table: 000000000895BBA0; spectator_hud = nil; input_service = table: 0000000003695F00
+  
+  [8] self = table: 0000000000133010; t = 418.7980118027902; dt = 0.01525569986552; ui_manager = table: 00000000021C2010
+  
+  [9] self = table: 00000000001ABBE0
+  
+  [10] self = table: 000000000007EE70
+  
+  
+&lt;&lt;/Lua Locals&gt;&gt;
+
+
+&lt;&lt;Lua Self&gt;&gt;  
+
+  
+  [1] _world_markers_list = table: 00000000001BBE80; _definitions = table: 0000000007F3FF10; _widgets_by_name = table: 0000000008114AC0; _com_wheel_context = table: 0000000009D8B890; _wheel_active_progress = 0; _entries = table: 0000000008089260; _interaction_scan_delay = 0.20000000000000001; _presented_smart_tags_by_marker_id = table: 0000000008089230; _ui_scenegraph = table: 000000000B773290; _interaction_scan_delay_duration = 0.20000000000000001; _tag_context = table: 000000000922DAC0; _interaction_line_widget = table: 0000000009D8B860; _event_list = table: 000000000A94F230; _widgets = table: 0000000008114DB0; _presented_smart_tags_by_tag_id = table: 0000000008089490; _draw_layer = 301; _last_widget_hover_data = table: 0000000008089460; _active_interaction_data = table: 000000000CCCCC80; _parent = table: 000000000895BBA0; _wheel_active = false; 
+  
+  [2] _world_markers_list = table: 00000000001BBE80; _definitions = table: 0000000007F3FF10; _widgets_by_name = table: 0000000008114AC0; _com_wheel_context = table: 0000000009D8B890; _wheel_active_progress = 0; _entries = table: 0000000008089260; _interaction_scan_delay = 0.20000000000000001; _presented_smart_tags_by_marker_id = table: 0000000008089230; _ui_scenegraph = table: 000000000B773290; _interaction_scan_delay_duration = 0.20000000000000001; _tag_context = table: 000000000922DAC0; _interaction_line_widget = table: 0000000009D8B860; _event_list = table: 000000000A94F230; _widgets = table: 0000000008114DB0; _presented_smart_tags_by_tag_id = table: 0000000008089490; _draw_layer = 301; _last_widget_hover_data = table: 0000000008089460; _active_interaction_data = table: 000000000CCCCC80; _parent = table: 000000000895BBA0; _wheel_active = false; 
+  
+  [3] _world_markers_list = table: 00000000001BBE80; _definitions = table: 0000000007F3FF10; _widgets_by_name = table: 0000000008114AC0; _com_wheel_context = table: 0000000009D8B890; _wheel_active_progress = 0; _entries = table: 0000000008089260; _interaction_scan_delay = 0.20000000000000001; _presented_smart_tags_by_marker_id = table: 0000000008089230; _ui_scenegraph = table: 000000000B773290; _interaction_scan_delay_duration = 0.20000000000000001; _tag_context = table: 000000000922DAC0; _interaction_line_widget = table: 0000000009D8B860; _event_list = table: 000000000A94F230; _widgets = table: 0000000008114DB0; _presented_smart_tags_by_tag_id = table: 0000000008089490; _draw_layer = 301; _last_widget_hover_data = table: 0000000008089460; _active_interaction_data = table: 000000000CCCCC80; _parent = table: 000000000895BBA0; _wheel_active = false; 
+  
+  [4] _world_markers_list = table: 00000000001BBE80; _definitions = table: 0000000007F3FF10; _widgets_by_name = table: 0000000008114AC0; _com_wheel_context = table: 0000000009D8B890; _wheel_active_progress = 0; _entries = table: 0000000008089260; _interaction_scan_delay = 0.20000000000000001; _presented_smart_tags_by_marker_id = table: 0000000008089230; _ui_scenegraph = table: 000000000B773290; _interaction_scan_delay_duration = 0.20000000000000001; _tag_context = table: 000000000922DAC0; _interaction_line_widget = table: 0000000009D8B860; _event_list = table: 000000000A94F230; _widgets = table: 0000000008114DB0; _presented_smart_tags_by_tag_id = table: 0000000008089490; _draw_layer = 301; _last_widget_hover_data = table: 0000000008089460; _active_interaction_data = table: 000000000CCCCC80; _parent = table: 000000000895BBA0; _wheel_active = false; 
+  
+  [6] _world_name = "level_world"; _visibility_groups = table: 0000000004CAA490; _element_using_input = false; _current_group_name = "alive"; _extensions = table: 000000000BE9B820; _refresh_retained = true; _elements_array = table: 000000000B59D770; _player_viewport_name = "player1"; _element_definitions = table: 000000000895B5E0; _currently_visible_elements = table: 000000000895B710; _ui_renderer_name = "UIHud_table000000000895BBA0_UIHud_ui_renderer"; _communication_wheel_state = "inactive"; _camera = [Camera]; _unique_id = "UIHud_table000000000895BBA0_"; _elements = table: 000000000B59D740; _ui_renderer = table: 000000000895A640; _params = t&lt;&lt;/Lua Self&gt;&gt;
+  
+
+&lt;&lt;Lua Upvalues&gt;&gt;  
+
+
+  [1] _get_input_text = [function]; description_format_localization_params = table: 0000000007F43920
+  
+  [3] UIWidget = table: 0000000005B7F480; HudElementSmartTagging = table: 0000000007F42F00
+  
+  [4] UIRenderer = table: 0000000005B626C0
+  
+  [5] get_hook_chain = [function]; orig = [function]; fn = [function]; get_return_values = [function]; _hooks = table: 0000000003879D60; HOOK_TYPE_SAFE = 2
+  
+  [8] time_name = "main"
+  
+  
+&lt;&lt;/Lua Upvalues&gt;&gt;
+
+[Log end]
+</code></pre> <h3><a name="p-645596-pc-do-you-use-mods-optional-3" class="anchor" href="#p-645596-pc-do-you-use-mods-optional-3" aria-label="Heading link"></a>[PC] Do You Use Mods? (Optional):</h3><p>Yes, and I’ve tried disabling them</p><h3><a name="p-645596-reproduction-rate-required-4" class="anchor" href="#p-645596-reproduction-rate-required-4" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Often (&lt;75%)</p><h3><a name="p-645596-platform-required-5" class="anchor" href="#p-645596-platform-required-5" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2025-06-09 12:39:23 </div><div class="cooked"><p>Seems there is some trouble with the Mod Loader, or Darktide Mod Framework. I understand you say this issue persists with mods disabled, in which case, please share a crash report or console log from a session where no mods are active. Thank you! <img src="https://emoji.discourse-cdn.com/twitter/slight_smile.png?v=14" title=":slight_smile:" class="emoji" alt=":slight_smile:" loading="lazy" width="20" height="20"></p></div></div></div></div></div></body></html>

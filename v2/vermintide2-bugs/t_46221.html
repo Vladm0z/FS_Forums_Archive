@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Making the game private with twitch when playing QP or the weekly event is still bugged after 2+ years - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Making the game private with twitch when playing QP or the weekly event is still bugged after 2+ years</span></h1><div class="meta">3 Posts &bull; 910 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/callmecc/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/callmecc/">CallMeCC</a></strong> &bull; 2021-07-04 04:09:36 </div><div class="cooked"><p>When playing with twitch its impossible to make the game private if you choose QP or the weekly event and as someone who cant always play with a group because others are not always online like i am this is a serious problem because i cant play twins or vanguard twins with twitch which is one of the last things still keeping me interested in the game.</p><p>I know a very small minority of players play that kind of content but should it really go ignored for 2+ years? Its been acknowledged so many times.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/theemeser/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/theemeser/">TheEmeser</a></strong> &bull; 2021-07-04 09:57:13 </div><div class="cooked"><p>I haven’t been able to figure out how exactly the twitch mode is supposed to work.<br> This is how it works currently:</p><p><strong>Quickplay</strong><br><em>Public no twitch:</em> Yes. (duh)<br><em>Public twitch:</em> Yes. But you have to host by yourself (needs mod)</p><p><strong>Custom Game</strong><br><em>Public no twitch:</em> Yes. Privacy settings can set before and during a mission.<br><em>Public twitch:</em> Yes. But only if you made your privacy setting before you connected to twitch. Can not be changed during mission.</p><p><strong>Twitch Game</strong><br><em>Public no twitch:</em> No. (duh)<br><em>Public twitch:</em> No. Game is started in private by default and can not be changed during mission.</p><p><strong>Weekly Event</strong><br><em>Public no twitch:</em> Yes, but only changable during the mission, not beforehand (private by default)<br><em>Public twitch:</em> No. Game is started private by default and can not be changed during mission.</p><p>The question is: How is it supposed to work? What is the design decision?</p><p>Here is my take on the topic: I assume that twitch mode was supposed to only work in private games, because there would be no reason that twitch games start in private per default and can not be switched to public. However, the fact that twitch mode still works in custom games and even in quickplay matches was an unforseen sideeffect that didn’t need a fix because in some way it enriches the game and made public twitch games possible to those who know how to do it. Some people like it, others do not (because joining a Quickplay that has active twitch without you knowing can be frustrating). So the easiest way to deal with the situation is to just keep this bug unfixed. In consequence this leads to intransparent (or more like inconsistent) game behaviour and confusion by the player.</p><p><em>Why am i not allowed to open a public twitch game, but joined a twitch quickplay match before? How is my fiend able to open a public custom game, but whenever i try it myself the public button is greyed out? Why is nobody joining my twitch game in the first place?</em></p><p>I don’t know the technical side of this topic, but at this state one can assume that twitch games are perfectly fine in a public setup in each game mode. Lifting the privacy restriction for twitch game modes in general would really help to tackle inconsistency and player confusion whilst allowing players more control over their desired type of game. And to satisfy even more players: An additional quickplay option " <img src="https://emoji.discourse-cdn.com/twitter/white_check_mark.png?v=9" title=":white_check_mark:" class="emoji" alt=":white_check_mark:"> include Twitch games" could be established, include or skip quick play matchmaking hits in said game mode.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2021-07-11 09:57:17 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

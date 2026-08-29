@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Please help me choose audio devices for Darktide - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">General Discussion</a></div><h1><span class="accent">Please help me choose audio devices for Darktide</span></h1><div class="meta">5 Posts &bull; 83 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/temp/" style="color:#fff;text-decoration:none;">t</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/temp/">temp</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Активный пользователь</span> &bull; 2026-01-03 09:55:52 </div><div class="cooked"><p>In the system unit of my personal computer, I have an <strong>MSI PRO B650-S WIFI</strong> motherboard installed.</p><p>Right now, I have two available options:</p><ol><li><p><strong>A4Tech Bloody G521 (2020) headphones</strong>, connected via <strong>USB Type-A</strong></p></li><li><p><strong>Edifier W820NB (2021) headphones</strong>, connected via <strong>USB Type-A</strong></p></li></ol><p>What I am considering:</p><ol start="3"><li><p><strong>HyperX Cloud Stinger 2 (2022) headphones</strong>, connected to the <strong>3.5 mm jack</strong> on the front panel of the system unit</p></li><li><p><strong>HyperX Cloud Stinger 2 (2022) headphones</strong>, connected to an <strong>external sound card Creative Sound Blaster PLAY! 3</strong>, which in turn is connected via <strong>USB Type-A</strong></p></li></ol><p>Would options <strong>3)</strong> or <strong>4)</strong> be more effective than option <strong>2)</strong>?</p><p>Or perhaps you could suggest some other options (within the <strong>$120–$150</strong> range)?</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/lw88/" style="color:#fff;text-decoration:none;">l</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/lw88/">lw88</a></strong> &bull; 2026-01-03 10:39:11 </div><div class="cooked"><p>Connecting via front panel is never really a good idea. The output from your motherboard is usually better unless it’s a very old motherboard. Also those cheap soundblaster outputs are really only useful for getting a 3.5mm output, and don’t offer anything over standard motherboard or front panel output, so wouldn’t really be worth buying.</p><p>If you already have either of the first two, the cloud stinger 2 won’t really be an upgrade, and with darktide’s limited positional audio that is made worse by problems with silent specials and spawn/event noises attenuating things you really need to hear, any tiny gains in headphone quality would be mostly down to the sound of the headphones, not how well you can tell direction and distance of sounds.</p><p>My advice would be go to a local pc and tech store, and try out some headphones in your price range, and pick the ones that sound best to you. The hyperx clouds are by all accounts pretty decent, but that doesn’t mean you’ll like them. Everyone’s ears and listening preferences are different.</p><p>All that said, between those options I would get the cloud stinger 2 between those sets available, and would just plug them into the motherboard output instead of a cheap usb sound card or front panel.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/madmartigan/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/madmartigan/">MadMartigan</a></strong> &bull; 2026-01-03 11:10:20 </div><div class="cooked"><p>Sony WH-1000XM5 Headphones via Bluetooth, or Sony WH-1000XM4 if price dictates.</p><p>Sensational headphones.</p><p>I think you can connect via cable but I’ve never bothered as BT has worked perfectly.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/zorodaotter/" style="color:#fff;text-decoration:none;">Z</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/zorodaotter/">ZoroDaOtter</a></strong> &bull; 2026-01-03 12:20:57 </div><div class="cooked"><p>You’re not using any sort of high end headphones so no need to waste money on an external sound card. Pretty much only get one of those if your on-board audio is giving you hisses or you need more audio jacks. And even then something like the Apple usb-c to 3.5mm dongle will serve you better.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2026-01-17 12:21:28 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

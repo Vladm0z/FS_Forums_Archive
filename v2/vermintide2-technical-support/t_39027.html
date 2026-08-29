@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Game fails to launch [Resolved] - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Game fails to launch [Resolved]</span></h1><div class="meta">4 Posts &bull; 903 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/themikeberg/" style="color:#fff;text-decoration:none;">t</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/themikeberg/">themikeberg</a></strong> &bull; 2020-04-03 20:07:32 </div><div class="cooked"><p>Previous to this the game would launch but give me a “Backend error”.</p><p>I tried following the steps here: <a href="https://support.fatshark.se/hc/en-us/articles/360034122074--PC-How-to-resolve-COULDNT-RESOLVE-HOST-errors" rel="noopener nofollow ugc">https://support.fatshark.se/hc/en-us/articles/360034122074--PC-How-to-resolve-COULDNT-RESOLVE-HOST-errors</a></p><p>But after verifying the game files the game fails to launch, the launcher does not even appear on screen. Steam recognizes me as playng the game then promptly stops.</p><p>Here is the launcher log:<br><a class="attachment" href="/uploads/short-url/nJDSIZ6T6A7te1czmioOc84jltn.log">vermintide2_launcher.log</a> (12.2 KB)</p><p>PC Specs:<br> CPU: Xeon E-2136<br> RAM: 48GB DDR4<br> SSD: Samsung 860 EVO (this is where the Steam Library is located)<br> GPU: GTX 1060 3GB<br> Windows 10 Pro 64bit</p><p>I am currently attempting a reinstall of the game, will update post based on what happens.</p><p>In the meantime I have allowed the game through the firewall (those rules should still be in place) and attempted a DNS flush. Hopefully after the install all is well, but just thought I would start a topic in case there are any troubleshooting steps that I have missed.</p><p>Thank you.</p><p>EDIT/ After going over the log I noticed this:</p><blockquote><p>07:56:20.459 [Launcher] [Main Window] Steam App Info Error: System.InvalidOperationException: Steamworks is not initialized.<br> at Steamworks.InteropHelp.TestIfAvailableClient()<br> at Steamworks.SteamUtils.GetAppID()<br> at Launcher.MainWindow…ctor()</p></blockquote><p>Once install is finished I’ll look further to see if this is my original issue or not.</p><p>I also noticed this article: <a href="https://support.fatshark.se/hc/en-us/articles/360004255517--PC-Crashing-on-launch-and-using-Avast-or-AVG-Anti-Virus-" rel="noopener nofollow ugc">https://support.fatshark.se/hc/en-us/articles/360004255517--PC-Crashing-on-launch-and-using-Avast-or-AVG-Anti-Virus-</a></p><p>I only use whatever Windows comes with by default. Outside of that I have no third party anti-virus.</p><p>EDIT// After reinstalling the game it was the same issue, however this time I noticed that “Steamworks redistributable” was installed during the process, and found other references online showing that logging out and logging back into steam resolves this. I simply exited and restarted steam and viola! I was able to get into the game through the first cutscene and am now going through what I believe is a tutorial.</p><p>I’m not sure if the backend issue is fixed or not but this is farther than I have ever been.</p><p>If anyone else is having similar issues, before a reinstall I suggest maybe verify game files and a complete restart of steam. Maybe try logging out and back in as well.</p><p>Will post more if I find more issues.</p><p>Everything is working great, fun game glad I bought it.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2020-04-06 09:11:15 </div><div class="cooked"><p>We appreciate the update! <img src="https://emoji.discourse-cdn.com/twitter/raised_hands.png?v=9" title=":raised_hands:" class="emoji" alt=":raised_hands:"></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/themikeberg/" style="color:#fff;text-decoration:none;">t</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/themikeberg/">themikeberg</a></strong> &bull; 2020-04-10 09:39:06 </div><div class="cooked"><p>Not a problem! Sorry for the mess of a post but hopefully it helps anyone that might find it during a google search. Thanks a bunch for your hard work Julia!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2020-04-17 09:39:11 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

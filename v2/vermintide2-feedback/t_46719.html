@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>What happened to 0% spawn Twitch? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">What happened to 0% spawn Twitch?</span></h1><div class="meta">3 Posts &bull; 512 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/triplicant/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/triplicant/">Triplicant</a></strong> &bull; 2021-09-14 12:24:15 </div><div class="cooked"><p>For those wondering what on Earth I mean; What I would do was, (using Notepad++, nothing else worked right) open the user_settings.config file, set the twitch vote time to 0 seconds, time between votes to 3 seconds, spawn amount to 0, and the shenanigans of super hyper wacky fun time mode would begin.</p><p>Only, sometime around the sister of the thorn release, it seems the ability to set spawn % lower than 1 was removed (or defaulted to 100% / what Twitch normally throws at you), or altered in such a way as to become esoteric in initialization. I have searched through all the available dev notes and user posts I could seem to find, and didn’t notice a single clue as to why this was changed, and if it can still be played as a mode.</p><p>Attempting to figure out if it can be played, I have learned that if you put a - or a ; at the beginning (for -) or end (for <img src="https://emoji.discourse-cdn.com/twitter/wink.png?v=10" title=":wink:" class="emoji" alt=":wink:"> of the 0 in the Twitch_spawn amount line, it will erase your config file. Amount = 0; or amount = -0 are both…volatile. Sooooo take backups, should ye be adventurous. I put a 1 with a rather large number of 0’s behind it, and when i opened the game, it had changed to: twitch_spawn_amount = 1e+20, which I found interesting. Although I have made several other attempts to engage Hyper-Cheese mode once more, I’ve found nothing particularly noteworthy aside from the above.</p><p>My guess as to its removal (if said removal was purposefully done), would be either too many complaints in regards to people having found themselves within a lobby hosting this mode, too many people using it to cheese through maps, or perhaps it was just some sort of security thing (don’t see how it could be, though, but I’m certainly no expert).</p><p>One of my favourite things to do in it, was to fight through a level and get someone to (mostly) stay inside the portal at the end (but not allow the game to end). Usually myself, while I open the Options menu, and change the Spawn amount in the in-game menu to 200%, and time between to 15 (or so). In the Gameplay options, only the Twitch options that you change then Apply seem to be updated to their “natural” values. The vote time in the in-game options menu, for instance, will show 15 / 5 (Default number of seconds for lowest natural vote times), but will be whatever it was previously set to in the user_settings file out of game. Once a setting is changed back to its intended amount in game, it cannot be changed back to its unnatural value - Outside editing of the user_settings.config file seems locked. Now you have Ultra boss rush mode - Hence, someone stayin’ in the bubl.</p><p>There was another reason I could imagine it having been decided to alter this “feature”, being what occurred if you turned spawns back on but left them at insane fast speed, when the Portal is up in Dark Omens. Hint: You’re going to want a few party members who use Ammo. But not to kill anything.</p><p>TL;DR,</p><p>Does anyone know why I can’t play 0% Spawn rate Twitch mode anymore?</p><div class="spoiler"><p>Thank you for coming to my Ted talk.</p></div></div></div></div><div class="post"><div class="avatar"><a href="../../users/harridas/" style="color:#fff;text-decoration:none;">H</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/harridas/">Harridas</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Regular</span> &bull; 2021-09-14 12:44:34 </div><div class="cooked"><p>I’m fairly sure because it was an option to effectively cheat in official realm and knowledge of its existence was starting to spread here and there, I even remember seeing a Steam guide on it so yea Fatshark had to eventually fix that before it became widespread practice.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/triplicant/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/triplicant/">Triplicant</a></strong> &bull; 2021-09-25 00:27:12 </div><div class="cooked"><p>I just find it strange that, out of all the ways to “cheat” the game, this one was removed silently.</p></div></div></div></div></div></body></html>

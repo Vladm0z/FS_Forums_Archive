@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>1.0.8.2 Fisheye effect - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">1.0.8.2 Fisheye effect</span></h1><div class="meta">6 Posts &bull; 1608 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/unlimited/" style="color:#fff;text-decoration:none;">U</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/unlimited/">UnLimiTeD</a></strong> &bull; 2018-05-24 23:15:00 </div><div class="cooked"><p>I’ve been away for a week, but I am rather sure that the game didn’t have such a pronounced fish-eye effect before.<br> I know it was always there, but now lohner doubles in size when I turn the camera in front of him, and joining a game watching in third person feels like watching stick figures in a psychedelic dreamscape.<br> Not putting this under bugs because I’m not sure this was supposed to be the case – maybe it only looked normal on my screen and that bug has been fixed?<br> I’ve already reduced the FoV from 80 to 70, and while some might say that’s still not low, it’s significantly lower than before and I’m not sure it even made a difference. Yes, there’s less field of view, but the distortion stays.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/sno/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sno/">Sno</a></strong> &bull; 2018-05-24 23:17:31 </div><div class="cooked"><p>I felt like something weird was off since 1.0.8.2 as well. I keep mine at 85 most of the time but it felt a bit more distorted than usual.</p><p>Maybe one of the back-end changes affected something. Or it could just be in my head.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/commanderj/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/commanderj/">CommanderJ</a></strong> &bull; 2018-05-24 23:17:36 </div><div class="cooked"><p>Just as a curiosity, try checking to see if your resolution has somehow changed. Dumb question maybe, but worth checking if you haven’t.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/nikkotovski/" style="color:#fff;text-decoration:none;">N</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/nikkotovski/">NikKotovski</a></strong> &bull; 2018-05-25 00:45:17 </div><div class="cooked"><aside class="quote no-group" data-username="CommanderJ" data-post="3" data-topic="23497"><div class="title"><div class="quote-controls"></div><a href="../../users/commanderj/">CommanderJ</a>:</div><blockquote><p>Dumb question maybe, but worth checking if you haven’t.</p></blockquote></aside><p>No, not dumb at all. Nice idea.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/swenfatt/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/swenfatt/">swenfatt</a></strong> &bull; 2018-05-25 09:22:48 </div><div class="cooked"><p>Check, that you haven’t accidentally increased FOV (field of view), which is in the video settings on top - very near the ‘‘Frame rate cap’’. Everything above 100 will give you the ‘‘fisheye effect’’. Number is associated with wideness of view. 90 meaning, your field of view captures 90°. Lower the number, get more zoom, increase it and the ‘fish eye view’ becomes more apparent.</p><p>Wide FOV enable players to see more what is around them, but has a drawback - everything appears more far away than it really is. Getting used to this setting can be highly beneficial for close combat, while having zoomed view is better for range shooting.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/unlimited/" style="color:#fff;text-decoration:none;">U</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/unlimited/">UnLimiTeD</a></strong> &bull; 2018-05-25 09:36:07 </div><div class="cooked"><p>Well, that is the thing. I didn’t change it. I was at 80, and I now lowered it to 70, and characters in the middle of the screen become twice as wide when getting close to the edges. It’s close to unplayable. I know I wasn’t playing for a few days, but I can’t fathom possibly getting used to this that much that it was the case before and I didn’t notice.<br> I did check the resolution, but I’m playing borderless fullscreen, so the resolution is fixed – unlikely it changed.</p></div></div></div></div></div></body></html>
