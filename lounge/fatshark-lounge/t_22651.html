@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Dumb Vermintide 2 Video: the Sequel. Any opinions? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Miscellaneous &raquo; <a href="index.html">Fatshark Lounge</a></div><h1><span class="accent">Dumb Vermintide 2 Video: the Sequel. Any opinions?</span></h1><div class="meta">3 Posts &bull; 637 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/ordnassen/" style="color:#fff;text-decoration:none;">o</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ordnassen/">ordnassen</a></strong> &bull; 2018-05-01 13:45:03 </div><div class="cooked"><p><a href="https://youtu.be/6Xr3ind1-fc" class="onebox" target="_blank" rel="noopener nofollow ugc">https://youtu.be/6Xr3ind1-fc</a></p><p>It´s a little shorter overall and more “atmospheric” at the beginning, with a little humor sprinkled throughout the rest^^</p><p>is it Better, worse or awful? Let me know <img src="https://emoji.discourse-cdn.com/twitter/wink.png?v=15" title=":wink:" class="emoji" alt=":wink:" loading="lazy" width="20" height="20"></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/chigooga/" style="color:#fff;text-decoration:none;">c</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/chigooga/">chigooga</a></strong> &bull; 2018-05-03 12:27:21 </div><div class="cooked"><p>Painful game play (Watching you not dodging the rat ogre slams at the start killed me a little inside) and <strong>very</strong> cringe editing, but I got a chuckle out of it here and there, and that’s what these kinds of videos are for, so that was nice <img src="https://emoji.discourse-cdn.com/twitter/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:">.</p><p>Some comments, I liked the creativeness of the movie-like training montage before going from recruit to veteran and the one Roblox death sound I noticed around 4 minutes in really got me. Regarding game play, you should almost never vent when above the first the first threshold as it deals damage to you, and unnecessary damage is always something you should avoid as leaving overcharge to automatically dissipate will cause you no harm. Also, try not to use any of your resources (Scraps, green dust etc) on anything before you start to get power rating 300 items (Which doesn’t take too long) as everything that isn’t power rating 300 will quickly become obsolete. Final note, this was probably done only for the video but in the case that it wasn’t, play with people not bots as it makes the game significantly more enjoyable (at least in my experience).</p><p>P.S The lighting during the Slayer part was pretty off, making it difficult to see things</p><p>P.P.S These kinds of comedic, heavily edited videos are great and all, but generally something a little shorter (&lt;5 min-ish) is easier for a one-off viewer to watch. When it comes to watching entire missions, people generally only do that for mostly unedited, commentated, experienced game play from which they can learn things. I think that this video could be better by making a little shorter and giving it a more coherent purpose (It gave me mixed vibes, it kinda felt like a gag, but then it kinda felt like a play through). Take my comments as you will, it’s just one person’s opinion, and it’s still enjoyable and creative so yeah <img src="https://emoji.discourse-cdn.com/twitter/+1.png?v=9" title=":+1:" class="emoji" alt=":+1:"></p><p>7/10</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/ordnassen/" style="color:#fff;text-decoration:none;">o</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ordnassen/">ordnassen</a></strong> &bull; 2018-05-03 15:47:26 </div><div class="cooked"><p>Nah, man your feedback is understandable and valid (thx for that btw). I’m far from a pro… only got about 13 hours into the game, so time will help, i guess <img src="https://emoji.discourse-cdn.com/twitter/sweat_smile.png?v=9" title=":sweat_smile:" class="emoji" alt=":sweat_smile:"> . I´ll try to make it less cringy (if you tell me what in particular) and make things more visible.</p><p>I could, of course, do more gameplay focused stuff (with less editing etc.), but I’m pretty sure it would even be more of a hot steaming pile of garbage because i lack the experience. I wanted to do something different and not a full meme montage with no context or buildup whatsoever. Less cringy and more visible it is then <img src="https://emoji.discourse-cdn.com/twitter/wink.png?v=9" title=":wink:" class="emoji" alt=":wink:"></p><p>PS: Constructive criticism from one person´s opinion, who gives helpful feedback is always welcomed (at least for me). That´s how you can make awful things less awful.</p><p>P.P.S I´m also far from a pro at making vieos. This is pretty much a big experiment for me… trying to see what works and stuff. Its just a hobby, that i do in my freetime and try to improve at, so i can make these videos less bad^^</p></div></div></div></div></div></body></html>

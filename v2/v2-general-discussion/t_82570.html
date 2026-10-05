@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Playing through V1 on Nightmare with bots made me IMMENSELY better at V2. I went from being the load in Legend to soloing Legend - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">General Discussion</a></div><h1><span class="accent">Playing through V1 on Nightmare with bots made me IMMENSELY better at V2. I went from being the load in Legend to soloing Legend</span></h1><div class="meta">2 Posts &bull; 487 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/greencoloured/" style="color:#fff;text-decoration:none;">G</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/greencoloured/">GreenColoured</a></strong> &bull; 2023-08-24 03:34:36 </div><div class="cooked"><p>I barely played V1, got it on discount when V2 was released, and rushed through it on Normal difficulty before hopping straight onto V2 where I got my ass torn open when I unlocked Legend/Cataclysm.</p><p>A year or so later I felt like playing Vermintide again and start from the beginning to roleplay U5’s story. I played till I finished all levels in Nightmare (except Summoner’s Peak and River Reik) and upon returning to V2 became WAY better at the game.</p><p>I think with V1, playing with their godawful bots you can’t trust to handle themselves, not having get-out-of-jail-free career skills, and being stuck with a far less developed melee system on Nightmare ended up teaching me all the good habits needed to survive Legend on V2.</p><p>My point is… it’s worth it returning to V1 from time to time. That game has a lot of good in it, and it beats V2 in terms of atmosphere and level to level story structure.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/throne_of_rats/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/throne_of_rats/">Throne_of_Rats</a></strong> &bull; 2023-08-24 14:52:16 </div><div class="cooked"><p>Well, if you fancy playing Cataclysm in Vermintide 1 and can’t find players, Grimalackt’s Quality of Life Modpack with its bots improvements mod is still around:</p><aside class="onebox allowlistedgeneric" data-onebox-src="https://steamcommunity.com/sharedfiles/filedetails/?id=1090355288"><header class="source"><img src="https://steamcommunity.com/favicon.ico" class="site-icon" width="256" height="256"><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1090355288" target="_blank" rel="noopener nofollow ugc">steamcommunity.com</a></header><article class="onebox-body"><div class="aspect-image" style="--aspect-ratio:392/360;"><img src="https://steamuserimages-a.akamaihd.net/ugc/845967364240430958/7F9AB75FDD56526E41418C549E5C0CC405DE1271/?imw=5000&amp;imh=5000&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=false" class="thumbnail" width="392" height="360"></div><h3><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=1090355288" target="_blank" rel="noopener nofollow ugc">Steam Community :: Guide :: The Quality of Life Modpack v15</a></h3><p>The Quality of Life Modpack is a simple-to-install set of mods free of cheating with the purpose of enhancing your gameplay experience. Mods include things like numerical ping values, equipment displa</p></article><div class="onebox-metadata"></div><div style="clear: both"></div></aside><p>You should be able to enhance them further with the Different Bots add-on, if you so wish:</p><aside class="onebox allowlistedgeneric" data-onebox-src="https://steamcommunity.com/groups/DifferentBotsMod"><header class="source"><img src="https://steamcommunity.com/favicon.ico" class="site-icon" width="256" height="256"><a href="https://steamcommunity.com/groups/DifferentBotsMod" target="_blank" rel="noopener nofollow ugc">steamcommunity.com</a></header><article class="onebox-body"><img width="184" height="184" src="https://avatars.cloudflare.steamstatic.com/a6999eecb54639e32fefbe4d216447b6f59f9d54_full.jpg" class="thumbnail onebox-avatar"><h3><a href="https://steamcommunity.com/groups/DifferentBotsMod" target="_blank" rel="noopener nofollow ugc">Steam Community :: Group :: Different Bots</a></h3><p>Group to share the "Different Bots" mod for game Warhammer: End Times - Vermintide. Please join the group in order to see the File Releases forum. Link to the associated guide: Different Bots Guide</p></article><div class="onebox-metadata"></div><div style="clear: both"></div></aside><p>Neither project has been updated in a long while, but they still work just fine with the game. These bots become way too strong for Nightmare, but they can handle Cataclysm (even with books) if they have good leadership. You should be able to clear Summoner’s Peak and River Reik with a bit of determination and know-how just fine.</p></div></div></div></div></div></body></html>

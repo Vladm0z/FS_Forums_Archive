@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>DPC_WATCHDOG_VIOLATION - Blue Screen - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">DPC_WATCHDOG_VIOLATION - Blue Screen</span></h1><div class="meta">4 Posts &bull; 1004 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/invadersamurai/" style="color:#fff;text-decoration:none;">I</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/invadersamurai/">InvaderSamurai</a></strong> &bull; 2018-12-27 11:10:08 </div><div class="cooked"><p>Hello There,<br> Since (the last DLC release/I changed my mouse) I am getting a blue screen (with code DPC_WATCHDOG_VIOLATION) only in vermintide 2. I tried many other games for many hours (Just Cause 4, Rainbow 6 Siege, PUBG) and I’m not getting any blue screens while playing these. I am not getting the blue screen while playing with Bardin-ironbreaker(I mainly use Drakegun and not go into too much close combat) but getting the blue screen with characters like Bardin-Slayer/Kerillian-Shade where I go into close combat too much and use a left click macro on my mouse (I can’t tell if it is related but I am getting the bluescreen while I am using the macro). My mouse is Razer Mamba Elite and I am using Razer Synapse for the macro. I tried my old mouse and I didn’t get the blue screen for 2 hours. So somehow this macro and vermintide 2 combination is triggering this crash. I also tried some steps I found on the web like updating drivers or using standard SATA AHCI controller, that are generally related with this DPC_WATCHDOG_VIOLATION and they didn’t work.</p><p>My System:<br> Windows 10 Home 64-bit (10.0, Build 17763)<br> OMEN by HP Laptop 15-ce0xx<br> BIOS: F.08<br> Intel® Core™ i7-7700HQ CPU @ 2.80GHz (8 CPUs)<br> 8GB RAM<br> DirectX 12<br> NVIDIA GeForce GTX 1060 with Max-Q Design (6GB memory)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatshark_hedge/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatshark_hedge/">Fatshark_Hedge</a></strong> &bull; 2018-12-27 13:03:14 </div><div class="cooked"><p>It’s a tricky one, but by your own investigations it seems related to the macro you’re using, so we suggest avoiding using that or trying something like AHK if you’re after a left click macro.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/invadersamurai/" style="color:#fff;text-decoration:none;">I</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/invadersamurai/">InvaderSamurai</a></strong> &bull; 2018-12-30 23:37:40 </div><div class="cooked"><p>By further investigation, I realised the crash is triggered when Razer Synapse 3.0 is installed. After deleting Synapse 3.0 I am no longer getting the crash even when I am using the macro without the software. I also tried reinstalling the software but it is still giving the crash.</p><p>I am also wondering if it is possible that game and Razer Synapse combination is causing the crash. Is there anybody using razer synapse with a similar macro like mine and not getting any crashes or getting it ? Or maybe someone with Synapse 3 and razer mouse can try it for the sake of Sigmar so we can understand if it is happening in all synapse users so devs may solve it that way.</p><p>I am actually looking for experienced Razer Synapse users who may experienced similar problems and how did u guys solved the problem ? Because not using Synapse is a big NO NO for me as u r unable to use all the properties of mouse like Chroma lighting/editing macros and so on.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2019-01-06 23:37:41 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

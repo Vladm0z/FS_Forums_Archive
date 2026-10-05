@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Lohner's emporium of wonders (current state) - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Lohner's emporium of wonders (current state)</span></h1><div class="meta">4 Posts &bull; 521 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/whereisbaodur/" style="color:#fff;text-decoration:none;">W</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/whereisbaodur/">WhereIsBaoDur</a></strong> &bull; 2022-03-19 15:36:47 </div><div class="cooked"><p>First of all, I don’t want this post to be perceived as a strongly negative one. Neither is this a priority.<br> I’m fairly happy with the updates you guys are doing. But when you consider the work you’ve been putting in into fleshing this out (the new voice lines, the daily rewards) is just a shame that we haven’t seen new items in it for so long (except for the premium cosmetics).</p><p>I’d hate for this to become just an ingame store. Discounting the premium stuff there’s not a huge variety of items (with the long lived complaint of the recolours), and the distribution itself feels uneven and incomplete - for example, pyromancer has 2 red hats, most careers haven’t got one.</p><p>I’d like to be excited about the system you guys have in place, but there’s currently not much of a reason to. Can we expect you to add to it with the next patch?</p><p>If this isn’t in your plans, perhaps you could reconsider having two coins systems. You could sell shillings for real money, or just make the premium cosmetics available for shillings as well.<br> I appreciate that this would require some discussion, but I’d personally prefer this to the current state.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/frostysir/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/frostysir/">Frostysir</a></strong> &bull; 2022-03-19 17:15:44 </div><div class="cooked"><p>While i do think its unlikely to expect premium skins to be sold for shillings given the effort to make those, i do think it would be really, really, really nice if we finally got some color options for the basic stuff we got already.</p><p>Like a blue hat for a blue armor etc, instead of the present mismatched assortment we got.</p><p>Maybe some additional color options on the glow for weapons? Or even new weapon illusions? Many of reds look really crude compared to the orange weapons. The orange weapons that seem to serve as a base for the much fancier athanor weapons that most of us will never touch…</p><p>I could happily stand them being added too.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/whereisbaodur/" style="color:#fff;text-decoration:none;">W</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/whereisbaodur/">WhereIsBaoDur</a></strong> &bull; 2022-03-19 18:34:59 </div><div class="cooked"><p>Even if the hats would hit the market that’d be something. There’s really little at the moment.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/hgjw/" style="color:#fff;text-decoration:none;">h</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/hgjw/">hgjw</a></strong> &bull; 2022-03-21 01:39:10 </div><div class="cooked"><p>Yeah I’m currently just banking shillings that I have no use for and I’m probably not the only one whos close to making the 10k mark or are already way past it.<br> Still hoping for those weave weapons to be sold trough this.</p></div></div></div></div></div></body></html>

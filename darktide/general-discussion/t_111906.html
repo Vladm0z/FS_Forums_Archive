@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Little Tip to Improve FSR 3 Quality for RDNA3 Users - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">General Discussion</a></div><h1><span class="accent">Little Tip to Improve FSR 3 Quality for RDNA3 Users</span></h1><div class="meta">2 Posts &bull; 409 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/monomaniac/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/monomaniac/">Monomaniac</a></strong> &bull; 2025-08-20 20:17:08 </div><div class="cooked"><p>The game currently uses the version of FSR 3.1 that is 2 versions older than the newest one. AMD released FSR SDK version 1.1.4 in May and 2.0 just today with improvements to both upscaling and frame generation.</p><p>In version 1.1.4 they improved occlusion artifacts and highly reactive pixels by exposing new parameters and with today’s version 2.0 they improved frame generation. If you’d like to read changelogs, you can go to their github page below.</p><aside class="onebox allowlistedgeneric" data-onebox-src="https://github.com/GPUOpen-LibrariesAndSDKs/FidelityFX-SDK/releases/tag/v2.0.0"><header class="source"><img src="https://github.githubassets.com/favicons/favicon.svg" class="site-icon" alt="" width="32" height="32"><a href="https://github.com/GPUOpen-LibrariesAndSDKs/FidelityFX-SDK/releases/tag/v2.0.0" target="_blank" rel="noopener nofollow ugc">GitHub</a></header><article class="onebox-body"><div class="aspect-image" style="--aspect-ratio:690/344;"><img src="https://opengraph.githubassets.com/71b80cd22f1c7f3af558f6df3daf26d9dfe5c93c1d5f5e6e6b430c469fe04112/GPUOpen-LibrariesAndSDKs/FidelityFX-SDK/releases/tag/v2.0.0" class="thumbnail" alt="" width="690" height="345"></div><h3><a href="https://github.com/GPUOpen-LibrariesAndSDKs/FidelityFX-SDK/releases/tag/v2.0.0" target="_blank" rel="noopener nofollow ugc">Release FidelityFX SDK v2.0.0 · GPUOpen-LibrariesAndSDKs/FidelityFX-SDK</a></h3><p>What's new in the AMD FidelityFX™ SDK 2.0.0? The AMD FidelityFX SDK 2.0.0 is a major revision to the SDK and serves as a launching pad for all of our new ML-based neural rendering technologies, inc...</p></article><div class="onebox-metadata"></div><div style="clear: both"></div></aside><p>You can safely update your FSR dll file (I’ve been doing it for months now, developers don’t seem to tag it or anything.) In order to do that, you go to the github page above and download the “minimal package” provided by the developers. It includes the pre-compiled and signed dll file you will need.</p><p>Once downloaded, open the zip folder and go to “Kits &gt; FidelityFX &gt; signedbin” folder. Extract “amd_fidelityfx_upscaler_dx12.dll” to anywhere you’d like and rename it to “amd_fidelityfx_dx12” This step is necessary because this is the naming scheme that was used until now, which, for some reason they decided to change. After you rename it, copy it and paste it into your game’s installation folder as below:</p><p>/SteamLibrary/steamapps/common/Warhammer 40,000 DARKTIDE/binaries/</p><p>This will ask if you want to overwrite. Click yes and that is it. Keep in mind whenever a new update rolls out it will be replaced by the old dll again. FatShark can simply include this with a hotfix themselves, but they don’t for some reason. Until then you can do it manually.</p><p>Hope this helps people who don’t have RX 9000 series GPUs or those who can’t use FSR4 anyway because it causes crashes.</p><p>Emperor protects!</p><p>Note: Had to do a little testing to figure out which dll file the game is using for frame generation and turns out it is the “amd_ags_x64.dll” so if you grab the “amd_fidelityfx_framegeneration_dx12.dll” from the zip file, rename it to “amd_ags_x64.dll” and overwrite the game’s file with it you should also get the improvements to frame generation. Just played a full match with both dlls swapped and frame generation enabled with no bugs or crashes. I do not use frame generation usually because I can’t notice any difference whatsoever, which was once again the case but for those who use it this should be a good improvement since it fixes the alt+tab locking issue when using frame generation.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2025-09-03 20:17:42 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

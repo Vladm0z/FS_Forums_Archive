@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Xbox - Achievements don't unlock, Bugs, resolution and Map issues - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Xbox - Achievements don't unlock, Bugs, resolution and Map issues</span></h1><div class="meta">2 Posts &bull; 1011 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/chester.hahn313/" style="color:#fff;text-decoration:none;">c</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/chester.hahn313/">chester.hahn313</a></strong> &bull; 2018-07-30 14:02:31 </div><div class="cooked"><p><strong>Updated</strong></p><p>I play myself as Elf (Shade mostly) of 30+28 lvl and my friend Bardin (Slayer) 30+35 lvl both on XboXone X</p><p>We have played this game with same characters on PC 300+ hours and my friend over 800/900 hours and did all OKRI challenges except for deeds and levelling up all characters</p><p>We have come across all below issues by playing on Xbox and we play Legend mostly unless we need to level up other characters but we do only play Legends.</p><p><strong>Okri Legend Challenges</strong></p><p>• Against the Grain</p><p>We have done this challenge 4 times 46 , 53, 51 and 41 sec respectively and yet it’s not unlocked.<br> Process: Slayer opens first cage then Handmaiden opens next four cages, following up Kruber open 2 cages climbing up the ladder and in the barn Kruber opens the cages under it and Slayer opens remaining 2.</p><p>Classes used: Handmaiden, Slayer, FootKnight and Bot Saltz</p><p>• Convocation of Decay</p><p>Process: We have done this 5 times none of us died or downed not got pulled by hook rat or jumped by Assassin or pushed by rattler or Warp fire, we stood right in the middle of the pool and not even moved a bit forward form the start to end of the event and this too doesn’t Unlocks. Also timed it and it lasted 120secs on all attempts</p><p>Classes used: Waystalker, Slayer, FootKnight and Saltz</p><p><strong>Bugs and Glitches</strong></p><p>Bardin</p><p>Bardin Ranger – The Ultimate smoke bomb doesn’t work properly we have tried to do the Master of convergence: Athel Yenlui challenge but the smoke bomb works randomly 2/5 times which is completely unreliable and it effects objectives and challenges.</p><p>Horde</p><p>In middle of horde if Bardin – Slayer uses dual axes it crashes the game and kicks all the players with him and also after using Push Follow-up attack in middle of horde and even worse if he leaps in middle of horde with Push Follow the game crashes instantly.</p><p>The Lords for War Camp and Into the Nest takes 10-15 seconds to spawn when all the players are in the arenas.</p><p>The hordes glitch out, as soon as you hear the horde music we normally back up few feet to find a safe place to fight the horde and the horde is nowhere to find and alter the music stops playing and some times the glitched horde comes in small packs further along the way.</p><p><strong>Maps</strong></p><p>Below are the Specific maps having lag issues, players being kicked off etc.</p><p>Convocation of Decay - 9 out of 10 times players except the host gets kicked out, we also tested this switching the host but it’s still the same.<br> Hunger In the Dark – 2 out of 5 times players gets kicked out except Host<br> Halescourge – Right after you drop down from the lifting platform there are huge lags and you can see the lamps swing with lag and this ends right before you get supplies before the boss fight.</p><p><strong>Resolution</strong><br> Sorry to say this the game says 4K Enhanced but it’s not, I have 49inch Sony Bravia with 4K UHD and it lags out so much and after changing it to 1080p (in console settings) it is a bit little better but not close to be 4K or Enhanced 4K.<br> A good example, you can check the text for any of the Portraits in Okri challenges and you can see its zoomed out and can see only half of the text, under video settings it has only 2 options and mainly ‘Field of View’ is missing which helps a lot in resolution and graphic stability.</p><p>P.S: I love what you did with VT2 with all new classes, Monsters and loads of varieties, you guys did an amazing job with this game <a class="mention" href="../../users/fatshark/">@Fatshark</a>.</p><p>Hope this gets patched quickly.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2018-08-24 10:10:37 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

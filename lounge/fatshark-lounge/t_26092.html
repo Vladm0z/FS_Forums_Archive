@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>So what's happening? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Miscellaneous &raquo; <a href="index.html">Fatshark Lounge</a></div><h1><span class="accent">So what's happening?</span></h1><div class="meta">6 Posts &bull; 835 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/mr_sp1ce/" style="color:#fff;text-decoration:none;">m</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/mr_sp1ce/">mr_sp1ce</a></strong> &bull; 2018-07-27 22:30:27 </div><div class="cooked"><p>Game released on Xbox. PS next? Then Nintendo?</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/scythid/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/scythid/">scythid</a></strong> &bull; 2018-07-28 00:31:27 </div><div class="cooked"><p>Probably porting to fridges that have tvs</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/yzneftamz/" style="color:#fff;text-decoration:none;">Y</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/yzneftamz/">Yzneftamz</a></strong> &bull; 2018-07-29 22:49:22 </div><div class="cooked"><p>PS4 port is coming at some point, but its seems that some sort of exclusivity was in the deal with MS, so that will be out later. Afaik, XBox is closer to PC environment-wise than PS(4), so it’s slightly easier to implement, too. I doubt a Switch version is coming, but that’s not impossible.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/smokert69/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/smokert69/">SmokerT69</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Hero</span> &bull; 2018-07-30 07:01:06 </div><div class="cooked"><p>According to one of the Devs, they already have a working PS4 version. As I’ve said many times before, the console ports were started way before the game released on PC.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/protagorasember/" style="color:#fff;text-decoration:none;">P</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/protagorasember/">ProtagorasEmber</a></strong> &bull; 2018-07-31 02:46:21 </div><div class="cooked"><p>I still play the first Vermintide on PS4 around 4 or 5 days a week every week. Just under 20 lore pages from collecting them all (which I want to do even though there’s no trophy for it). I still have plenty of boards left to beat on Cata, I have yet to beat Waylaid on Nightmare, I still have one more DLC weapon to farm for, and with the game still going on sale all the time there are always new players coming in to welcome to Vermintide with the hopes that they’ll stick around and like the game enough to get the sequel eventually.</p><p>But the more time that goes by, and the more things I see like the Xbone release and content releases and updates, the more I feel like I’ve already gone way past the point to be done with the game and that I should stop obsessing over inventory items that will soon be worthless since you don’t port anything over to 2 and 2 is going to kill off the first game’s remaining player base.</p><p>I’m definitely craving a new game and now would have been the perfect time for Vermintide 2 (I’ve also hit the wall on Monster Hunter World at over 550 hours played and almost none of the high level drops I’ve tried to farm (hey Capcom, the skinner box stops working if the rat never gets ANYTHING)). As of now I’m thinking about picking up Dead Cells, Death’s Gambit, and a few other games to tide me over for something with a little more playthrough time and August is like the last month I can think of before all the big big end of year games start dropping.</p><p>September is Spider-man and to a lesser extent Valkyria Chronicles 4, October is COD:BO4 and Red Dead Redemption, November is Fallout 76 and Soulcalibur VI, and then it’s December when adult gamers are broke buying other people stuff and younger gamers are stuck waiting to find out what someone else picked out for them… it just seems like you guys are missing your chance to have the biggest PS4 launch you could have without a bigger name game’s release getting in the way. I want this series and this company to have all the success possible and it feels like you’re blowing it!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/arknox/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/arknox/">arknox</a></strong> &bull; 2018-08-09 17:48:51 </div><div class="cooked"><p>Maybe you should get a job…</p></div></div></div></div></div></body></html>

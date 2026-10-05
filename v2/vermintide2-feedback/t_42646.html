@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About the nature of Books - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">About the nature of Books</span></h1><div class="meta">1 Posts &bull; 402 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/adelion/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/adelion/">Adelion</a></strong> &bull; 2020-12-05 01:13:30 </div><div class="cooked"><p>Most of this is just some recap of already mentioned stuff, partly already rejected. Currently, the book system is kinda working but pretty boring (no, I will not make more interesting suggestions, just a different kind of bore).</p><p>The tomes themselves are just some placeholder to slightly restrict healing usage but normally their effect is negligible. Grimoires on the other hand are a brilliant meta-joke about a cursed item, which promises power (better loot) while actually endangering the holder (reducing health) and corrupting its mind (pick up the Grims!!!).</p><p>That said, the system has like most systems in any game still potential upwards (debatable if made suggestions are upwards potential).</p><p><strong>Off-gameplay potential</strong></p><p>It has been suggested several times already by different people to make some kind of library. Aside from a random room in the keep somewhere it could also have some actually usage by a double function. By collecting books the player will unlock more and more game information. Hereby, the Tomes would work to unlock background information on characters, enemies, locations etc. very similar to the Lore pages from Vermintide 1. The information and text for these are already written and would just have to be incorparated into the game. The Grimoires would unlock information about (advanced) gameplay mechanisms. These information would have to be written down first and corrected repeatedly (we could discuss this as a community project, but it would never work out).</p><p><strong>Gameplay potential</strong></p><p>Tomes are magical books but I am not sure what you could with them. Only idea is something I suggested in the past which would more or less serve as gimmick. As fas as I remember, early versions of Tomes were able to block which was then removed because it was non-sensical. However, I think it would make a tiny bit sense if they could block magic. Which magic would be affected? Basically only Chaos magic: Flies, Leeches and Slime Clones. These could be blocked. Make tome-blocking a thing!!</p><p>As for Grimoires, there is far more potential. Although none the community would embrace <img src="https://emoji.discourse-cdn.com/twitter/stuck_out_tongue.png?v=9" title=":stuck_out_tongue:" class="emoji" alt=":stuck_out_tongue:"> The current problem with Grimoires is that the curse is assymetrical. An IB doesn’t care for having a third of health only as long as he has a passive which allows face-blocking every few seconds. Zealot does care even less because he can face-block about everything and has a passive which literally deactivates death.<br> As such I would like to make the daring suggestion of personalized curses meaning that every career should have a slightly different curse. The potential ideas here are unlimited. A very easy idea would be for Grimoires to reduce or remove career passives (or even active skills). So if you pick up a Grim then IB (even if he isnt carrier) would have no longer his free hit every few seconds or the cooldown would just take longer. This would mean that the curse would actually hurt and be problematic instead of “I don’t care”. Another idea would be for the curses to deactivate weapon traits.<br> Or curses are randomized ranging from lower attack speed, to less ammo regeneration, etc. But a curse should be painful for everyone in the team involved. And no, I do not care that this is “not fun”. If people want to pick up a magically cursed artifact which is 100 % optional just to satisfy their greed then they should be prepared for a bit of suffering. And if the result is people picking up grims less then it would be okay as well.<br> Thematically, debuffs make more sense. But there is of course also the possibility to buff enemies instead. A simple iteration here would be that with every picked up Grim a random Deed modifier would be activated (or similar). So you pick up one Grim, you get continuous horde. You pick up the second grim, now you have more specials as well. Or your heroes will be kidnapped after death <img src="https://emoji.discourse-cdn.com/twitter/stuck_out_tongue.png?v=9" title=":stuck_out_tongue:" class="emoji" alt=":stuck_out_tongue:"> It is an option but painful debuffs would make more sense from a lore perspective.</p></div></div></div></div></div></body></html>

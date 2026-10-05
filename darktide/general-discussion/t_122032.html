@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Melk's Event List - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">General Discussion</a></div><h1><span class="accent">Melk's Event List</span></h1><div class="meta">7 Posts &bull; 355 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/thepalehunter/" style="color:#fff;text-decoration:none;">t</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/thepalehunter/">thepalehunter</a></strong> &bull; 2026-05-30 00:35:09 </div><div class="cooked"><p>I couldn’t play for about a month and a half - missed the Nurgle’s Might event. I see that Melk now has some past events listed, including the cosmetic rewards for completing them. Will these events rotate back in, or is this just a list to show you things you can’t get? I see why they’re using Melk for the current event, but what is the point of showing the rest? Moreover I only see as far back as Cartel’s Favours and I know there were several events I completed before that which aren’t listed.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/eatingsand/" style="color:#fff;text-decoration:none;">e</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/eatingsand/">eatingsand</a></strong> &bull; 2026-05-30 00:43:12 </div><div class="cooked"><aside class="quote no-group" data-username="thepalehunter" data-post="1" data-topic="122032"><div class="title"><div class="quote-controls"></div><a href="../../users/thepalehunter/">thepalehunter</a>:</div><blockquote><p>or is this just a list to show you things you can’t get?</p></blockquote></aside><p>it’s basically this. they had ui artists design that just to make you feel bad for missing it</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/amelia/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/amelia/">Amelia</a></strong> &bull; 2026-05-30 09:51:04 </div><div class="cooked"><p>they may return at some point. and you will be able to obtain them again.</p><p>consider that vt2 gives portrait frames you missed. for example i missed some portrait frames during 2018 but they still gave them all multiple times</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/artificerjoni/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/artificerjoni/">ArtificerJoni</a></strong> &bull; 2026-05-30 12:55:29 </div><div class="cooked"><p>There have been a couple of returned events, so there’s a chance that some of the events you’ve missed will return in the future. I can’t guess which ones and when though.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/eatingsand/" style="color:#fff;text-decoration:none;">e</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/eatingsand/">eatingsand</a></strong> &bull; 2026-05-30 13:43:53 </div><div class="cooked"><p>have events actually returned 1:1? i thought they were always just recycled mechanics but with new rewards</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/amelia/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/amelia/">Amelia</a></strong> &bull; 2026-05-30 13:46:46 </div><div class="cooked"><p>i don’t think so</p><p>only items that were returned once were one of the first twitch drops, but they did that because there were some issues so they re run the first campaign ever of twitch drops. but then that’s it</p><p>regarding frames/insignias i dont think they ever returned but considering vt2 returned old portrait frames, even the anniversary ones etc, there are chances that at some point they will do it in DT too</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2026-06-13 13:47:44 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

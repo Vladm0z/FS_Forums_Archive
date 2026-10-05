@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>About cosmetics and their colors and Kerillian’s hats 2 - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">About cosmetics and their colors and Kerillian’s hats 2</span></h1><div class="meta">3 Posts &bull; 1549 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/kade/" style="color:#fff;text-decoration:none;">K</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kade/">Kade</a></strong> &bull; 2019-11-23 18:38:14 </div><div class="cooked"><p>Issue Summary:</p><ol><li>Kerillians baclava/mask should be a black instead of white</li><li>Cosmetic Hat colors do no match with the player cosmetic skin.</li></ol><p>Why is it that Kerillian’s mask is a white rather than a black. In my opinion and probably many others’ it’s extremely ugly. I’m not sure if this intended design or not. The majority of her hats would be fine tbh if you added a black baclava/mask instead of white.</p><p>Also what’s up with Lileath’s crown?</p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/e/5/e52e364c4bc3d520e2d896e1415d605c4be33556.jpeg" alt="9%204Head" width="379" height="313"></p><p>I’m sorry but this one is so ugly. The crown itself is fantastic. Why not add some hair. You guys were able to do it with Kruber’s “Hat” so why not this one</p><p><strong>Kerrillian’s Mask</strong></p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/8/6/865c060b86981d9177aef2a1ebcc707658caf01b.jpeg" alt="1.jpg" width="" height=""></p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/4/b/4b3a5cad62237b44cf41412af13b2c903a642f10.jpeg" alt="2.jpg" width="" height=""></p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/7/9/79bdefdc5647c733038e2d8bbd2cb8465a5320a0.jpeg" alt="3.jpg" width="" height=""></p><p><strong>Black Masks for Reference</strong></p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/b/3/b3fdd573c92b1d88ae4a9d186eff83a9269fe8a3.jpeg" alt="4 ref.jpg" width="" height=""></p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/2/9/290124f49f20e6194b8de182d1e8bee8243a5e04.jpeg" alt="5 ref.jpg" width="" height=""></p><p>Many of the hats’ colors do not match the player skins unlocked by the player. For example: Red and black/yellow armor for completing all champion/legend runs. Why is this? Are the developers aware of this?</p><p><strong>Color Mismatches</strong></p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/8/1/81fbc9ae2db653e1ace554641de3e91b2149d838.jpeg" alt="6 WS.jpg" width="" height=""></p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/b/f/bf6d9ecb0aad8477d92665142397a63d3f3df00c.jpeg" alt="7 WS.jpg" width="" height=""></p><p><img src="http://forums.fatsharkgames.com//cdck-file-uploads-europe1.s3.dualstack.eu-west-1.amazonaws.com/flex013/uploads/fatshark/original/3X/0/c/0cfc40ea876e07b8002fdf854e228991974a5914.jpeg" alt="8%20WS" width="690" height="387"></p><p>These are only a few color mismatches. They appear on all classes and it is especially noticeable on Kruber and Bardin</p><p><a class="mention" href="../../users/fatsharkjulia/">@FatsharkJulia</a><a class="mention" href="../../users/fatshark_darkkanex/">@Fatshark_DarkkaneX</a></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/ngyuree/" style="color:#fff;text-decoration:none;">N</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ngyuree/">Ngyuree</a></strong> &bull; 2019-11-25 15:26:19 </div><div class="cooked"><ul><li></li></ul><p>Waystalker’s basic hood for legend skin is still green. She has dark grey/gold everywhere but the hood. Not that big of a deal, but still it would be nice the colors matching if this is a basic skin with a basic hat.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2019-12-02 15:34:19 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Further improvements to veteran's Infiltrate (make Overwatch part of the base ability) - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Further improvements to veteran's Infiltrate (make Overwatch part of the base ability)</span></h1><div class="meta">4 Posts &bull; 76 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/torimori/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/torimori/">Torimori</a></strong> &bull; 2026-03-16 13:23:09 </div><div class="cooked"><p>I like what FS have done to it so far. Merging the +30% damage buff into the main node was a no-brainer, a niche underperforming Ability having 4 subnodes before that was just mental. But it still has 3 subnodes while VoC, the best Ability of the veteran out of them all, without doubt, has just 2. That’s a bit too much tax for what it does, don’t you think?</p><p><strong>Suggestion: make Overwatch sub-talent part of the main node too. So, basically, from now on Infiltrate always has 60s CD, and 2 charges.</strong></p><p>I mean, does anybody choose to run Infiltrate with only one charge willfully, and not because they can’t afford to spend a talent point there? IMO, having 2 charges trumps somewhat shorter CD by far, in this case.</p><p>This also would further refine its identity, in comparison to Zealot’s Shroud. Zealot’s shroud would be all about damage dealing, a single devastating hit. While veteran’s Infiltrate is more about utility, doing various things (assisting, ressing, saving teammates, pulling levers, pressing buttons, solving puzzles while stealthed, deploying grenades in a middle of a hoard etc) - thus it would benefit from having the extra charge all the time.</p><p>And it would free one talent point in many Infiltrate builds to spend on something usefull, those builds are far from being powerful, they could use a bit of help like that.</p><p><strong>EDIT:</strong><br><strong>Adujust suggested CD for Infiltrate from 45s to 60s, as I didn’t specify it correctly before. 60s is calculated as the base (current) CD of 40s plus 50% increase from the Overwatch this proposal suggests to merge into the base Ability</strong></p><p><strong>EDIT2:</strong><br><strong>Yea, I agree with others posting below that CD is kinda huge for what it does. With 2 charges though it’s not that obvious as with just one. FS could start with the suggested merge, and then adjust it further if needed</strong></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/ramrod_ikarus/" style="color:#fff;text-decoration:none;">r</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ramrod_ikarus/">ramrod_ikarus</a></strong> &bull; 2026-03-16 21:02:00 </div><div class="cooked"><p>Especially on vet with it’s two “on combat ability activation” triggered skills I think a shorter cooldown is way more beneficial than having two charges. Infiltrate still having such a long cooldown weirdos me out.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/marxistdictator/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/marxistdictator/">MarxistDictator</a></strong> &bull; 2026-03-16 21:13:24 </div><div class="cooked"><p>The masochist in me wants the gratuitous effects of it trapped to modifier nodes that can’t be run together. They should add a new node, ‘Inspired Orator’ that gives the shout the heavy knockdown effect on elites and boss stagger, with slightly more range. The existing ‘Duty and Honor’ is the same, but the base knockback effect is only the minor stagger like ogg’s taunt. No ogryns on the floor.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2026-03-30 21:14:20 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

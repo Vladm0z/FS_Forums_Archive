@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Weekly Events & Modifiers - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Weekly Events & Modifiers</span></h1><div class="meta">2 Posts &bull; 119 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/atastybeverage/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/atastybeverage/">ATastyBeverage</a></strong> &bull; 2025-02-03 13:15:14 </div><div class="cooked"><p>Events like Twins provide a fun challenge for vanilla, but making them rarely available does nothing to help the game, especially when so many of the weekly events are awful to play. The biggest example being Unstable Breed, it’s impossible with bots and excessively unfun anyway due to 1. The lack of cooldown on the spawn rate and 2. The damage and ledging make them unmanageable on many areas of many maps. Events like this have clearly been abandoned because they’ve been broken for so long. It would be good if players could have access to weekly modifiers or deed modifiers for custom games, both giving more consistency to the experience for groups and enabling a wider variety of lobby choices for server browser players. I love this game but there are massive flaws which remain unaddressed or unfixed for years and it boggles the mind</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/ensrick/" style="color:#fff;text-decoration:none;">E</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ensrick/">Ensrick</a></strong> &bull; 2025-02-03 21:41:59 </div><div class="cooked"><p>Ranalds exploding surprise where the bots kill the team is worse than Unstable Breed to me.</p><p>Easy fix for both of these:</p><ol><li><p>Unstable Breed: make it so that explosive rats can be handled in melee by having them detonate without causing damage to the player when pushed back similar to the Pox Bursters in Darktide</p></li><li><p>Ranald’s Stinky Surprise: Simply do not throw players when detonating and make bots immune to the effect. Throwing players in a map with ledges is cheap. You’re basically rolling the dice every mission in the chaos wastes, and it’s up to chance.</p></li></ol><p>The biggest issue with a lot of the game’s curses is that it’s more fun to deal with enemies than it is to deal with mission modifiers. That’s why the tzeentch twins is so much more fun, it increases the number of enemies in a predictable but challenging way giving all players on the team enough to keep them enjoying the horde slaying.</p><p>Similarly, Khorne’s Champions curse from the chaos wastes would make a good weekly modifier, it’s fun to have elites that buff nearby enemies.</p><p>Another fun curses is the Belakor totems that spawn enemeis until destroyed. It can be fun and challenging when they arise during a horde or while a monster is attacking.</p><p>Almost every other curse or mission modifier isn’t enjoyable. No Hud and Darkness can be intereesting sometimes, but not that enjoyable on their own.</p><p>Curses that require the party to stick together aren’t bad, and encourage more team play, but when a player has to basically bite the bullet for the team and not have fun by holding a torch, or the holy scepter, it’s not fun. People used to glitch the holy scepter to make the bubble follow a player without the scepter being equipped, and it suddenly made the curse way more fun. At the very least with torches, I think you could make players who have 1-handed weapons allow them to equip it in the off hand maybe make a new weapon attack combo for 1-handed weapons when wielded with a torch, only dropping when they need to equip a ranged weapon or use an Ult that equips an Ult weapon.</p></div></div></div></div></div></body></html>

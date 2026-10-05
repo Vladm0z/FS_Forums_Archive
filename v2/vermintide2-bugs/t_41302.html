@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Elven Axe push attack crit chance bonus seems to have been mistakenly nerfed from BBB's 20% to Patch 3.1's 10% - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Elven Axe push attack crit chance bonus seems to have been mistakenly nerfed from BBB's 20% to Patch 3.1's 10%</span></h1><div class="meta">2 Posts &bull; 828 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/hollerbach/" style="color:#fff;text-decoration:none;">h</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/hollerbach/">hollerbach</a></strong> &bull; 2020-08-19 06:48:48 </div><div class="cooked"><p>BBB and the original Weapon Rebalance Mod patch notes for Elven Axe / Kerillian 1h Axe:</p><aside class="quote no-group quote-modified" data-username="Fatshark_Hedge" data-post="2" data-topic="40115"><div class="title"><div class="quote-controls"></div><a href="https://forums.fatsharkgames.com/t/pc-big-balance-beta-available-now/40115/2">[PC] Big Balance Beta - Available Now!</a></div><blockquote><p><strong>Elven Axe</strong></p><ul><li>Heavy attacks now share a damage profile with 2H Hammer Light Attacks</li><li>20% bonus critical strike chance added to push stab</li></ul><p><strong>Modder comment</strong> : The bonus crit was added to the push stab to make up for a lack of bonus crit on the other lights in comparison to 1h axe. This weapon compensated for the lack of crit chance on light attacks by having increased attack speed. However, this buff was partially negated by having reduced swift slaying uptime. The crit on push stab should alleviate this issue. Heavy attacks were also buffed to be more rewarding in comparison to light attacks.</p><p><strong>Designer comments</strong> : Tying more power into pushattacks is a cool concept, especially when it comes to procing effects. Going to be interesting to see how this and the heavy attack change will effect attractiveness of the weapon.</p></blockquote></aside><aside class="quote group-Developer quote-modified" data-username="Brytarn" data-post="2" data-topic="40220"><div class="title"><div class="quote-controls"></div></div><blockquote><p>Patch 1<br> …<br> 1h Elf Axe - Fixed an issue where the push attack had 200% increased critical strike chance instead of the intended 20%.</p></blockquote></aside><p>As per those patch notes, it seems that the intended crit chance bonus for the push attack is 20%. However, in Patch 3.1, push attack was nerfed (perhaps mistakenly) to 10%. There is no mention of any nerfing to the Elven Axe in the <a href="http://forums.fatsharkgames.com/t/big-balance-beta-patch-notes-updated-05-aug/40220">BBB Patch Notes thread</a>.</p><aside class="quote no-group" data-username="Fatshark_Hedge" data-post="1" data-topic="41271"><div class="title"><div class="quote-controls"></div><a href="https://forums.fatsharkgames.com/t/vermintide-2-patch-3-1/41271/1">Vermintide 2 - Patch 3.1</a></div><blockquote><p><strong>Elven Axe</strong></p><ul><li>Heavy attacks now share a damage profile with 2H Hammer Light Attacks.</li><li>10% bonus critical strike chance added to push stab.</li></ul></blockquote></aside><p>“The bonus crit was added to the push stab to make up for a lack of bonus crit on the other lights in comparison to 1h axe.” “Tying more power into pushattacks is a cool concept, especially when it comes to procing effects.” — With the nerf to 10%, Elven Axe is still underwhelming.</p><p>I posted this bug report for the BBB previously: <a href="http://forums.fatsharkgames.com/t/elven-axe-kerillians-1h-axe-push-attack-has-a-10-bonus-crit-chance-instead-of-the-intended-20-crit-chance/41106">http://forums.fatsharkgames.com/t/elven-axe-kerillians-1h-axe-push-attack-has-a-10-bonus-crit-chance-instead-of-the-intended-20-crit-chance/41106</a> I am posting in this forum as the bug seems to have made its way to the live Patch 3.1 release.</p><p>2020-09-09 EDIT:</p><aside class="quote no-group" data-username="Fatshark_Hedge" data-post="1" data-topic="41454"><div class="title"><div class="quote-controls"></div><a href="https://forums.fatsharkgames.com/t/patch-3-2-0-1-quality-of-life-update/41454/1">Patch 3.2.0.1 - Quality of Life Update</a></div><blockquote><p>1h Axe - Reverted push attack critical strike chance back to 20%, was reduced to 10% after beta.</p></blockquote></aside><p>Thanks!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2020-08-26 06:53:03 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

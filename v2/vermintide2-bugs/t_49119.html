@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Enemies ignoring stealth - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Enemies ignoring stealth</span></h1><div class="meta">6 Posts &bull; 637 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/commissartyr/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/commissartyr/">CommissarTyr</a></strong> &bull; 2022-06-27 13:18:33 </div><div class="cooked"><p>Occasionally when entering stealth, enemies will not drop aggro from the player.</p><video title="Stelth" width="695" height="391" style="max-width:100%" poster="https://cdn-cf-east.streamable.com/image/7jo06b_1.jpg?Expires=1656594960&amp;Signature=Yw1wrAVRkQ5VDp3YTYcKK53sfSjmFlqnony204wRMD9y4oK83hniH9Waz42gOCgbvSKwvMq40zD18IMm71Vb~kuCEWrUW5gTF2i~jqXAw87xBhMkKyJBETlSx2m3y3O~AyAw-PS1t-UQa5OtIv6DGVUoP2M5skv67Aou67UQS9NTBvQ5ljI4adJyWDKhWZhffuY0AnxuYLJOCWlosUOW9Ad4HVhON-srsEXMD5x9h8c2YmXkAknikdFZNngk1ELmLxo2ZzgpUGDrVfrn7eTd4fBqw18~ErA2LNHxaTaTPBEx-kdNsL3jbPGpo7T1suQW4oA~0xLbSTbDUvVvbPhTHA__&amp;Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ" controls=""><source src="https://cdn-cf-east.streamable.com/video/mp4/7jo06b_1.mp4?Expires=1656594960&amp;Signature=J45lxftb-veHOAMXwzhGyqpAu0JXDpJkDaf66xLsnHif1HwvaKZ2iwiQ4StxrOyf2CKf4yom47Ih569G5IO~rRt2netf7l~wIDS~w4SK~hTBUrb3~J1IKav1KdY~XiZQdWz1KbD4eilu56rl0~LiAZk2-FjRzIp5mivRskJp92NPMCXXp6P2CkfPI8a6xfPpXZG4nVQrVpcbuV3YjH4IeCm2oXCWa1zAmBXASka8oM7Um04EN0tSRnUGDgTA6pbFVscNEcM8Ix0zNEBmHkNsgMeecgEFdtuYH80ErVd8-qlKmds2F6it2t5H8rhr6iJ799FTrkkaBPbOe-lIQa-Gxw__&amp;Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ"></source></video></div></div></div><div class="post"><div class="avatar"><a href="../../users/kitten/" style="color:#fff;text-decoration:none;">K</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kitten/">Kitten</a></strong> &bull; 2022-06-27 14:54:49 </div><div class="cooked"><p>Noticed this on Huntsman too.</p><p>The video isn’t loading for me btw.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/makkro/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/makkro/">Makkro</a></strong> &bull; 2022-06-27 20:49:42 </div><div class="cooked"><p>I’ve noticed this quite a few times in the Chaos Wastes recently, but I haven’t tested this in normal Campaign maps to know if the issue is global atm.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/commissartyr/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/commissartyr/">CommissarTyr</a></strong> &bull; 2022-06-27 21:17:24 </div><div class="cooked"><p>Replicatable.<br> Enemy must begin attack animation and then become staggered before stealth is applied. Damage point never applies, possible due to host.</p><video title="Warhammer Vermintide 2 2022.06.27 - 22.12.50.05" width="695" height="391" style="max-width:100%" poster="https://cdn-cf-east.streamable.com/image/mdo7vy_1.jpg?Expires=1656623820&amp;Signature=KkahrlHNexRxAtG~LS7mbEqDee1RZgippsSlZ8zHyarRHdO2HA4H1x0ms-AfaSDutSZjrT2Gf~KZwy5QcbzteYR6Z~QCeBUGbWRW8v53pCydxNY3VQgOZWKNQAiXtJmwk1B8ALVMbkmG8q-0Z9kMS2bRWzV1wfUg9o1xFu1EtoSbu1RGKW3zWEmYOZkb0WBLchczNVyaeHRgXyQZ7CwNtivpK9FePM4lqGVo-7SfaiTfdej4xw9wmkqf9faICOspDGemRI1u8H1U2LuJIGimaP1bDz2eJxfm7XLKoj9AK098~K5H9ddwl3qNgZEh6kcpyl2ZvLMr5j8Pi4WxNkO0og__&amp;Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ" controls=""><source src="https://cdn-cf-east.streamable.com/video/mp4/mdo7vy_1.mp4?Expires=1656623820&amp;Signature=h~R8X4-M4ZV~PWk-Ox2ocsUZK0F2SoExBLyejlsIbmXtm1KALbUC4bv7oKdJz6B9~lrJhPvWsz8UNPI65DNttUtc1RdQ0nrskAWU8yxLdxgIaDSI-IM8KdR0Ibe3SewnuRS3FlzgV6e6R~jKLraOzOOORMb4uNtI-~YDVkQGM29dd70r-r~txz5sVsh43RcXAswL71UENOzzC9RzKM6kKI8pe40b3pNTOrXq3O02QzKdHiaLiaoXnLa~3-snlJWEyfMSBuXaa5vq9oh4qIF~fY3kMq5hGym9AR6KH~VBBfQ-2K5N9oUt81L7-VEZ3o3MVxGNbAhkHWxJY03AEzSqsw__&amp;Key-Pair-Id=APKAIEYUVEN4EVB2OKEQ"></source></video></div></div></div><div class="post"><div class="avatar"><a href="../../users/makkro/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/makkro/">Makkro</a></strong> &bull; 2022-06-27 21:37:58 </div><div class="cooked"><p>Very nice replication!</p><p>Yeah I wonder whether host/client status factors into damage being taken from the issue, but nice find nonetheless</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2022-07-04 21:38:30 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

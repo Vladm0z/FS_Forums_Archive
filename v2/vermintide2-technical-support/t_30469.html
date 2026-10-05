@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Can't load fatshark support page 404 - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Can't load fatshark support page 404</span></h1><div class="meta">6 Posts &bull; 420 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/dfraye/" style="color:#fff;text-decoration:none;">d</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dfraye/">dfraye</a></strong> &bull; 2019-02-01 18:01:32 </div><div class="cooked"><p>i had 6 purple chests, opened them and the next time i logged into the game (about an hour later) all my red items from them disappeared as well as the cosmetics. now i try to make a support ticket and the website seems to be down.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2019-02-01 18:07:53 </div><div class="cooked"><p>Sorry about this, our website will be back up again shortly.</p><p>Please PM me the URL to your Steam profile/Xbox Gamertag/PSN ID and I’ll look in to this for you.</p><p>It would also be super if you could include what time it was (approximately) when you:</p><ol><li>Opened the chests</li><li>Logged back in to discover the items missing</li></ol><p>Be sure to include your timezone! <img src="https://emoji.discourse-cdn.com/twitter/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/dfraye/" style="color:#fff;text-decoration:none;">d</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dfraye/">dfraye</a></strong> &bull; 2019-02-01 20:41:16 </div><div class="cooked"><p>is this a pm or how do i do that it was between 10-11 am i think feb 1 and i did just buy the dlc</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2019-02-01 20:55:12 </div><div class="cooked"><p>From those 6 Bögenhafen Strongboxes you appear to have received:</p><ul><li>Hero Skin for Sienna (The Raging Wind)</li><li>Hero Skin for Saltzpyre (Ulrican Peace-Offering)</li><li>Hat for Saltzpyre (Sollenkrux)</li><li>Hat for Saltzpyre (Battered Watchtower)</li><li>Dual-Wield Sword &amp; Dagger Weapon Illusion for Kerillian</li><li>Handgun Weapon Illusion for Kruber</li></ul><p>These items are in your inventory and have not been lost. The Bögenhafen Strongboxes will only ever drop one cosmetic item (Hero Skin, Hat or Weapon Illusion) per chest. Also, please note that some of these items may be career-specific. Hope this helps!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/dfraye/" style="color:#fff;text-decoration:none;">d</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dfraye/">dfraye</a></strong> &bull; 2019-02-01 21:12:18 </div><div class="cooked"><p>thanks i thought the weapons were not just Illusions, my fault</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2019-02-08 21:12:20 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

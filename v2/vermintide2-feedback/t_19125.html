@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Issues and Suggestions - Witch Hunter Captain - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Issues and Suggestions - Witch Hunter Captain</span></h1><div class="meta">1 Posts &bull; 874 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/stupid_dragon/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/stupid_dragon/">Stupid_Dragon</a></strong> &bull; 2018-03-14 11:07:39 </div><div class="cooked"><p>Originally posted on steam community forum but someone suggested I post it here as well.</p><p>List of issues and related suggestions:</p><ul><li><p>Animosity - cooldown is too long. It’s currently 3 minutes. One of the longest in the game. So long that even Concentration potion is not enough to recover it (recovers about half). To compare, Waystalker’s Trueshot Volley is 70 seconds and Bounty Hunter’s Locked and Loaded is 90 seconds. I don’t know what is Pyromancer’s CD is, but a friend of mine claimed he could use it about 4 times with Concentration potion. All of these are the actually useful ults that decimate crowds, kill elites or deal some heavy damage to bosses, while the prime use for Animosity is just to push enemies away from downed ally so you could revive him, as well as staggering bosses (which some of the mentioned above ultimates do as well). Does it truly warrants one of the longest cooldowns in the game?..Compared to above ultimates, Animosity should be about 60 seconds.</p></li><li><p>Animosity – tooltip needs details on crit buff. My estimation based on dummy tests is 20% crit chance. Unlikely to be lower than 15% and unlikely to be higher than 25%. This might appear to be quite good, but let’s keep in mind that with 6 second duration it results in maybe 1-2 extra critical hits with a fast weapon. 1-2 extra critical hits in 3 minutes. Bounty Hunter has 1 guaranteed crit every 10 seconds, albeit only for ranged.</p></li><li><p>Witch Hunt – tooltip should tell how big the damage boost is. I have little idea, but other people told that it’s very noticeable on bosses.</p></li><li><p>Charmed Life – it’s widely acknowledges as useless. WHC is a versatile class, and my view of lvl 5 talents is further specialization. Always Prepared for ranged, Unflagging Spirit is for melee. Given that, Charmed Life’s spot is support/utility, and something like +20% life should fit well conceptually.</p></li><li><p>Abjure Temptation – we need pickable Grimoire in Taal Horn’s keep so we could test the effect of passives like that.</p></li><li><p>Deathknell – there were reports on this talent working only if you’re a host. I was able to confirm this.</p></li><li><p>Deathknell – “effect varies from weapon to weapon” should be added to tooltip. This talent amounts to 25% headshot damage increase for Rapier and Falchion, 20% headshot damage for twohanders and 15% headshot damage for Flail and Axe. It actually varies between normal and power attacks, and if there’s a combo then between normal attacks as well. For ranged weapons it’s 25% headshot damage increase for crossbow, 20% headshot damage for duals and volley crossbow, and 10% for nuln repeater. This doesn’t include crits ofcourse, because if I understood the earlier dev post correctly then crit modifier and headshot modifier are additive, not multiplicative.</p></li><li><p>Justice Bounty – tool tip should say temporary health instead of health. The talent itself feels very weak after the nerf, at least on Recruit and Veteran where specials come in waves of 3. It is a very minor and insignificant hp boost on top of lvl 20 temporary health per kill talent, which is currently available to every class and is pretty much the meta pick.</p></li><li><p>Marked for Death – I’m fairly sure this talent doesn’t work at all. And by fairly sure I mean I recorded some footage, slowed it down to 0.13 of original speed and did a comparison of twohander’s swings within 4 seconds interval and outside. The timing difference was insignificant, not amounting to expected 10%.</p></li><li><p>Wild Fervor – I heard it doesn’t work as well. Haven’t tested myself yet.</p></li><li><p>Lvl 15 talents – we have a silly situation where one talent that worked well was nerfed in 1.0 release and the other two doesn’t work. See above.</p></li><li><p>Lvl 20 talents – please put values into tooltips.</p></li><li><p>Lvl 25 talents – 30% cdr is an obvious pick with such long cooldown. Buff duration doesn’t amount to much because the buff itself isn’t that great and you don’t get to use it often anyway. 50% extra range – seems like another talent that doesn’t work. At the very least the extra range isn’t shown when you hold F, which makes it inconvenient to use even if it works correctly. I haven’t noticed it’s effect in-game though.</p></li></ul></div></div></div></div></div></body></html>

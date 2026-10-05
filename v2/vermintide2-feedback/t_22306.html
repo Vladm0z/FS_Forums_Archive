@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Ammo-regen skill for dual-pistol? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Ammo-regen skill for dual-pistol?</span></h1><div class="meta">7 Posts &bull; 886 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/alegas/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/alegas/">alegas</a></strong> &bull; 2018-04-22 13:28:47 </div><div class="cooked"><p>I’ve been rerolling the orange skill of my dual-pistols (Victor) countless times, but I just CAN’T get on the “regen 2 ammos after a critical hit” skill… Is it even possible to have that one on the dual-pistols ?</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/guziol/" style="color:#fff;text-decoration:none;">G</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/guziol/">Guziol</a></strong> &bull; 2018-04-22 13:53:05 </div><div class="cooked"><p>Yes. You are just as lucky as me when you get everything but the 1 trait you want but then it shows up on different weapon 15 times in a row when you don’t want it.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/alegas/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/alegas/">alegas</a></strong> &bull; 2018-04-22 14:27:57 </div><div class="cooked"><p>oh ok… so that’s just bad luck then ^^</p><p>Fortunately, i have this trait on my Repeating-gun and repeating crossbow as well and i love playing with those too, so that’s ok <img src="https://emoji.discourse-cdn.com/twitter/stuck_out_tongue.png?v=9" title=":stuck_out_tongue:" class="emoji" alt=":stuck_out_tongue:"> but yeah i’d love to have it on the dual-guns, looks pretty neat.</p><p>Guess i’ll just keep rerolling then.</p><p>Although I gotta say that the thing where you reroll the orange trait and get back on the EXACT SAME PERK is awfully frustrating</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/nova/" style="color:#fff;text-decoration:none;">N</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/nova/">Nova</a></strong> &bull; 2018-04-22 20:06:31 </div><div class="cooked"><aside class="quote no-group" data-username="alegas" data-post="3" data-topic="22306"><div class="title"><div class="quote-controls"></div><a href="../../users/alegas/">alegas</a>:</div><blockquote><p>Although I gotta say that the thing where you reroll the orange trait and get back on the EXACT SAME PERK is awfully frustrating</p></blockquote></aside><p>This. So much, have been talking about this horrible occurence since beta - lost SO much dust to it.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/ehennings10/" style="color:#fff;text-decoration:none;">e</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ehennings10/">ehennings10</a></strong> &bull; 2018-04-22 20:29:34 </div><div class="cooked"><p>Did this and lost 7 orange dust in a row. SEVEN.</p><p>then took my newly “changed” gun and used it to repaint the walls…</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/nova/" style="color:#fff;text-decoration:none;">N</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/nova/">Nova</a></strong> &bull; 2018-04-22 20:31:27 </div><div class="cooked"><p>Only seven? I went up to 9 once, then got a shitty trait, then ended up playing with the shitty trait and the trait I already had 6 times before getting something else end then looping again xD. It gets especially frustrating if you reroll 20 times, get your old trait back, roll 6 more times and finally get the trait you wanted.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/snap/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/snap/">Snap</a></strong> &bull; 2018-04-23 00:25:26 </div><div class="cooked"><p>I wasted about 13 trying to get scrounger on a pistol and still failed. Rolling the inspirational headshots one about 70%. Now I’m out of orange dust.</p></div></div></div></div></div></body></html>

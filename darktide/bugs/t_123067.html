@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Heavy Melee Attack Charge Timing Resetting On Ability Key Input - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Heavy Melee Attack Charge Timing Resetting On Ability Key Input</span></h1><div class="meta">3 Posts &bull; 123 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/rally/" style="color:#fff;text-decoration:none;">r</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/rally/">rally</a></strong> &bull; 2026-06-26 08:22:56 </div><div class="cooked"><h3><a name="p-757234-issue-type-required-1" class="anchor" href="#p-757234-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Player Mechanics</p><h3><a name="p-757234-issue-description-required-2" class="anchor" href="#p-757234-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>I’ve noticed in this update I was getting different outputs on my mk. II Relic Blade than my muscle memory remembered prior to the update, so I went into the meat grinder to try and resolve if it was just me or if something changed.</p><p>I found that when I attempted a dash heavy hold &gt; Shroudfield &gt; release to headstab, I was getting dash lights instead. Testing further with Heavy 3 vertical uppercut &gt; Shroudfield &gt; release, if I activate my Ability while charging the move and then release too soon, I’ll get Light 3 horizontal (diagonal right to left) instead. I tested what would happen if I pressed Shroudfield with this timing while it was on cooldown and unable to activate, and even pressing the key while it was inert reset the Heavy charge timing and produced a light attack instead.</p><p>This behavior was found to happen consistently with both standing Heavy attacks as well as the mk. II Relic Blade’s dash Heavy &gt; Shroudfield activation as well, seeming to reset its charge time even on an inert cooldown-state Ability key input.</p><h3><a name="p-757234-steps-to-reproduce-required-3" class="anchor" href="#p-757234-steps-to-reproduce-required-3" aria-label="Heading link"></a>Steps to Reproduce (Required):</h3><ol><li>Make a Zealot with the mk. II Relic Blade and Shroudfield</li><li>Perform Heavy attacks until you are charging one of the deeper ones, like Heavy 3 vertical uppercut.</li><li>Hold charge on the Heavy attack.</li><li>Activate Shroudfield and then release the attack charge almost immediately after.</li><li>Rather than a vertical uppercut, a horizontal downward light attack should be seen to happen.</li></ol><p>Addendum: This can be repeated with dash Heavy stab attacks, where the result after a quick Shroudfield input produces a horizontal dash Light instead of the thrusting dash Heavy. The Ability key input produces a light attack from heavy attack charge even when the ability is on cooldown.</p><h3><a name="p-757234-pc-do-you-use-mods-optional-4" class="anchor" href="#p-757234-pc-do-you-use-mods-optional-4" aria-label="Heading link"></a>[PC] Do You Use Mods? (Optional):</h3><p>No, I don’t use mods</p><h3><a name="p-757234-reproduction-rate-required-5" class="anchor" href="#p-757234-reproduction-rate-required-5" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Constant (100%)</p><h3><a name="p-757234-platform-required-6" class="anchor" href="#p-757234-platform-required-6" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p><h3><a name="p-757234-player-id-optional-7" class="anchor" href="#p-757234-player-id-optional-7" aria-label="Heading link"></a>Player ID (Optional):</h3><p>3958783831</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fromjaewluv/" style="color:#fff;text-decoration:none;">f</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fromjaewluv/">fromjaewluv</a></strong> &bull; 2026-06-27 19:55:09 </div><div class="cooked"><p>happening with fury as well</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/totd/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/totd/">TOTD</a></strong> &bull; 2026-06-28 20:45:03 </div><div class="cooked"><p>I’ve been able to reproduce this bug with:</p><p>Zealot’s fury of the faithful and shroudfield</p><p>Psyker’s scrier’s gaze</p><p>Ogryn’s loyal protector</p><p>Veteran’s Infiltrate</p><p>Hive scum’s Rampage</p><p>Arbitator’s castigator’s stance</p><p>Basically any ability that doesn’t interrupt melee animations baseline. It’s very noticable on zealot given how those abilities work.</p></div></div></div></div></div></body></html>

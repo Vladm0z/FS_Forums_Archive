@@ -1,0 +1,60 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Some suggestions from a Chinese players - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Some suggestions from a Chinese players</span></h1><div class="meta">3 Posts &bull; 1037 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/venomo/" style="color:#fff;text-decoration:none;">V</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/venomo/">VenOmO</a></strong> &bull; 2018-04-07 14:45:06 </div><div class="cooked"><pre><code>HI fatshark ，I am a vermintide fans from china.It's really a very difficult thing to contact you in China. We don't even know the official email address. We can only feed it in the comments of the steam store.
+My English is not very good, so I used Google translation. Maybe there are problems with grammar. Please forgive me.
+Because vermintide 2 is much more fun than vermintiede 1 and it also lets more Chinese players know the game is good for both of us and you.But it's very unpleasant for us that cheater too much. Although this is a PVE game, I think cheating is very bad. Maybe my previous attitude is to ignore the cheaters. I think it's too much trouble and there is no report button in the game. And to this day I know the official forum.I've had enough to bear cheaters recklessly in R6 and PUBG. I think you should increase the strength of anti cheating. I know this game has EAC. But when I go to match in champion difficult every day, I still see a lot of cheaters. And they are also arrogant. They always feel that they are cheating and playing happily, which totally disregard the mood of our ordinary players.
+Just before writing this post. I was just humiliated by the cheaters, and there were people think that cheating was right  because the non cheaters could  play with the cheaters and get the spoils easily.
+The cheater said that if you are upset, don't play this game. It doesn't matter to me that he cheats. And revile me axxhole. I was very angry and quit the game. I don't think the cheaters deserve the right to play. This game is very hard at the champion difficult. My teammates and I worked hard to finish that, but he could easily finish by using cheat software. I think the cheaters are not worthy of the Spoils. Otherwise, it's very unfair for our ordinary players. I also think the official must join the report function as soon as fast.
+I've heard about PUBG Forum's cheating on Chinese players before. I was very angry and helpless. Because they are from China, and China includes me and my friends. But believe me, my friends and many Chinese players hate and despise cheaters as well as you. So I appeal to the fatshark to increase the intensity of cheating.and thank you to make this game.
+</code></pre> <p>Finally I put up the cheater’s steamID <a href="https://steamcommunity.com/profiles/76561198048328006" rel="nofollow noopener">https://steamcommunity.com/profiles/76561198048328006</a><br> I saw many cheating people before, but I all ignored it.But I won’t do it later.I hope you can see my post and see my suggestions. The best thing to do is to leave an official email address so I can give your chetaers’ id</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/medusahead/" style="color:#fff;text-decoration:none;">m</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/medusahead/">medusahead</a></strong> &bull; 2018-04-07 15:38:44 </div><div class="cooked"><p>According to Battleye statistics, 99% of all cheating in PUBG is coming from Chinese players. This should give you an idea how bad the cheating problem is in games for Chinese players and I’ve also heard that China is region locked in Vermintide 2. I doubt Fatshark can do much to stop cheaters outside of what they’ve already implemented (EAC) since they are a smaller studio.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/venomo/" style="color:#fff;text-decoration:none;">V</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/venomo/">VenOmO</a></strong> &bull; 2018-04-08 19:11:14 </div><div class="cooked"><p>I am ashamed of those cheaters. I think as long as I say I am a Chinese player, others will have a potential cheater suspicion. I don’t like it now. It’s a little bit like race discrimination, but we did it by ourselves. But our ordinary players are very grieved. We don’t have any choices or ideas to stop them. We have no cheating players to fight meaningless arguments with them. We can report their accounts spontaneously. In that case, they will buy a new account. We despise them. We think they are discredited to China. But they think the game is as long as they enjoy themselves. We are nosy. Of course, we are generally not so polite expressions between the war of words. It’s like the man I posted on it. After entering the game, I said, “there’s another cheater.” He scolds me crazy, and his teammates are. His teammates were simply able to win spoils because of cheaters. I also hate these people, too. I know that this situation is hard to change, but I just want to make the game cheat less. It only needs a report function. It is better to make cheaters fail to get rewards and fail to match.</p></div></div></div></div></div></body></html>

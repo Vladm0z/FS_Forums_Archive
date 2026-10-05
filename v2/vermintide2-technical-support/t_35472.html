@@ -1,0 +1,129 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Frequent crashes with DX12 renderer - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Frequent crashes with DX12 renderer</span></h1><div class="meta">6 Posts &bull; 1032 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/slacker/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/slacker/">Slacker</a></strong> &bull; 2019-08-18 22:57:36 </div><div class="cooked"><p>Been experiencing some crashes mid-missions lately.</p><p>Please find the crash dump below, as well as the relevant (I suppose) excerpt from the console log.</p><details><summary> console log</summary> <pre><code>&lt;&lt;Crash&gt;&gt;HRESULT: 2147942487 = E_INVALIDARG
+
+At `E:\agent-work\data-dir\engine_release_wom_2019_07_08\runtime\d3d12_render_device\d3d12_debug.cpp:503` in function `stingray::aftermath::ensure`
+&lt;&lt;/Crash&gt;&gt;
+&lt;&lt;Callstack&gt;&gt;
+{00007ff7892b0000, 089e4000, 5d5421ac, 7156ac37-9cc7-42d0-b955-df7fb70601da, 00000001, E:\agent-work\tmp-builds\engine_release_wom_2019_07_08\engine\win64_dx12\release\vermintide2_dx12.pdb}
+{00007ff9efa20000, 001f0000, c00f8a30, cfd10e5f-223f-ee5f-2622-7cb82510fedc, 00000001, ntdll.pdb}
+{00007ff9ee7c0000, 000b2000, d12f214a, b6f0e183-c96d-92a6-97ef-a1f4b153b815, 00000001, kernel32.pdb}
+
+0x00007ff7892b0000:0x00000000002bcc60 
+0x00007ff7892b0000:0x00000000002be592 
+0x00007ff7892b0000:0x00000000002be84b 
+0x00007ff7892b0000:0x00000000002bb2b0 
+0x00007ff7892b0000:0x000000000033dc90 
+0x00007ff7892b0000:0x0000000000327178 
+0x00007ff7892b0000:0x00000000003303a3 
+0x00007ff7892b0000:0x000000000032f71f 
+0x00007ff7892b0000:0x0000000000322520 
+0x00007ff7892b0000:0x0000000000067c99 
+0x00007ff7892b0000:0x0000000000069065 
+0x00007ff7892b0000:0x0000000000069526 
+0x00007ff7892b0000:0x00000000002dba72 
+0x00007ff9ee7c0000:0x0000000000017bd4 BaseThreadInitThunk
+0x00007ff9efa20000:0x000000000006ce71 RtlUserThreadStart
+&lt;&lt;/Callstack&gt;&gt;
+&lt;&lt;Crash version&gt;&gt;1&lt;&lt;/Crash version&gt;&gt;
+&lt;&lt;Thread name&gt;&gt;renderer&lt;&lt;/Thread name&gt;&gt;
+&lt;&lt;Platform&gt;&gt;win32&lt;&lt;/Platform&gt;&gt;
+&lt;&lt;Build identifier&gt;&gt;83132e6601b4&lt;&lt;/Build identifier&gt;&gt;
+&lt;&lt;Build type&gt;&gt;release&lt;&lt;/Build type&gt;&gt;
+&lt;&lt;Product version&gt;&gt;Developer Build (1.3.0.0)&lt;&lt;/Product version&gt;&gt;
+&lt;&lt;Session&gt;&gt;c28d358c-862e-4f45-9f5f-1ac057d9100a&lt;&lt;/Session&gt;&gt;
+&lt;&lt;System Information&gt;&gt;--- CPU
+CPU: Intel(R) Core(TM) i7-4790K CPU @ 4.00GHz
+Vendor: GenuineIntel
+Logical processors: 8
+Family: 0:6, Model: 3:12
+Type: 0, Stepping: 3
+Features: SSE SSE2 SSE3 SSSE3 SSE4.1 SSE4.2
+Feature bits:
+EBX: 00000000 00010000 00001000 00000000 
+ECX: 01111111 11111010 11111011 10111111 
+EDX: 10111111 11101011 11111011 11111111 
+--- Memory
+Physical   Total:     32701MB
+           Available: 30331MB
+--- OS
+Windows version 10.0 build 18362, 64 bit
+Windows 10
+Machine ID 5f7fca63-8d9e-4f97-8e0c-365dbd889caa
+--- Graphics
+Graphics card: AMD Radeon R9 200 Series (DirectX 12.0, 4072MB) 
+Graphics card: Microsoft Basic Render Driver (DirectX 12.1, 0MB) 
+--- Network
+Network interface: Intel(R) Ethernet Connection (2) I218-V (IPv4)
+--- Input
+Input device: Mouse (18.1): Mouse
+Input device: Keyboard (19.4): Keyboard
+Input device: Generic (17.0): USB Gaming Mouse
+Input device: Generic (17.0): USB Keyboard
+Input device: Generic (17.0): Sound Blaster Tactic(3D) Alpha
+&lt;&lt;/System Information&gt;&gt;
+&lt;&lt;Console Log&gt;&gt;C:\Users\rob\AppData\Roaming\fatshark\Vermintide 2\console_logs\console-2019-08-18-21.45.30-c28d358c-862e-4f45-9f5f-1ac057d9100a.log&lt;&lt;/Console Log&gt;&gt;
+&lt;&lt;Crash Dump&gt;&gt;C:\Users\rob\AppData\Roaming\fatshark\Vermintide 2\crash_dumps\crash_dump-2019-08-18-21.45.30-c28d358c-862e-4f45-9f5f-1ac057d9100a.dmp&lt;&lt;/Crash Dump&gt;&gt;
+&lt;&lt;Plugins&gt;&gt;
+RazerChroma
+CrashMonitor
+navigation
+cjson
+lcurl
+rule database
+tobii_eyetracking_plugin
+wwise_plugin
+&lt;&lt;/Plugins&gt;&gt;
+[Log end]
+</code></pre> </details><p><a class="attachment" href="/uploads/short-url/vBaVtsju1brI1aIedViIQ3R7UqP.dmp">crash_dump-2019-08-18-21.45.30-c28d358c-862e-4f45-9f5f-1ac057d9100a.dmp (512.6 KB)</a></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2019-08-19 11:20:33 </div><div class="cooked"><p>Could you please switch to DirectX 11 within the launcher’s ‘Settings’ menu and see if the crashes persist?</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/slacker/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/slacker/">Slacker</a></strong> &bull; 2019-08-20 00:06:41 </div><div class="cooked"><p>Sure, since it was supposedly the DX12 renderer failing here…</p><p>I’ll report back once I get to play another session.</p><p>Thanks!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/slacker/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/slacker/">Slacker</a></strong> &bull; 2019-08-20 22:09:16 </div><div class="cooked"><p>Well, I’ve played some and, as expected, I didn’t encounter any crashes.</p><p>Sadly enough, the performance hit when going back do DX11 renderer is just unbearable.</p><p>Updated the graphics driver in hope that its the root cause. Can’t really tell if that started with a particular version. The idea of rolling back to previous ones just to rule that out doesn’t sound too appealing either… <img src="https://emoji.discourse-cdn.com/twitter/expressionless.png?v=9" title=":expressionless:" class="emoji" alt=":expressionless:"></p><p>Will see if anything changes in DX12…</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/slacker/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/slacker/">Slacker</a></strong> &bull; 2019-08-26 22:14:39 </div><div class="cooked"><p>For what it’s worth, I went back to driver version 19.6.1 (June 7) on my (rather old, now) R9 290 and, so far, I’m not experiencing any aforementioned crashes.</p><p>What I did experience, however, were severe performance drops during beastmen terror events on Cataclysm (granted there’s a lot of enemies on screen), and occasional, very severe freezes. I am not sure these are present on the newer drivers, however.</p><p>What I can safely say is that the above performance hiccups and freezes are unique to WoM version of the game, while the crashes were first observed on 07.21 with <code>engine_release_celebrate_2019_02_25</code>, so these are not WoM specific.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2019-09-02 22:14:41 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>The explodable obstacle on Fort Brachsenbrücke regained collision and reset - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 Versus &raquo; <a href="index.html">VS Bugs</a></div><h1><span class="accent">The explodable obstacle on Fort Brachsenbrücke regained collision and reset</span></h1><div class="meta">2 Posts &bull; 41 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/foctopus/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/foctopus/">Foctopus</a></strong> &bull; 2024-12-13 21:46:08 </div><div class="cooked"><h3><a name="p-601445-issue-type-required-1" class="anchor" href="#p-601445-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Gameplay</p><h3><a name="p-601445-issue-description-required-2" class="anchor" href="#p-601445-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>A lot of stuff happened at once, so not even remotely sure what could be the cause of it. Sienna got stuck in the barricade itself and couldn’t get out. Saltzpyre joined in right after it exploded and was able to move through the visible obstacle at first, but couldn’t get all the way through, as if there was a ghost wall right after the obstacle. (troll sent her flying out of it afterwards)</p><h3><a name="p-601445-reproduction-rate-required-3" class="anchor" href="#p-601445-reproduction-rate-required-3" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Once</p><h3><a name="p-601445-upload-supporting-evidence-optional-4" class="anchor" href="#p-601445-upload-supporting-evidence-optional-4" aria-label="Heading link"></a>Upload Supporting Evidence (Optional):</h3><p></p><div class="video-placeholder-container" data-video-src="https://europe1.discourse-cdn.com/flex013/uploads/fatshark/original/3X/d/0/d038065951ea34e693093e8126f1a4ed41919ed4.mp4"></div><p></p><h3><a name="p-601445-pc-upload-console-log-vermintide2_launcherlog-optional-5" class="anchor" href="#p-601445-pc-upload-console-log-vermintide2_launcherlog-optional-5" aria-label="Heading link"></a>[PC] Upload Console Log &amp; vermintide2_launcher.log (Optional):</h3><p><a class="attachment" href="/uploads/short-url/8Jm8xvoEFKeCCUYe7B3pTZaMaee.log">console-2024-12-13-20.59.10-67fe80eb-fc90-4094-b3a6-f09c1868ed3b.log</a> (3.02 MB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/foctopus/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/foctopus/">Foctopus</a></strong> &bull; 2024-12-30 07:42:37 </div><div class="cooked"><p></p><div class="video-placeholder-container" data-video-src="https://europe1.discourse-cdn.com/flex013/uploads/fatshark/original/3X/7/7/775f3ee3f1740d25a41c1aa67bedaeeb355891d0.mp4" data-thumbnail-src="https://europe1.discourse-cdn.com/flex013/uploads/fatshark/original/3X/e/a/ea4604c54ad55d994d127d1679fa64bfa477dcd7.png"></div><br><a class="attachment" href="/uploads/short-url/2yQKlTkRY5Q42XJ9JLeIwkOCjDz.log">console-2024-12-29-17.08.33-9486d0a2-a7d5-4094-b3d5-1e445c5d2187.log</a> (22.9 MB)<p></p><p>Happened again, absolutely unrelated to the joining/leaving etc. Clip saved 17:39:13 - half of it (past 20:00) is missing cuz it was 41MB D: Versus logs are pretty hefty, no?</p></div></div></div></div></div></body></html>

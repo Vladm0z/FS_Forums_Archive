@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Blocklist - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">General Discussion</a></div><h1><span class="accent">Blocklist</span></h1><div class="meta">5 Posts &bull; 176 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/anon87539211/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/anon87539211/">anon87539211</a></strong> &bull; 2026-01-09 22:29:09 </div><div class="cooked"><p>I don’t know if I’m the only one with this problem, but I need a bigger block list.</p><p>Lately, there has been an increase in rude and stupid players who are impossible to reason with. I’m tired of joining a game only to leave again immediately because the same guy from the last mission is there again.</p><p>Unfortunately, I can’t remember which player I blocked at the very beginning, so I can’t delete them and add a new one.</p><p>I also don’t think the report function really works.</p><p>After my recent experiences, I’m going to turn my back on Darktide, as it’s no longer fun to play with these players.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/anon87539211/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/anon87539211/">anon87539211</a></strong> &bull; 2026-01-09 22:32:05 </div><div class="cooked"><p>And yes, I know what would help, but unfortunately I don’t have anyone in my circle of friends who wants to play Darktide.<br> I can’t play solo either… So the only option is not to play at all.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/brad9191/" style="color:#fff;text-decoration:none;">B</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/brad9191/">Brad9191</a></strong> &bull; 2026-01-09 23:14:36 </div><div class="cooked"><p>Yeah, that does suck that you’re limited blocking-wise. I’ve been saying this for years actually. Just make it unlimited, because if I block somebody… my intention is to obviously never play with that particular player again &amp; by me unblocking just to block somebody else just defeats the entire purpose of the block function in the first place. I feel it makes logical sense to get rid of the limit. But on the other hand, you play with so many people if you do pub’s exclusively that it’s more likely you’ll never see these players again. That’s why I quit pub’s &amp; found a pre-made of decent guys I only play with. I would highly recommend going into different Darktide Discord groups &amp; making new buddies in there to establish a pre-made. That’s what I did &amp; I never looked back. I only play pub’s when they’re not available. But hey, it’s your call.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/jdls/" style="color:#fff;text-decoration:none;">J</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/jdls/">JDLS</a></strong> &bull; 2026-01-10 03:19:30 </div><div class="cooked"><p>Not really a perfect fix but consider switching servers if you can. I pretty regularly switch between NA/EU servers depending on the time of day. It’s usually just 100 ping, not that bad in this game especially if you are just doing auric.</p><p>If you switch to a different server you can basically just delete your block list and start again. Though that being said with the population in peek time NA/EU, I have never needed to block anyone because there are so many players you never see the same people twice.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2026-01-24 08:52:50 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Slayer lvl 10 talents - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Slayer lvl 10 talents</span></h1><div class="meta">6 Posts &bull; 2886 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/bighatmarcus/" style="color:#fff;text-decoration:none;">B</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/bighatmarcus/">BighatMarcus</a></strong> &bull; 2020-03-13 12:32:37 </div><div class="cooked"><p>Skull splitter and A thousand cuts are both talents that shoehorns the player into specific weapon loadouts, on a class that is all about weapon diversity. Slayer wields two melee weapons, and I think diversity in what you want to bring should be encouraged as it is a core concept of this career.</p><p>I suggest that both talents should be able to work regardless of loadout, but should only apply when a two handed or one handed weapon respectively is currently in use.</p><p>So if I use Skull splitter and bring the two handed hammer and the dual hammers I would get the bonus power while swinging the two handed hammer, but not while using the dual ones.</p><p>While this could be interpreted as a buff, it is also true that we are willingly bringing a weapon that gains no advantages from the chosen talent. I see this as a way to increase diversity in weapon loadouts and builds without making Slayer too powerfull.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/sageoftoast/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sageoftoast/">sageoftoast</a></strong> &bull; 2020-03-13 17:38:41 </div><div class="cooked"><p>As a +900 bardin i actually love this idea, it draws from the core of what makes the slayer class stand out and makes a talent row that is currently working against the defining characteristics of the class a lot more streamlined and aligned with the career as a whole.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/raichu/" style="color:#fff;text-decoration:none;">R</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/raichu/">Raichu</a></strong> &bull; 2020-03-14 15:22:15 </div><div class="cooked"><p>Agree there is no incentive to use those talents when your stuck using weapons you don’t want too… the buffs even seem backwards for 2h’s I could play much better with attack speed and 1hs going as fast as you want +ability speed would rather have damage. Regardless crit is the only talent that lets you play how you want, unless you were already going for sed weapon combos.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/mr_sp1ce/" style="color:#fff;text-decoration:none;">m</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/mr_sp1ce/">mr_sp1ce</a></strong> &bull; 2020-03-14 17:27:25 </div><div class="cooked"><p>I d rather would see talent for “sharp” vs “blunt” vs “brute force”</p><p>For exqaple<br> 10 crit for any combination of axes + pickaxe<br> 10 as for any combination of hammers<br> 10 power for any combination of twohanded</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/xscyther/" style="color:#fff;text-decoration:none;">x</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/xscyther/">xscyther</a></strong> &bull; 2020-03-17 07:56:44 </div><div class="cooked"><p>IF you have 2handers that are about as fast as 1handers and 1handers that are about as strong as 2handers, then where is the diversity? I prefer the way the buffs are distributed now but also agree with OP that we need more freedom in weapon selection. I would go a step further and put skull-splitter and thousand cuts on the same talent without the homogeneous loadout requirement and then make new talents to replace the other two spots.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/alsozara/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/alsozara/">alsozara</a></strong> &bull; 2020-03-17 08:12:26 </div><div class="cooked"><p>Agree with the post. I don’t think anyone likes that row as it is.</p><p>I’d just add change the 5% crit chance to every 5th hit is a crit (letting you spec more defensive with your properties if you want and still reaching an effective 20% crit chance) and combined with your suggestion now we have a row where every option is competitive.</p></div></div></div></div></div></body></html>

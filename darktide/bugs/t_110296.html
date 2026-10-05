@@ -1,0 +1,93 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Zealot stun grenades can cause all players in the session to get disconnected - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">Zealot stun grenades can cause all players in the session to get disconnected</span></h1><div class="meta">7 Posts &bull; 65 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/janzamoysky/" style="color:#fff;text-decoration:none;">J</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/janzamoysky/">JanZamoysky</a></strong> &bull; 2025-07-02 17:44:36 </div><div class="cooked"><p>I start to suspect there is a link between using zealot’s stun grenades and causing all players to get disconnected from the game session..</p><p>This seems to happen in connection with some unknown factor(s) as it doesn’t always happen.</p><p>We all got disconnected when I dropped stun nade in a Havoc game with a lot of enemies present, this happened twice in that game. The server doesn’t seem to crash, as we were able to reconnect, but everyone got disconnected, at the exact same moment. I’m sure I saw error 2014 being displayed after I got kicked to the character selection screen.</p><p>The chance for this client disconnection seems to pretty high if you stun a lot of enemies in one explosion. I use mods, and I have both scoreboard mods and limited health-bar highlighting enabled on elites.</p><p>I wonder if this is down to the number of enemies getting damaged, stunned at the same time, especially with psyker inferno staff and stun nades applying all that damage ticks and statuses. I have no idea how this works client - server wise, on the network level, but could it be just number of updates between the server and clients resulting in some sort of de-sync issue?</p><p><a class="attachment" href="/uploads/short-url/6XLwIywNoXQdOSlTyRYYfpGVikO.log">console-2025-07-02-17.38.13-7aff73bf-a656-4a99-8e91-364c3ef76f38.log</a> (3.8 MB)</p><p><a class="attachment" href="/uploads/short-url/oQRqOoRmf4B2NUtMDrTJk2U5ReI.log">console-2025-07-01-20.08.48-0ff44137-af89-41bc-a993-bbca2f1d7771.log</a> (1.9 MB)</p><p><a class="attachment" href="/uploads/short-url/mUb9KaFtcEhdCzUrbeeITtsr18A.log">console-2025-07-01-17.25.23-7836fcd9-282e-446a-aa24-1358ad98da94.log</a> (4.1 MB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/gpkgpk/" style="color:#fff;text-decoration:none;">g</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gpkgpk/">gpkgpk</a></strong> &bull; 2025-07-02 19:09:47 </div><div class="cooked"><p>Yowsa! Got a log file? Bug report?</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/anon61080228/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/anon61080228/">anon61080228</a></strong> &bull; 2025-07-02 19:16:43 </div><div class="cooked"><p>Full synchronization with real life</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/janzamoysky/" style="color:#fff;text-decoration:none;">J</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/janzamoysky/">JanZamoysky</a></strong> &bull; 2025-07-02 20:55:38 </div><div class="cooked"><p>I just had it again. It seems to happen when a lot of enemies are present and you drop a stun grenade.</p><p>I wonder if this is down to the number of enemies getting damaged, stunned at the same time, especially with psyker inferno staff and stun nades applying all that damage ticks and statuses. I have no idea how this works client - server wise, on the network level, but could it be just number of updates between the server and clients resulting in some sort of de-sync issue?</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/gpkgpk/" style="color:#fff;text-decoration:none;">g</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gpkgpk/">gpkgpk</a></strong> &bull; 2025-07-02 21:20:25 </div><div class="cooked"><p>Hmm try without mods?</p><p>edit: maybe/prolly unrelated, other entries like that show up and it didn’t crash.</p><details><summary> Summary</summary><p>Both log files show the mod_loader in the initiating function calls<br> Last stack shows:</p> <pre><code class="lang-auto">  [9] ./mod_loader:397: in function update
+  [10] ./mod_loader:437:in function &lt;[string "./mod_loader"]:436&gt;
+&lt;/Lua Script.Callstack&gt;
+</code></pre> <pre><code class="lang-auto">21:06:38.770 [Lua] &lt;&lt;crashify-exception&gt;&gt;
+	&lt;&lt;system&gt;&gt;NetworkEventDelegate&lt;&lt;/system&gt;&gt;
+	&lt;&lt;message&gt;&gt;Network event not registered "rpc_resend_mission_seed_request"&lt;&lt;/message&gt;&gt;
+	&lt;&lt;callstack&gt;&gt;&lt;Lua Script.Callstack&gt;
+  [0] =[C]: in function callstack
+  [1] @scripts/foundation/utilities/crashify.lua:78: in function print_exception
+  [2] @scripts/managers/multiplayer/network_event_delegate.lua:16:in function &lt;scripts/managers/multiplayer/network_event_delegate.lua:14&gt;
+  [3] =[C]: in function update_receive
+  [4] @scripts/game_states/state_game.lua:124: in function network_receive_function
+  [5] @scripts/game_states/game/state_mission_server_exit.lua:35: in function update
+  [6] @scripts/foundation/utilities/game_state_machine.lua:123: in function update
+  [7] @scripts/game_states/state_game.lua:643: in function update
+  [8] @scripts/foundation/utilities/game_state_machine.lua:123: in function update
+  [9] ./mod_loader:397: in function update
+  [10] ./mod_loader:437:in function &lt;[string "./mod_loader"]:436&gt;
+&lt;/Lua Script.Callstack&gt;
+&lt;Lua Script.Locals&gt;
+  [1] system = "NetworkEventDelegate"; message = "Network event not registered \"rpc_resend_mission_seed_request\""; print_func = nil
+  [2] t = table: 0000000080104248; key = "rpc_resend_mission_seed_request"
+  [4] dt = 0.016667899946311116
+  [5] self = table: 000000008773AD78; dt = 0.016667899946311116; context = table: 00000000800C0798
+  [6] self = table: 00000000801CFBC8; dt = 0.016667899946311116; t = 3457.5464188839464
+  [7] self = table: 00000000800683B0; dt = 0.016667899946311116; network_is_active = true; t = 3457.5464188839464
+  [8] self = table: 0000000080178598; dt = 0.016667899946311116; t = nil
+  [9] self = table: 000000008006C178; dt = 0.016667899946311116
+  [10] dt = 0.016667899946311116
+&lt;/Lua Script.Locals&gt;
+&lt;Lua Script.Self&gt;
+  [5] _creation_context = table: 00000000800C0798; _multiplayer_session = table: 000000008BB9AAC0; 
+  [6] _log_breadcrumbs = true; _state = table: 000000008773AD78; _optional_creation_context = table: 00000000800C0798; _name = "Game"; _parent = table: 00000000800683B0; _state_change_callbacks = table: 000000008335C3D0; 
+  [7] _vo_sources_cache = table: 00000000800B8F50; _approve_channel_delegate = table: 00000000800ACE60; _event_delegate = table: 00000000800C8FA8; _sm = table: 00000000801CFBC8; 
+  [8] _log_breadcrumbs = true; _state = table: 00000000800683B0; _name = "Main"; _state_change_callbacks = table: 0000000080178638; 
+  [9] _package_manager = table: 00000000801765B8; _sm = table: 0000000080178598; 
+&lt;/Lua Script.Self&gt;
+&lt;&lt;/callstack&gt;&gt;
+&lt;&lt;/crashify-exception&gt;&gt;
+</code></pre> <p>Might wanna check for similar reports in the mod discord.</p></details></div></div></div><div class="post"><div class="avatar"><a href="../../users/janzamoysky/" style="color:#fff;text-decoration:none;">J</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/janzamoysky/">JanZamoysky</a></strong> &bull; 2025-07-02 21:22:07 </div><div class="cooked"><p>Which might be related, however not only the modded client was affected. Those situations disconnected everyone, and I know for a fact a buddy of mine doesn’t use any mods.</p><p>I will try without mods tomorrow and see if I can replicate this.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2025-07-16 21:22:22 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

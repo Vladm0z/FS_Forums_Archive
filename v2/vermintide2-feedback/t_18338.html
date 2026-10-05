@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Give control back FASTER - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Give control back FASTER</span></h1><div class="meta">5 Posts &bull; 508 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/torque/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/torque/">Torque</a></strong> &bull; 2018-03-10 13:58:44 </div><div class="cooked"><p>So, when a hookrat grabs you, and your team rescues you, there is like an animation where the camera goes back onto your character before you regain control. Going from third to first person again. During this time you can’t block, attack or w/e. During this time I’ve been attacked so many times while I can’t do anything about it. Animations are cool and all but damn at least allow me to block right when the hookrat dies.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/iamken/" style="color:#fff;text-decoration:none;">i</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/iamken/">iamken</a></strong> &bull; 2018-03-10 22:38:52 </div><div class="cooked"><p>I always saw this is the deadliness of getting hooked. V1 was very similar. I always imagined it was like… you’ve been strangled by a dirty skaven, and so this is the time it takes to regain control of yourself… Like if it were real life, you’d be coughing and gasping, and trying to re-orient yourself (I don’t know if you’ve ever been dragged around by the neck, but it’s very disorienting)</p><p>As soon as I hear that wheezing, jangling rat, I’m spinning 360 circles looking for him. The packmaster is one of the deadliest specials to face, and I love them just as they are. Because they <em>can</em> be one of the more avoidable specials, that are also the deadliest when you don’t.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/torque/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/torque/">Torque</a></strong> &bull; 2018-03-10 22:53:16 </div><div class="cooked"><aside class="quote no-group" data-username="iamken" data-post="2" data-topic="18338" data-full="true"><div class="title"><div class="quote-controls"></div><a href="../../users/iamken/">iamken</a>:</div><blockquote><p>I always saw this is the deadliness of getting hooked. V1 was very similar. I always imagined it was like… you’ve been strangled by a dirty skaven, and so this is the time it takes to regain control of yourself… Like if it were real life, you’d be coughing and gasping, and trying to re-orient yourself (I don’t know if you’ve ever been dragged around by the neck, but it’s very disorienting)</p><p>As soon as I hear that wheezing, jangling rat, I’m spinning 360 circles looking for him. The packmaster is one of the deadliest specials to face, and I love them just as they are. Because they <em>can</em> be one of the more avoidable specials, that are also the deadliest when you don’t.</p></blockquote></aside><p>Well yeah but this is a game. If you’re gonna look at it like that… might aswell ask yourself if, when you get grabbed by the neck, you get an outer body experience where you see yourself getting dragged in third person <img src="https://emoji.discourse-cdn.com/twitter/stuck_out_tongue.png?v=12" title=":stuck_out_tongue:" class="emoji" alt=":stuck_out_tongue:" loading="lazy" width="20" height="20"></p><p>I see how it’s fair in a realistic standpoint… but gamewise… meh… not so much.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/drclassy/" style="color:#fff;text-decoration:none;">D</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/drclassy/">DrClassy</a></strong> &bull; 2018-03-10 23:08:44 </div><div class="cooked"><p>Don’t get dragged then, you can easily dodge his hook.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/iamken/" style="color:#fff;text-decoration:none;">i</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/iamken/">iamken</a></strong> &bull; 2018-03-10 23:11:03 </div><div class="cooked"><p>Fair enough, the realism point is kind of silly. But it’s still the most easily avoided special, and the most deadly when you can’t. It’s also the squishiest, and easiest to shoot. I think assassins are just as squishy, but harder to shoot at… Gas rats are pretty far away when they’re being a nuisance, but they’re also not as deadly.</p></div></div></div></div></div></body></html>

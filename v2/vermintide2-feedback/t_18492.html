@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Two Twitch Streamers Twitch Mode - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Two Twitch Streamers Twitch Mode</span></h1><div class="meta">7 Posts &bull; 1672 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/plantlamp/" style="color:#fff;text-decoration:none;">P</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/plantlamp/">PlantLamp</a></strong> &bull; 2018-03-11 05:22:43 </div><div class="cooked"><p>Is there a way that two Twitch streamers can play the game and link their chats so that both chats can vote in Twitch Mode? If not, I think this would be great since I like to collaborate with other streamers.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/poplavok418/" style="color:#fff;text-decoration:none;">p</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/poplavok418/">poplavok418</a></strong> &bull; 2018-03-11 16:40:58 </div><div class="cooked"><p>I am not into twitch stuff, but they said on their stream, that it should link automatically, if both streamers in party use feature.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/ghroznak/" style="color:#fff;text-decoration:none;">G</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ghroznak/">Ghroznak</a></strong> &bull; 2018-03-11 16:47:10 </div><div class="cooked"><p>Problem is you can’t do quick play if you connect to Twitch.</p><p>It locks you into the Twitch option in the mission selector and greys out the Quick, Custom and Deeds buttons.</p><p>In order to do Quick Play for the Quick Play bonus you would need someone not connected to Twitch in your group to start the missions.</p><p>Kinda wonky, but oh well.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/plantlamp/" style="color:#fff;text-decoration:none;">P</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/plantlamp/">PlantLamp</a></strong> &bull; 2018-03-11 17:00:59 </div><div class="cooked"><p>I’ll have to give it a shot once I stop having the performance issues I get when playing in Twitch Mode. Right now I have one of my party members link to my Twitch and then it runs fine. I only have the issue when I am the host and link my Twitch. It might link automatically, I just wasn’t sure if that was already a feature. If it’s not they should look into adding it for sure.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/plantlamp/" style="color:#fff;text-decoration:none;">P</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/plantlamp/">PlantLamp</a></strong> &bull; 2018-03-11 17:01:08 </div><div class="cooked"><p>I agree that quick play or heroic deeds would be nice to do in Twitch Mode. I can’t always get four people on at the same time, since I’m a very small channel. Being able to random queue would be beneficial for me.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/plantlamp/" style="color:#fff;text-decoration:none;">P</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/plantlamp/">PlantLamp</a></strong> &bull; 2018-03-12 14:15:24 </div><div class="cooked"><p>I was able to test this last night and it worked great! Each streamer just had to enter their channels into the Twitch mode tab and everything linked up perfect. I still experience performance issues sadly with Twitch mode, but the vote linking functioned very well.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kosciarz/" style="color:#fff;text-decoration:none;">k</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kosciarz/">kosciarz</a></strong> &bull; 2018-03-12 14:18:32 </div><div class="cooked"><p>The pro TIP for this is:</p><p>You CAN connect to whatever stream that is ON actually and use that chat. You do not even need to stream.</p></div></div></div></div></div></body></html>

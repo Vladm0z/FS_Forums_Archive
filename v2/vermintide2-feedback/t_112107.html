@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Still no solo queue for weekly events - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Still no solo queue for weekly events</span></h1><div class="meta">8 Posts &bull; 274 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/dadpants/" style="color:#fff;text-decoration:none;">d</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/dadpants/">dadpants</a></strong> &bull; 2025-08-27 05:56:43 </div><div class="cooked"><p>I don’t understand why the weekly events both in the campaign and in the chaos wastes are gated off from solo queue specifically. It completely deters me from wanting to queue them sequentially strictly for enjoyment. We’re so far into the life cycle of this game and it’s still this way</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/zinstonehead/" style="color:#fff;text-decoration:none;">Z</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/zinstonehead/">ZinStonehead</a></strong> &bull; 2025-08-27 17:22:10 </div><div class="cooked"><aside class="quote no-group" data-username="dadpants" data-post="1" data-topic="112107"><div class="title"><div class="quote-controls"></div><a href="../../users/dadpants/">dadpants</a>:</div><blockquote><p>I don’t understand</p></blockquote></aside><p>I don’t understand it too…</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/flinlock/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/flinlock/">Flinlock</a></strong> &bull; 2025-08-27 19:45:22 </div><div class="cooked"><aside class="quote no-group" data-username="dadpants" data-post="1" data-topic="112107"><div class="title"><div class="quote-controls"></div><a href="../../users/dadpants/">dadpants</a>:</div><blockquote><p>gated off from solo queue specifically. It completely deters me from wanting to queue them sequentially strictly for enjoyment</p></blockquote></aside><p>What do you mean? You can queue solo for the weekly events, it will connect you to a group if there’s one available with room.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/cobaltninja/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/cobaltninja/">CobaltNinja</a></strong> &bull; 2025-08-27 20:01:43 </div><div class="cooked"><p>OP means hosting a private game to play on your own. You can’t do that.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/lethargicsaga/" style="color:#fff;text-decoration:none;">L</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/lethargicsaga/">LethargicSaga</a></strong> &bull; 2025-08-28 03:50:31 </div><div class="cooked"><p>I get what you mean, it bothered me so much I went looking for a solution. Turns out there is a sanctioned mod that lets you use the ‘/host_toggle’ command before starting a weekly. Then you will always be host</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/zinstonehead/" style="color:#fff;text-decoration:none;">Z</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/zinstonehead/">ZinStonehead</a></strong> &bull; 2025-08-28 17:28:36 </div><div class="cooked"><p>Thx. I must try it. <img src="https://emoji.discourse-cdn.com/twitter/slight_smile.png?v=14" title=":slight_smile:" class="emoji" alt=":slight_smile:" loading="lazy" width="20" height="20"></p><p>Edit.: It works! Yeah!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/cobaltninja/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/cobaltninja/">CobaltNinja</a></strong> &bull; 2025-08-28 17:41:25 </div><div class="cooked"><p>It should be noted that it’s not foolproof and I’ve had cases where someone immediately joins my game as soon as I click play. Make sure to hold tab and click on private on the top right when you load in.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/aether_blackbolt/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/aether_blackbolt/">Aether_Blackbolt</a></strong> &bull; 2025-08-29 07:41:23 </div><div class="cooked"><p>there is a mod to host quickplay. Host a map, start it immediately, private it as soon as you load in. kick anyone that joins. not perfect but it works most of the time.</p></div></div></div></div></div></body></html>

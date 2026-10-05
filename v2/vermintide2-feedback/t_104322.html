@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Improving Versus pacing - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Improving Versus pacing</span></h1><div class="meta">1 Posts &bull; 53 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/earthtender/" style="color:#fff;text-decoration:none;">E</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/earthtender/">Earthtender</a></strong> &bull; 2025-01-10 16:59:57 </div><div class="cooked"><p>Adventure mode pacing was perfected over years of playtesting and tweaking by designer Mats Anderson and his team. Chaos Wastes pacing is fairly good despite the longer commitment required, and mostly suffers from instability; crashes 50mins in losing all progress feels terrible. But if you don’t get a crash, it feels like a good cadence. Weaves is a failure, enough said on that.</p><p>Now, Versus matches have awkward pacing that I believe can be improved, largely outside the matches themselves. Much of the slowdown is due to the matchmaking process and transitions before, between, and after rounds. Meaning at least some tweaks could be relatively easy to implement:</p><ol><li>Allow players to rank their preferred heroes in advance, then automatically sort us out when matchmaking occurs. Allow a brief window to make adjustments.</li></ol><p>Currently, a lot of time is eaten up simply choosing your hero and getting into the match. You have to wait one at a time for 4 people to pick. You could save a lot of time if we ranked which hero we wanted to play 1st-5th <em>outside of matchmaking</em>, like we do with bots, and selected our preferred career on each. Then matchmaking could automatically sort us, with the same random order for who “chooses” first. So I rank mine: Sienna, Kerillian, Kruber, Saltzpyre, Bardin. I’m 4th in line by the randomly chosen order upon matchmaking. I will not ever be stuck with my 5th choice, and I might even get my top pick, just like the status quo, except it will take a fraction of the time. Make sense?</p><p>The brief window to make adjustments could allow some responsiveness to team composition. So everybody is automatically sorted to a hero according to their rankings X random order. If they didn’t set up any ranked preference, they’d get random results that favor those with chosen rankings. You can freely change your career on the hero you were dealt during this brief window. If you want to swap <em>heroes</em> - It could use the existing blue and gold portrait highlights from the current career selection UI. You could highlight a hero you’d like to swap to, and if the person currently on that hero also highlights another to swap to, the swap can go through. This happening in parallel is more efficient than waiting one at a time for hero &amp; career selection.</p><ol start="2"><li><p>Reduce UI animation lock. Players have complaind about the loot box /scoreboard post-match being too slow, though you can hold spacebar to speed it up a bit. Same idea here. Versus has a lot of animation lock before, between, and after matches. Trimming that down I bet could cut out a solid minute or two from each match overall.</p></li><li><p>Autoplay with others from matches. A checkbox to keep queueing from one match into another without returning to Keep. If 5/8 of us want to keep playing, we can continue together, only needing 3 more from matchmaking queue to get another round going. This could reduce the time between matches and encourage sticking around. Maybe the current system is already quite optimized and I am simply ignorant.</p></li><li><p>Allow us to train as Pactsworn.</p></li><li><p>Allow us to pick any Pactsworn, rather than selecting between 2 random ones. Balance around that ability.</p></li></ol><p>4&amp;5 address the same pacing issue: It is really, really hard to effectively practice or learn any given Pactsworn class. Because you have no control over when you can play as them and no practice environment. I am just about as awful today on Gutter Runner as I was when Versus had its alpha tests. Because I have NEVER had a real practice environment. This demotivates me. I just got out of a game where I got to try Rat Ogre for the first time. I felt useless, the right click ability seeming to do absolutely nothing. I don’t know its mechanics and died before I could figure anything out. I’d have to wait for pure RNG to give me another 20-30s opportunity to “practice” rat ogre. This is… very predictably frustrating for players.</p><p>I am just throwing ideas around. Not meant to cover everything or pretend that I have the perfect solutions and the devs are silly or anything disrespectful. A lot of effort went into delivering Versus and it has been a pleasant surprise to see it come to fruition after several years. Versus is a dope game mode, but there are some UX issues holding it back that I believe can be overcome with some open-mindedness. Cheers</p></div></div></div></div></div></body></html>

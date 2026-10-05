@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Maulers and Savages have some serious sound issues - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Maulers and Savages have some serious sound issues</span></h1><div class="meta">3 Posts &bull; 572 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/jlb/" style="color:#fff;text-decoration:none;">J</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/jlb/">JLB</a></strong> &bull; 2018-05-05 15:56:21 </div><div class="cooked"><p>I’m a little bit baffled that this patch, which for once addressed some of the many issues with the VO in this game, did nothing about this - and unlike many other problems, which i’ll probably end up making a thread for (and get laughed at because lolnerd w/e) - this is a real detriment to the gameplay.</p><p>The issue is twofold.</p><ol><li><p>Maulers and Savages aren’t called out by the heroes in any way. When you ping Stormvermin, you have a wide array of lines - both (shamelessly) reused and newly recorded ones. Ping a Mauler or a Savage, and there’s no real reaction. Considering Maulers are a major threat, arguably the most dangerous elite, in fact, and Savages are no joke either, that’s very odd. You can see the ping itself, of course, but if Stormvermin get to have a bucketload of callouts, then why not either of them? Plague Monks, for the record, are much the same, but it’s not <em>as</em> bad with them, because…</p></li><li><p>Maulers and Savages have the <em>exact</em> same voices as the Raiders (chaos commons). I’ve played for roughly 150 hours + 40 in the closed beta, and I’m sure of it by now. Change my mind if you can. I am 100% certain that these two enemy types make the exact same noises Raiders make. You will never be able to tell them apart by their sounds in a fight. That is very much unlike Stormvermin, who have comically high-pitched voices and order the other rats around.</p></li></ol><p>This is really detrimental because both Maulers and Savages have devastating running attacks that need an audio telegraph, and BADLY. Not only do Savages charging you with both axes up in the air look really weird when they don’t even bother screaming, but the infamous rollerskate-into-overhead Maulers do is a huge threat and you want to be on your guard when one is coming in. And yeah, sure, sometimes they do go “AAAAAAAAAAAAAAA”, but that’s only because that’s one of the alarm lines the Raiders have.</p><p>Sometimes you’ll only find out there are Savages on the field because one of the heroes starts complaining that someone else isn’t parrying. Bit too late honestly.</p><p>And clearly you people understand this, because you got Plague Monks to sound <em>completely different</em>. You can instantly tell if there are PMs on the field because they have this screechy, echoey voice. Why not the Chaos elites?</p><p>This is all gameplay concerns, too. I won’t even start with how undercharacterized the Rotblood army is right now and how badly they lack flavor, issues that would absolutely be fixed if heroes have something to say about Maulers and Savages and if they themselves have different voices. Oh, and while we’re at it? Shield Stormvermin sound like clan rats.</p><p>And at the same time you gave shield clanrats completely new, unique voices, even though they die about as fast as regular clans…</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/sinoby/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sinoby/">Sinoby</a></strong> &bull; 2018-05-05 17:01:37 </div><div class="cooked"><p>Totally agree, VO still has a lot of things to be done.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/iamjub/" style="color:#fff;text-decoration:none;">i</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/iamjub/">iamJUB</a></strong> &bull; 2018-05-05 23:16:02 </div><div class="cooked"><p>Savages could use some body paint or something too, they are pretty much impossible to pick out in a chaos hoard.</p></div></div></div></div></div></body></html>

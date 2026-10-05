@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AI-Director Double Spawn? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">AI-Director Double Spawn?</span></h1><div class="meta">3 Posts &bull; 247 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/bthelee/" style="color:#fff;text-decoration:none;">B</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/bthelee/">BtheLee</a></strong> &bull; 2023-10-03 08:23:03 </div><div class="cooked"><p>Has anyone else notice an increase in specials “double-spawning”? I’ve seen to notice the AI-Director summons 2 specials of the same type at the same type quite frequently (2 hookrats spawn on each other, 2 assassins spawn at once, 2 stormers or leeches spawn at once). On Cata I kind of expect this but usually not both at once and generally not so close to each other, but I’ve been experiencing this on legend as well (where I’ll still see some special spam but it seems to have been more egregious lately). Has anyone else noticed the increase of “double” spawning specials?</p><p>edit: note that the AMOUNT of specials spawning isn’t really the issue, it’s the RATE at which they’re being spawned in and the LOCATION of where they spawn in. Sometimes they’ll spawn no further than a corner turn away from you, other times you’ll seem them spawn with the mob (which honestly is still kinda fine so long as they don’t spawn on top of each other)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/adelion/" style="color:#fff;text-decoration:none;">A</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/adelion/">Adelion</a></strong> &bull; 2023-10-03 10:37:13 </div><div class="cooked"><p>Not sure about the spawning in each other. That is probably a bug. But the rest has always been like that and is intended.</p><p>On legend 4 specials spawn in short succession with two being the same and in cataclysm 5 specials spawn in short succession with three being the same. Reason for this is that Vermintides specials create the greatest threat when you stack the same type and not by supporting each other.</p><p>Best this can be seen in the Weaves where in multiple missions you have up to six time (or more?) the same special spawning within a few seconds.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/bthelee/" style="color:#fff;text-decoration:none;">B</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/bthelee/">BtheLee</a></strong> &bull; 2023-10-03 20:24:04 </div><div class="cooked"><p>yeah like i said it’s normal to see that in cata and at times in legend. It’s just weird to me that I’ve been seeing an increase in specials just dropping in out of thin air in front of me and i think to myself “oh it’s only 1 hookrat” and then lo and behold there was another one stacked on top of it. Main reason I say hookrats is that I tend to see them just spawn out of thin air more readily than any other special. Though I will say Warpfire throwers and rattling guns also seem to have these moments where they’ll just materialize in and the AI summons like 2 or 3 of them all standing near each other making it impossible for pretty much anyone to take care of them (as they just start spamming you with warpfire or bullets as soon as they spawn). I’ve seen it even just straight up kill a Sienna I was with where the guns just spawned in (3 of them) and just shot her to death and there wasn’t much she could do about it. I guess she could have popped her purple pot but I don’t think she was expecting to see 2 rattlings and a warpfire materialize in front of her lol</p></div></div></div></div></div></body></html>

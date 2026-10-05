@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Things that should be addressed before or soon after Depths of the Damned update - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Things that should be addressed before or soon after Depths of the Damned update</span></h1><div class="meta">1 Posts &bull; 71 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/birthdaycakeoff/" style="color:#fff;text-decoration:none;">b</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/birthdaycakeoff/">birthdaycakeoff</a></strong> &bull; 2026-09-18 21:31:27 </div><div class="cooked"><p>Now put the rest of stat nodes in auras like you’ve already done with Skitarii.</p><p>By adding literal Arbites shotgun (Huntsman variant) to global weapon pool you’re only dumping Combat Shotgun even deeper into the abyss. It’s already in as bad position as Shredder Autopistol if not even worse.<br> Address this issue.</p><p>Ogryn’s Thugshot looks and feels like a single shot revolver/single pellet Kickback. It should be working as a real cannon - projectile slower than a bullet, but faster/equally fast as Grenadier Gauntlet’s projectile. It’s gonna be visually more satisfying if people could see literal cannon ball flying out of the tube and splatting weak enemies into pieces. You can add on top of that two Blessings:<br> One where cannon ball will explode after hitting impenetrable enemy.<br> Ricochet that does exactly what it sounds like.<br> Maybe even include some sort of combination between these two Blessings, like it is with Hagbane Shortbow on Waystalker career in Vermintide 2, where after each ricochet it exploded.</p><p>Give more utility use for Smoke Grenades, like extinguishing flames and canceling pox gas in it’s AoE. It’s stupid to have talents that works only on particular difficulties.</p><p>Enhanced Target Priority on Veteran remains useless and counter-effective because it highlights enemies for teammates and they kill them, making it harder for Veteran players to keep Executioner’s Stance up and running. Include it in base Executioner’s Stance and make that every highlighted enemy killed by allies in coherency will refresh Executioner’s Stance duration for 0.1 second.</p><p>Low Profile’s abysmally useless and makes it worse for the team by re-directing enemy’s aggro at teammates. It should be built-in Infiltrate itself, giving Covert Operative more potential.</p><p>If Covert Operative remains bad, change it’s strength effect from 30% to 15% and instead of Ranged Backstabs change it to “enemies not targeting you”.</p><p>Keep Their Heads Down! as useless as Low Profile. It should be built-in Infiltrate as well. It’s effect starts after leaving Stealth lingering for 8 seconds afterwards. (Because it derives from weapon’s ability to suppress, making it ineffective or effective depending on the secondary weapon pick, and weapons with high suppression often if not always don’t need additional suppression. Additionally, majority of enemies have suppression immunity anyways).</p><p>All Veteran’s support talents like Covering Fire should benefit himself too. I don’t recall any other class having such stupid decision, to spent talents of YOUR talent tree to solely benefit OTHERS instead.<br> YOUR talents MUST prioritize YOU and only then your teammates, unless you’re class’s literally walking Medicae.</p><p>By literally splitting Survivalist into built-in and “optional” aura won’t change anything and every single player still will pick it no matter what because of how beneficial it is. It’s supposed to be the same as with Zealot’s reworked Until Death - Core Keystone.</p><p>Split Fire Team aura into two to make up for Survivalist after making it Core Keystone:<br> Fire Team aura that gives 5% Global Rending and Fire Support that applies 1 stack of Brittleness to any direct enemy hit by allies in coherency with cooldown of 1~2 seconds in between application.</p><p>Optional: Personally, I never ever in entire life of Darktide picked Close and Kill aura, because of how little it gives me, and even what it gives me simply won’t last for long, since it encourages you to be agile, and just trying to use it with Combat Blade or any other high mobility weapons, player’s very often find themselves breaking aura and not having these useless 5% of movement speed. As counter-effective as Enhanced Target Priority, in my opinion. Instead replace it with Fire Team effect we have before Depths of the Damned update or combine them together, like 7.5% Damage + 7.5% Movement Speed or something. I haven’t even seen Veteran players running with this aura what so ever.</p></div></div></div></div></div></body></html>

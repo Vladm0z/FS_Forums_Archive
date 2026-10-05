@@ -1,0 +1,95 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Can't play via Psych Ward mod - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Can't play via Psych Ward mod</span></h1><div class="meta">4 Posts &bull; 80 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/cobaltninja/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/cobaltninja/">CobaltNinja</a></strong> &bull; 2026-08-12 22:58:39 </div><div class="cooked"><h3><a name="p-772640-issue-type-required-1" class="anchor" href="#p-772640-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Error - Backend Error</p><h3><a name="p-772640-issue-description-required-2" class="anchor" href="#p-772640-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>Wanted to hop into a game of DT from the main menu but it kept logging me out and throwing a backend error. I eventually had to alt+f4.</p><h3><a name="p-772640-pc-do-you-use-mods-optional-3" class="anchor" href="#p-772640-pc-do-you-use-mods-optional-3" aria-label="Heading link"></a>[PC] Do You Use Mods? (Optional):</h3><p>Yes, but I haven’t tried disabling them</p><h3><a name="p-772640-reproduction-rate-required-4" class="anchor" href="#p-772640-reproduction-rate-required-4" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Once</p><h3><a name="p-772640-platform-required-5" class="anchor" href="#p-772640-platform-required-5" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam</p><h3><a name="p-772640-pc-upload-console-log-darktide_launcherlog-optional-6" class="anchor" href="#p-772640-pc-upload-console-log-darktide_launcherlog-optional-6" aria-label="Heading link"></a>[PC] Upload Console Log &amp; darktide_launcher.log (Optional):</h3><p><a class="attachment" href="/uploads/short-url/axw3VFlL7ayp4QwmoxnDDXTICrW.log">console-2026-08-12-22.55.59-85357cd3-87be-41b1-8759-a02703817e07.log</a> (954 KB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/gpkgpk/" style="color:#fff;text-decoration:none;">g</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gpkgpk/">gpkgpk</a></strong> &bull; 2026-08-13 06:04:53 </div><div class="cooked"><p>Damn dude, if you’re using mods look at the log file you posted for the error, FS is not responsible for mod errors.</p><p>Normally, if you don’t have a log you do a binary-search type disable, disable half, then the other half to see which half contains the offending mod and repeated this with every half of the half and so on.</p><p>Not needed here because of the detailed log, did you even look?</p> <pre><code class="lang-auto">22:57:46.425 [Lua] Error: [string "./../mods/Vox Manifold/scripts/mods/Vox Manif..."]:435: attempt to index field 'event' (a nil value)
+&lt;Lua Script.Callstack&gt;
+  [0] =[C]: in function callstack
+  [1] ./../mods/dmf/scripts/mods/dmf/modules/core/safe_calls.lua:20: in function __index
+  [2] ./../mods/Vox Manifold/scripts/mods/Vox Manifold/Vox Manifold.lua:435:in function &lt;[string "./../mods/Vox Manifold/scripts/mods/Vox Manif..."]:434&gt;
+  [3] =[C]: in function xpcall
+  [4] ./../mods/dmf/scripts/mods/dmf/modules/core/safe_calls.lua:67: in function safe_call_nr
+  [5] ./../mods/dmf/scripts/mods/dmf/modules/core/events.lua:14: in function run_event
+  [6] ./../mods/dmf/scripts/mods/dmf/modules/core/events.lua:34: in function mods_unload_event
+  [7] ./../mods/dmf/scripts/mods/dmf/dmf_loader.lua:54: in function hook_chain
+  [8] ./../mods/dmf/scripts/mods/dmf/modules/core/hooks.lua:199: in function destroy
+  [9] @scripts/foundation/utilities/class.lua:149: in function delete
+  [10] @scripts/foundation/managers/managers.lua:11: in function destroy_global_managers
+  [11] @scripts/foundation/managers/managers.lua:34: in function destroy
+  [12] @scripts/game_states/state_game.lua:462: in function on_exit
+  [13] @scripts/foundation/utilities/game_state_machine.lua:195: in function destroy
+  [14] ./mod_loader:376:in function &lt;[string "./mod_loader"]:371&gt;
+&lt;/Lua Script.Callstack&gt;
+&lt;Lua Script.Locals&gt;
+  [1] error_message = "[string \"./../mods/Vox Manifold/scripts/mods/Vox Manif...\"]:435: attempt to index field \'event\' (a nil value)"
+  [4] mod = table: 00000000045A8050; error_prefix_data = "(event) on_unload"; func = [function]
+  [5] mod = table: 00000000045A8050; event_name = "on_unload"; event = [function]
+  [6] exit_game = true; event_name = "on_unload"; _ = 102; mod_name = "Vox Manifold"; mod = table: 00000000045A8050
+  [7] func = [function]
+  [8] hook_chain = [function]
+  [9] self = table: 00000000080E2B70
+  [10] index = 47; alias = "mod"; manager = table: 00000000080E2B70
+  [11] self = \n\tmod\n\tpackage\n\tlocalization\n
+  [12] self = table: 0000000002993238; exit_params = table: 000000000FCF1910
+  [13] self = table: 00000000000AED10; state_change_callbacks = table: 00000000000AED38
+  [14] self = table: 0000000000091E68; exit_param = table: 000000000FCF1910
+&lt;/Lua Script.Locals&gt;
+&lt;Lua Script.Self&gt;
+  [9] _mods = table: 00000000080E2B98; _num_mods = 105; _settings = table: 00000000080E2BC0; _chat_print_buffer = table: 00000000080E2C68; _reload_data = table: 00000000080E2BF8; _mod_load_index = 105; _ui_time = 0; _network_callbacks = table: 00000000080E3038; _state = "done"; _mod_metadata = table: 00000000080E3060; 
+  [11] mod = table: 00000000080E2B70; package = table: 00000000000DF270; state = 
+; localization = table: 00000000000E2AB0; 
+  [12] _approve_channel_delegate = table: 0000000002EB2BD8; _event_delegate = table: 00000000029CD2D0; _sm = table: 00000000077CB408; _imgui_init = false; _update_running = false; _vo_sources_cache = table: 0000000003039E10; 
+  [13] _state_change_callbacks = table: 00000000000AED38; _log_breadcrumbs = true; _state = table: 0000000002993238; _name = "Main"; 
+  [14] _in_update = false; _sm = table: 00000000000AED10; 
+&lt;/Lua Script.Self&gt;
+
+</code></pre></div></div></div><div class="post"><div class="avatar"><a href="../../users/marxistdictator/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/marxistdictator/">MarxistDictator</a></strong> &bull; 2026-08-13 06:32:51 </div><div class="cooked"><p>it was broken but now its fixed. mods are user beware not fat shark responsibility, but vortex makes the updating automatic if you don’t wanna stay on top of it. psych ward is a much nicer mod than using a combination of other mods to achieve that effect, so I missed it when it was gone even if modular menu buttons + disconnect could do the same with effort.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/gpkgpk/" style="color:#fff;text-decoration:none;">g</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gpkgpk/">gpkgpk</a></strong> &bull; 2026-08-13 06:37:18 </div><div class="cooked"><p>Ooof.</p><blockquote><h2>Notice about application</h2><p>Fatshark have been very <a href="https://discord.com/channels/1048312349867646996/1079236027690012773/1164598923386687509" rel="noopener nofollow ugc">nice</a> with regards to generally not policing our usage of mods, working on a mutual respect system where we don’t rock the boat with specific usage, and they don’t have to directly intervene. This is especially relevant to cosmetics in the game. Given that a chunk of their revenue is related to cosmetics and the like, they would prefer we don’t affect it in any way. If they detect any loss in revenue from an increased use in a particular mod, they will start banning users using that mod.</p><p><mark>So, <em>be cool about it</em>. Don’t cross that line </mark></p></blockquote></div></div></div></div></div></body></html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Repeated crashing to desktop during missions - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Repeated crashing to desktop during missions</span></h1><div class="meta">12 Posts &bull; 1450 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/kunwoo/" style="color:#fff;text-decoration:none;">k</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kunwoo/">kunwoo</a></strong> &bull; 2021-06-30 10:30:23 </div><div class="cooked"><p>Hello!<br> After getting a new desktop I’ve been consistently having issues with Vermintide 2 crashing to desktop.<br> It happens seemingly randomly during missions, sometimes right at the start and other times at the middle or near the end.<br> I’ve tried the following:</p><ul><li>Using DDU to reinstall GPU drivers.</li><li>Reinstalling the game.</li><li>Reinstalling Windows 10.</li><li>Reducing worker threads to 6 and 5.</li><li>Using both DX 11 and 12.</li><li>Lowering graphics preset settings.</li><li>Disabling hooks/overlays</li><li>… probably more I’m forgetting now.</li></ul><p>No mods installed.<br> There’s no overheating happening, GPU and CPU are running stock clocks. I would really appreciate help!</p><p>Console logs from two crashes today, let me know if more info is needed:</p><p>No. 1</p> <pre><code class="lang-auto">09:10:34.610 [Lua] [GameNetworkManager] game_object_destroyed_player, game_object_id=0 owner_peer_id=110000101c6dde0 peer_id=110000101c6dde0
+09:10:34.610 [Lua] PlayerManager:remove_player peer_id=110000101c6dde0 1
+09:10:34.610 [Lua] [GameNetworkManager] removing peer_id=110000101c6dde0 local_player_id=1
+09:10:34.610 [Lua] [GameNetworkManager] game object was destroyed id=0 with type=player, object_destroy_func=game_object_destroyed_player, owned by peer=110000101c6dde0
+09:10:34.611 [Lua] [GameNetworkManager] Game session disconnected, leaving game...
+09:10:34.616 [Lua] [UnitSpawner] [nil] failed to remove listener [interactable_unit_for_husk] from unit [[Unit '#ID[db217b93bd1bca31]']]
+09:10:34.621 [Lua] [GameNetworkManager] No longer in game session, shutting it down.
+09:10:34.622 [Lua] TRANSITION	nil	nil	load_next_level
+09:10:34.622 [Lua] Transition type "load_next_level", is server: false
+09:10:34.622 [Lua] StateIngame: Got transition nil, set exit type to load_next_level. Will exit at t=1025.88
+09:10:36.646 [Lua] [Managers] Calling function on all managers:
+09:10:36.647 [Lua] PlayerManager:remove_player peer_id=1100001047b8528 1
+09:10:36.647 [Lua] [SharedState] [SharedState] network_state_110000101c6dde0: &lt;set 1100001047b8528&gt; actually_ingame:1100001047b8528:0:0:0 = false
+09:10:36.647 [Lua] Clearing all global lookup lists
+09:10:36.647 [Lua] [IngamePlayerListUI] - Destroy
+09:10:36.647 [Lua] [GamePadEquipmentUI] - Destroy
+09:10:36.647 [Lua] [EquipmentUI] - Destroy
+09:10:36.647 [Lua] [GamePadAbilityUI] - Destroy
+09:10:36.647 [Lua] [AbilityUI] - Destroy
+09:10:36.647 [Lua] [IngameUI] destroy
+09:10:37.199 &lt;&lt;Crash&gt;&gt;Access violation (0xc0000005) in build 2003b9c18405
+    accessing address 000002308C668444 from 00007FF6E130450C&lt;&lt;/Crash&gt;&gt;
+&lt;&lt;Callstack&gt;&gt;
+{00007ff6e1270000, 00ce9000, 60b4df1a, dcc73796-55a1-49f7-820f-8276e5354404, 00000001, E:\agent-work\tmp-builds\engine_vt2\release\chaos_wastes_2021_03_08\engine\win64\release\vermintide2.pdb}
+{00007ffeab2d0000, 001f5000, 088bf621, 7fcbbfa9-5b3d-dbc6-1a90-f7c3fd4a7f37, 00000001, ntdll.pdb}
+{00007ffeaae60000, 000bd000, 92f57b1a, 0245fb04-f377-b64f-56f6-326f4a5a237d, 00000001, kernel32.pdb}
+{00007ffe7c0d0000, 0009c000, 5b9ff4cd, 99fcf842-aee8-4713-ba31-7eb0c01164d4, 00000001, E:\projects\engine\tools\luajit\src\lua51.pdb}
+</code></pre> <p>No. 2</p> <pre><code class="lang-auto">09:20:33.631 [Lua] [GameNetworkManager] game object was destroyed id=297 with type=ai_unit_with_inventory_and_shield_and_target, object_destroy_func=game_object_destroyed_network_unit, owned by peer=110000104d86676
+09:20:34.587 [Lua] [ChatManager][1]System: roarroarroarroar picked up a Loot Die
+09:20:34.588 [Lua] [GameNetworkManager] game object was destroyed id=361 with type=pickup_unit, object_destroy_func=game_object_destroyed_network_unit, owned by peer=110000104d86676
+09:20:34.741 warning: [WwisePlugin] Encountered event marker without label. event_id: 0x4062013679, playing_id: 0x6101, position: 0
+09:20:34.741 warning: [WwisePlugin] Encountered event marker without label. event_id: 0x4062013679, playing_id: 0x6101, position: 0
+09:20:34.741 warning: [WwisePlugin] Encountered event marker without label. event_id: 0x4062013679, playing_id: 0x6101, position: 0
+09:20:34.831 warning: [WwisePlugin] Encountered event marker without label. event_id: 0x4062013679, playing_id: 0x6101, position: 4537872
+09:20:34.852 [Lua] [GameNetworkManager] game object was destroyed id=363 with type=interest_point_unit, object_destroy_func=game_object_destroyed_network_unit, owned by peer=110000104d86676
+09:20:34.852 [Lua] [GameNetworkManager] game object was destroyed id=348 with type=liquid_aoe_unit, object_destroy_func=game_object_destroyed_network_unit, owned by peer=110000104d86676
+09:20:35.179 [Lua] [GameNetworkManager] game object was destroyed id=360 with type=interest_point_unit, object_destroy_func=game_object_destroyed_network_unit, owned by peer=110000104d86676
+09:20:35.657 [Lua] [GameNetworkManager] game object created go_id=364, owner_id=110000104d86676 go_type=interest_point_unit go_created_func_name=game_object_created_network_unit
+09:20:35.719 [Lua] [GameNetworkManager] game object created go_id=365, owner_id=110000104d86676 go_type=interest_point_unit go_created_func_name=game_object_created_network_unit
+09:20:35.720 [Lua] [GameNetworkManager] game object was destroyed id=304 with type=interest_point_unit, object_destroy_func=game_object_destroyed_network_unit, owned by peer=110000104d86676
+09:20:35.720 [Lua] [GameNetworkManager] game object was destroyed id=303 with type=interest_point_unit, object_destroy_func=game_object_destroyed_network_unit, owned by peer=110000104d86676
+09:20:35.821 [Lua] [GameNetworkManager] game object created go_id=366, owner_id=110000104d86676 go_type=interest_point_unit go_created_func_name=game_object_created_network_unit
+09:20:35.821 [Lua] [GameNetworkManager] game object created go_id=367, owner_id=110000104d86676 go_type=interest_point_unit go_created_func_name=game_object_created_network_unit
+09:20:36.324 &lt;&lt;Crash&gt;&gt;Access violation (0xc0000005) in build 2003b9c18405
+    accessing address 00000000EE000004 from 00007FFE7E95BAF3&lt;&lt;/Crash&gt;&gt;
+&lt;&lt;Callstack&gt;&gt;
+{00007ff6e1270000, 00ce9000, 60b4df1a, dcc73796-55a1-49f7-820f-8276e5354404, 00000001, E:\agent-work\tmp-builds\engine_vt2\release\chaos_wastes_2021_03_08\engine\win64\release\vermintide2.pdb}
+{00007ffeab2d0000, 001f5000, 088bf621, 7fcbbfa9-5b3d-dbc6-1a90-f7c3fd4a7f37, 00000001, ntdll.pdb}
+{00007ffeaae60000, 000bd000, 92f57b1a, 0245fb04-f377-b64f-56f6-326f4a5a237d, 00000001, kernel32.pdb}
+{00007ffe7e920000, 0009c000, 5b9ff4cd, 99fcf842-aee8-4713-ba31-7eb0c01164d4, 00000001, E:\projects\engine\tools\luajit\src\lua51.pdb}
+</code></pre> <p>Hope you can help me, thanks!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2021-06-30 12:09:17 </div><div class="cooked"><p>Could you include the whole console log and your crash dumps too, please? <img src="https://emoji.discourse-cdn.com/twitter/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"> I can then pass this on to our Engine Developers.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kunwoo/" style="color:#fff;text-decoration:none;">k</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kunwoo/">kunwoo</a></strong> &bull; 2021-06-30 13:17:58 </div><div class="cooked"><p>Thank you for the speedy reply!<br> I’ve put three logs+dumps in a google drive folder, from the crashes I’ve had today:<br><a href="https://drive.google.com/drive/folders/15JbUf8t249lAahE6JFbBZWEc7q9tyLmk?usp=sharing" class="onebox" target="_blank" rel="noopener nofollow ugc">https://drive.google.com/drive/folders/15JbUf8t249lAahE6JFbBZWEc7q9tyLmk?usp=sharing</a></p><p>Let me know if there’s anything else.<br> Thanks!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2021-06-30 13:21:09 </div><div class="cooked"><p>Could you make it public for those who have the link please? I can’t access it. <img src="https://emoji.discourse-cdn.com/twitter/slight_smile.png?v=9" title=":slight_smile:" class="emoji" alt=":slight_smile:"></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kunwoo/" style="color:#fff;text-decoration:none;">k</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kunwoo/">kunwoo</a></strong> &bull; 2021-06-30 13:22:18 </div><div class="cooked"><aside class="quote no-group" data-username="kunwoo" data-post="3" data-topic="46164"><div class="title"><div class="quote-controls"></div><a href="../../users/kunwoo/">kunwoo</a>:</div><blockquote><p>Let me know if there’s anything else.</p></blockquote></aside><p>My bad, it should be accessible now.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kunwoo/" style="color:#fff;text-decoration:none;">k</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kunwoo/">kunwoo</a></strong> &bull; 2021-06-30 22:15:31 </div><div class="cooked"><p>Quick update. I have tried downgrading my Nvidia GPU driver from 471.11 to the previous one (466.77)<br> and have so far not had any crashes in the last 5 hours-ish, where before it was crashing every 10-20 minutes. Potentially a fix.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2021-07-01 09:14:26 </div><div class="cooked"><p>Oooh interesting! I never would’ve suspected your drivers would be the problem from the crash data. This might even explain the increase in Access Violation crashes we’ve been seeing. Keep us posted!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kunwoo/" style="color:#fff;text-decoration:none;">k</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kunwoo/">kunwoo</a></strong> &bull; 2021-07-01 19:33:55 </div><div class="cooked"><p>Another update!<br> I’ve had no crashes all day today UNTIL I did something truly radical.</p><p>At the same time yesterday I downgraded my graphics driver I also lowered my DRAM frequency in the BIOS from the default DDR4-3200 MHz to DDR4-3066 MHz. In my search to find the cause behind the crashes I tried going back to the default ram BIOS settings, and booted up Vermintide 2 and launched a mission which crashed 5 minutes in. I opened up another game (Escape From Tarkov) and again I crashed shortly after opening it.</p><p>So I lowered DRAM frequency to DDR4-3066 MHz and downloaded newest graphics driver (471.11) and I’ve so far been playing for 2 hours without issues. I’ll see how it runs over the next few days.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kunwoo/" style="color:#fff;text-decoration:none;">k</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kunwoo/">kunwoo</a></strong> &bull; 2021-07-06 18:54:14 </div><div class="cooked"><p>No crashing in the past few days in any game, using the newest gpu drivers and a lowered DRAM frequency (From 3200 MHz to 3066 MHz.)<br> So it seems like it’s just some instability on my end.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/gunthar/" style="color:#fff;text-decoration:none;">G</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gunthar/">Gunthar</a></strong> &bull; 2021-07-07 07:54:55 </div><div class="cooked"><p>How much RAM do you have and is the game being installed on an SSD? And try to run a Memory check on your RAM. It could not be that the RAM crashes games while being on the default settings.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/kunwoo/" style="color:#fff;text-decoration:none;">k</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/kunwoo/">kunwoo</a></strong> &bull; 2021-07-09 12:33:47 </div><div class="cooked"><p>It’s 2x 16GB of Crucial Vengeance LPX. Also when I said default settings I was referring to the default XMP profile settings.<br> I haven’t done a proper memory test as it seems stable on a slightly lower clock speed.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2021-07-16 12:33:57 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Feedback on Skitarri Advanced Combat Doctrine - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">Feedback on Skitarri Advanced Combat Doctrine</span></h1><div class="meta">3 Posts &bull; 137 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/sraifer/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sraifer/">Sraifer</a></strong> &bull; 2026-06-25 22:04:20 </div><div class="cooked"><p>I wanted to give feedback on the “Advanced Combat Doctrine” ability in specific. I love the concept and its particularly helpful to me because my aim isn’t the best. But there are a few quirks holding me back from using it.</p><ol><li><p>Its one of two abilities in the game that I’m aware of that, the other being “Volley Fire/Executioner’s Stance” that can become entirely useless under certain circumstances. The circumstance being that if you have no ammo, it does absolutely nothing. It just drains your capacitance. During the higher difficulties where ammo is more rare, taking this can be risky because it takes up a slot that could have been useful like the “chordclaw strike” that is always accessible if you have the capacitance or “voltaic emitter” which similarly will always function regardless of your ammo or grenade count.</p></li><li><p>Capacitance Drain is also a bit of an issue. It seems to punish you regardless of how you play. If you spam shots to try and make the most of the window before it drains you waste valuable ammo. But if you try and take it slow to pick targets more carefully, you waste your capacitance and get less use out of it as a whole. And if you try for a mixed approach by turning it off and on as needed, you get penalized with a startup charge so you don’t want to do that either. And with how slow it can be to get that capacitance back, any route makes it unpleasant to play.</p></li><li><p>Right now it feels inconsistent with its lock on. This one is more Anecdotal, but It feels like if I turn and fire too quickly, it doesn’t lock on right away and I can still miss shots. And there feels like a small delay between when I’m killing something, and it picking another target. Unless I really slow down and focus, I don’t feel like I’m hitting as often as I would like. And if I have to slow down to focus, that’s more wasted capacitance and if I have to slow down to aim, that’s sort of how I was playing before. Carefully, as opposed to being able to quickly gun down enemies with machine like precision.</p></li></ol><p>The ability just makes me feel pressured to shoot, and not shoot at the same time. I do sort of wish the lock on was more forgiving around the cursor as well to assist my aim a little further. Not by much, but a little more. That’s personal preference though.</p><p>I don’t like to just complain so here are some suggestions. I know very little about balance but I will do my best to be fair. These are different routes by the way, not all one big idea.</p><ol><li><p>Increase the cost per shot and remove the drain. You’re already double dipping between capacitance and your ammo supplies.</p></li><li><p>Remove the penalty for turning it off and on. This way players activate it when needed instead of feeling pressured to use it all in one go and be left with nothing.</p></li><li><p>Keep/increase the drain but remove the per shot cost. Its a little more manageable and easier to remember how long you have this way without the variance of how much you shoot.</p></li></ol><p>I do like the idea of the ability and hope something happens so I can enjoy it more.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/raichu/" style="color:#fff;text-decoration:none;">R</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/raichu/">Raichu</a></strong> &bull; 2026-06-26 00:24:18 </div><div class="cooked"><p>I like it so far works great with the autoguns especially those that suffer from range can take out a sniper quite easily now more spraying less praying.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2026-07-10 00:24:26 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

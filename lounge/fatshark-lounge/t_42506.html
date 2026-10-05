@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Is Dawi Drop actually top tier? - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Miscellaneous &raquo; <a href="index.html">Fatshark Lounge</a></div><h1><span class="accent">Is Dawi Drop actually top tier?</span></h1><div class="meta">4 Posts &bull; 1387 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/alsozara/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/alsozara/">alsozara</a></strong> &bull; 2020-11-28 05:27:11 </div><div class="cooked"><p>Ok so I always thought Dawi Drop was mostly a meme pick for Slayer with maybe some niche value for burst DPS albeit very awkward to use.</p><p>However I just found out that as long as you actually get some air (not ulting at feet), the power bonus is enough to give it very similar stagger breakpoints as Crunch upon landing. I only just found out about the effect of Dawi Drop on Ult stagger from this amazing stagger breakpoint guide:</p><aside class="onebox allowlistedgeneric" data-onebox-src="https://steamcommunity.com/sharedfiles/filedetails/?id=2200946092"><header class="source"><img src="https://steamcommunity.com/favicon.ico" class="site-icon" alt="" width="256" height="256"><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2200946092" target="_blank" rel="noopener nofollow ugc">steamcommunity.com</a></header><article class="onebox-body"><div class="aspect-image" style="--aspect-ratio:173/195;"><img src="https://images.steamusercontent.com/ugc/1628569717872776569/0FFEDBC134A7E35460AC6C60A6D2EB142FC4C364/?imw=5000&amp;imh=5000&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=false" class="thumbnail" alt="" width="173" height="195"></div><h3><a href="https://steamcommunity.com/sharedfiles/filedetails/?id=2200946092" target="_blank" rel="noopener nofollow ugc">Steam Community :: Guide :: [New] [KOR/ENG] Opportunist Stagger Breakpoint...</a></h3><p>Cataclysm 난이도에서의 Opportunist 특성 효과에 대한 글입니다. (Patch 3.1~) 귀차니즘으로 인해 업데이트가 늦을 수 있습니다. This guide provides effects of Opportun</p></article><div class="onebox-metadata"></div><div style="clear: both"></div></aside><p>So combine the fact that it can be used as a pseudo crunch (the 1 or 2 stagger breakpoints it lacks over crunch can be covered with opportunist on one of your weapons) with the new coghammer’s heavy attack as an aerial sniping option, is it possible that Dawi Drop is actually a very very good choice and myself and many other members of the community have been heavily underrating it?</p><p>Any die hard Dawi Drop fans around? Is this stagger interaction super old news I’ve just missed in the past? Is it not working when you Ult at your feet too big of a drawback for it to be effective?</p><p>Is this even the right place to post this? I have no idea but it doesn’t seem like “feedback” so I figured Lounge makes the most sense?</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/velsix/" style="color:#fff;text-decoration:none;">V</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/velsix/">Velsix</a></strong> &bull; 2020-11-28 07:48:19 </div><div class="cooked"><p>I didn’t know that it affected stagger. I always thought it was just damage instead of power. Does it also affect cleave power as well? I wonder what a Greataxe heavy would look like with 150% power.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/alsozara/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/alsozara/">alsozara</a></strong> &bull; 2020-11-28 07:56:40 </div><div class="cooked"><p>To be clear I don’t know for sure it’s a general power increase, I just can’t think of any other reason it would get such a massive stagger bonus with the specific condition of having to get airborne.</p><p>I figure cleaving attacks are too tricky to utilise well mid leap but I’d love to see someone prove me wrong on that. Very real possibility it will also increase cleave judging by the stagger increase.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/sirkruber/" style="color:#fff;text-decoration:none;">S</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/sirkruber/">SirKruber</a></strong> &bull; 2020-11-28 11:05:31 </div><div class="cooked"><p>It’s only top tier if you can use it successfully.</p><p>Because of how weird his leap is now after being changed, it’s rather difficult to hit anything while you’re airborne considering 1 second after leaping you drop like a sack of potatoes.</p><p>Dawi Drop would have been a lot more useful with his old leap. Ofc if you had a lot of time and practice with it then it would be worth it.</p><p>For me, it’s just too much of a hassle to execute properly.</p></div></div></div></div></div></body></html>

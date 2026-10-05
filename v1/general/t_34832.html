@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>XBO Server Error Always Occurring - NO LOOT - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: End Times - Vermintide &raquo; <a href="index.html">Warhammer: End Times - Vermintide</a></div><h1><span class="accent">XBO Server Error Always Occurring - NO LOOT</span></h1><div class="meta">5 Posts &bull; 761 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/fiedeedef/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fiedeedef/">Fiedeedef</a></strong> &bull; 2019-08-08 14:56:32 </div><div class="cooked"><p>It seems to be a common thread here but Vermintide 1 doesn’t seem to be actually proceeding to a loot roll at the end of any levels whatsoever, it always errors out with a Server Error.</p><p>Now, in the past where this sporadically happened I would still get loot for whatever I rolled after I logged back in, however now this is not occurring… And the error occurs every game. This is making earning gear incredibly difficult to do.</p><p>Please fix this. Thank you.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/tocfanke4/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/tocfanke4/">TocFanKe4</a></strong> &bull; 2019-08-08 20:42:24 </div><div class="cooked"><p>Played a match last weekend on Verm 1 Xbox, and got server disconnect at the end of the level. Played one a while before that, and same thing happened. Xbox Verm 1 is broken.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/smithclarkson01/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/smithclarkson01/">smithclarkson01</a></strong> &bull; 2019-08-16 14:34:04 </div><div class="cooked"><p>even i am facing the similar issue from last 3 days.<br><a href="https://9appsapk.com/" rel="nofollow noopener">9Apps</a><a href="https://VidMate.vin/" rel="nofollow noopener">VidMate.vin</a><br> I am getting server error repeatedly, it got connected one time but immediately the server got disconnected.</p><p>Any help? TIA.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/johnsmith101/" style="color:#fff;text-decoration:none;">j</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/johnsmith101/">johnsmith101</a></strong> &bull; 2019-09-18 09:19:32 </div><div class="cooked"><p>hey,</p><p>here is the solution of this error,</p><ol><li>Reload the web page. …</li><li>Clear your browser’s cache. …</li><li>Delete your browser’s cookies. …</li><li>Troubleshoot as a 504 Gateway Timeout error instead. …</li><li>Contacting the website directly is another option. …</li><li>Come back later.</li></ol><p>thanks and regards. <a href="https://get-shareit.com" rel="nofollow noopener">shareit</a><a href="https://get-vidmateapk.com" rel="nofollow noopener">vidmate</a></p></div></div></div><div class="post"><div class="avatar"><a href="../../users/tocfanke4/" style="color:#fff;text-decoration:none;">T</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/tocfanke4/">TocFanKe4</a></strong> &bull; 2019-09-27 17:14:32 </div><div class="cooked"><p>I played a round of Verm 1 on Xbox last weekend for the first time since my last post at the beginning of August. I actually got the dice game and loot for the first time in months. I don’t know if you did anything or if it was just luck, but here’s hoping it is fixed. My friends and I love doing Drachenfels stages during Halloween.</p></div></div></div></div></div></body></html>

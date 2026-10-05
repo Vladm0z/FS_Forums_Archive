@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Scum class talents rework - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">General Discussion</a></div><h1><span class="accent">Scum class talents rework</span></h1><div class="meta">6 Posts &bull; 126 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/martindphoenix/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/martindphoenix/">Martindphoenix</a></strong> &bull; 2025-12-10 03:36:03 </div><div class="cooked"><p>Hello i just wanted to say thanks for fixing the scum class as soon as possible. I do not have any issues with the scum class talent rework besides one thing and that is the location of where the sticky hands talent currently is it does not make sense. I would suggest swapping or replacing the sticky hands location with the talent float like a butterfly. Firstly i do not think this talent is an essential talent for where it is to me this is more of an optional talent everyone will for sure pick float like a butterfly talent over the sticky hands talent. And before the rework case anyone says just select burst energy i am going to say this even though it is a good talent i honestly do not need it. I did not even have it selected before the rework so to me this is not really essential also i was doing auric missions before the rework. So if you had sticky hands replaced with float like a butterfly this how my starting talents would look. I would go a tertium welcome to precision violence then to float like a butterfly if it was in the sticky hands talent position and progress on and select my grenades to me it makes more sense this way especially if you are using melee most of the time. I would like to add on more why this is better but i did write a post earlier already and accidently deleted it so i can not be bothered to write all out again to be honest.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/ohwowsotrendy/" style="color:#fff;text-decoration:none;">O</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/ohwowsotrendy/">Ohwowsotrendy</a></strong> &bull; 2025-12-10 03:40:08 </div><div class="cooked"><p>im pretty happy about the talent placements now, before 1-27 was awful.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/martindphoenix/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/martindphoenix/">Martindphoenix</a></strong> &bull; 2025-12-10 04:05:31 </div><div class="cooked"><p>100% agree with you for earlier levels it was a bit of a nightmare. The thing is to me its just that sticky hands benefits ranged combat so it should be on the left side section of that talent tree since that is where all the the other ranged talents are. And now i am max level i do not really need burst energy just choosing it because i have to.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/raizing/" style="color:#fff;text-decoration:none;">r</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/raizing/">raizing</a></strong> &bull; 2025-12-10 05:33:23 </div><div class="cooked"><p>pretty happy with where things are now. I think sticky hands was fine where it was, but it makes less sense to swap it out with quick and deadly than their current placements – quick and deadly benefits only rangeD damage.</p><p>one person’s trash is another person’s treasure - there’s always going to be tax nodes for someone.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/martindphoenix/" style="color:#fff;text-decoration:none;">M</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/martindphoenix/">Martindphoenix</a></strong> &bull; 2025-12-10 06:03:10 </div><div class="cooked"><p>Sorry about the previous comment about swapping sticky hands with quick and deadly you are correct and to be honest i am not well at the moment and i completely misread the quick and deadly talent do not ask me how but i did i confess haha.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2025-12-24 06:03:34 </div><div class="cooked"><p>This topic was automatically closed 14 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

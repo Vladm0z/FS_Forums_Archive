@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>A collection of things i think warrant some investigation and consideration to make the game better - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Gameplay Feedback</a></div><h1><span class="accent">A collection of things i think warrant some investigation and consideration to make the game better</span></h1><div class="meta">1 Posts &bull; 418 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/119k/" style="color:#fff;text-decoration:none;">1</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/119k/">119k</a></strong> &bull; 2018-03-31 11:03:55 </div><div class="cooked"><p>Hi everyone;</p><p>I’ve got a few things i’d like to discuss in the hopes it’s noted by fatshark to try to look into maybe discussing internally and coming up with ideas or changes to make the game better based on some observations. Doesn’t have to necessarily be game mechanics, but can also be how people play, what people do, how players treat others etc etc and the reasons behind this.</p><p>I’ll start out by saying i truly feel, after playing this game for extended periods and a long amount of time, that there is a massive problem with this game in the players becoming completely self-absorbed egotistical twats.</p><p>I truly feel like there is way too much people in this game that ego-stroke by rushing the game, kills, and playing like absolute tools to try to stack their post-game green circles.</p><p>I see kerillians rush right up in front, try to kill everyone and end up wiping groups constantly by doing this. I see Siennas nuking their teammates trying to out-gun them to get more kills to be on the board, and i know they do this because i’ve seen more than enough instances of just about every class being total twats to others in the team to try to ‘come out on top’, even via chat, toxic in-game attitudes, Even people KICKING OTHER PLAYERS SO THEY DONT BEAT THEM IN KILLS. Are you SERIOUS?!?!</p><p>This really degrades from the experience of what could be an even more amazing game if others were less-inclined to do this or be this way because of the green-circles end-game.</p><p>So anyway i’ll list some things out;</p><p>1: Post-game green circles - this should change. Either add stuff so other classes can have some sort of glory, or remove it all-together because there’s way too much toxicity developing because of peoples egos to ‘be the best’.</p><p>2: Votekick or kick-abuse. Too many people will abuse kick for the dumbest of reasons, and i’ve seen people kick right at the end so the other player that was kicked gets no rewards and just wasted their whole game.</p><p>3: No emphasis or reminders on teamwork and helping eachother. Too many times i’ll see people seemingly oblivious that they are working (or supposed to be) with others. Maybe some tips or reminders in the load-screens or something? Encouragement for others to work together, that sort of thing.</p><p>4: Ability to mute or stop the classes in-game banter. The amount of times i’ve heard kerillian call me a lumberfoot, im just so over it, i cannot even begin to tell you how much. I truly loathe the audio-speech by the characters, i truly do by now.</p><p>5: It shouldn’t take that long to ‘finish’ the game (endgame screens) It takes like, what, a whole minute or more to actually ‘conclude’ the game? Way too long. I want to be out, off, done. EXP thanks, Stats (maybe) thanks, BYE. DONE. Not wait for a trillion rolls and post-game fancy-screens and timer to have to go back. Give us an option somewhere, somehow to skip this or condense it down a bit… it’s WAY too long.</p><p>6: Rework of the abilities/perks/traits system. All classes having the illusion of choice, like how they all have multiple traits of the same thing ‘critical % chance’ or ‘temp hp on kill chance’ or other similar, just makes the game bland. Like bardin getting a 5% speed boost when the team is down, who even thought of that? Is that an inside-joke or something at fatshark? :S It’s dreadful, like 0.01% of players would choose that, surely you can do better on traits and ideas to make the classes feel more unique and meaningful.</p><p>Edit2:<br> 7: Another obvious one is hosts. Games getting stopped mid-way and restarting due to host… Not good.</p><p>This is all i can think off right off the top of my head at the moment, but i welcome anything anyone else can think of what should be fixed or considered or discussed etc, or if anything i missed or discuss what i’ve suggested etc etc.</p><p>Edit:</p><p>It might seem like i am unhappy with the game but honestly i love it heaps, thats why i want to suggest things to make it better or to acknowledge some problems it faces.</p><p>Thanks fatshark and everyone that worked to make this game exist. it’s awesome &lt;3</p></div></div></div></div></div></body></html>

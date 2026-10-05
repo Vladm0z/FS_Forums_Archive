@@ -1,0 +1,161 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Random Crash In Modded Realm - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Random Crash In Modded Realm</span></h1><div class="meta">4 Posts &bull; 410 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/aaronth07/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/aaronth07/">aaronth07</a></strong> &bull; 2021-04-30 13:56:31 </div><div class="cooked"><p>Was true duoing in modded realm, had a couple mods enabled, stuff like penlight lua, spawn tweaks, etc. I don’t know what mod crashed me specifically, if it was even a mod. The error message makes me think it was possibly something else. I have 3 errors from event viewer (no crash prompt popped-up):</p><p><strong>Error Event One:</strong></p> <pre><code>Faulting application name: launcher.exe_Vermintide 2, version: 1.0.448.0, time stamp: 0x608113ed
+Faulting module name: KERNELBASE.dll, version: 10.0.19041.906, time stamp: 0x26452a2a
+Exception code: 0xc000041d
+Fault offset: 0x0012a6e2
+Faulting process id: 0x1308
+Faulting application start time: 0x01d73dc61089710e
+Faulting application path: L:\Steam\steamapps\common\Warhammer Vermintide 2\launcher\launcher.exe
+Faulting module path: C:\WINDOWS\System32\KERNELBASE.dll
+Report Id: 3b6ce446-3b59-4a0f-9dc0-dba2fb6e4f72
+Faulting package full name: 
+Faulting package-relative application ID:
+</code></pre> <p><strong>Error Event Two:</strong></p> <pre><code>Faulting application name: launcher.exe_Vermintide 2, version: 1.0.448.0, time stamp: 0x608113ed
+Faulting module name: KERNELBASE.dll, version: 10.0.19041.906, time stamp: 0x26452a2a
+Exception code: 0xe0434352
+Fault offset: 0x0012a6e2
+Faulting process id: 0x1308
+Faulting application start time: 0x01d73dc61089710e
+Faulting application path: L:\Steam\steamapps\common\Warhammer Vermintide 2\launcher\launcher.exe
+Faulting module path: C:\WINDOWS\System32\KERNELBASE.dll
+Report Id: 96af4728-bc4a-4d12-a9f2-f6c40a25924a
+Faulting package full name: 
+Faulting package-relative application ID: 
+</code></pre> <p><strong>Error Event Three</strong><em>(may not be related)</em><strong>:</strong></p> <pre><code>Application: launcher.exe
+Framework Version: v4.0.30319
+Description: The process was terminated due to an unhandled exception.
+Exception Info: System.ComponentModel.Win32Exception
+   at MS.Win32.UnsafeNativeMethods.PostMessage(System.Runtime.InteropServices.HandleRef, MS.Internal.Interop.WindowMessage, IntPtr, IntPtr)
+   at System.Windows.Interop.HwndTarget.UpdateWindowSettings(Boolean, System.Nullable`1&lt;ChannelSet&gt;)
+   at System.Windows.Interop.HwndTarget.UpdateWindowPos(IntPtr)
+   at System.Windows.Interop.HwndTarget.HandleMessage(MS.Internal.Interop.WindowMessage, IntPtr, IntPtr)
+   at System.Windows.Interop.HwndSource.HwndTargetFilterMessage(IntPtr, Int32, IntPtr, IntPtr, Boolean ByRef)
+   at MS.Win32.HwndWrapper.WndProc(IntPtr, Int32, IntPtr, IntPtr, Boolean ByRef)
+   at MS.Win32.HwndSubclass.DispatcherCallbackOperation(System.Object)
+   at System.Windows.Threading.ExceptionWrapper.InternalRealCall(System.Delegate, System.Object, Int32)
+   at System.Windows.Threading.ExceptionWrapper.TryCatchWhen(System.Object, System.Delegate, System.Object, Int32, System.Delegate)
+   at System.Windows.Threading.Dispatcher.LegacyInvokeImpl(System.Windows.Threading.DispatcherPriority, System.TimeSpan, System.Delegate, System.Object, Int32)
+   at MS.Win32.HwndSubclass.SubclassWndProc(IntPtr, Int32, IntPtr, IntPtr)
+</code></pre> <p>I also found two “information” events, but they may not be related to the crash.</p><p><strong>Information Event One:</strong></p> <pre><code>Fault bucket 1949739286165707069, type 1
+Event Name: APPCRASH
+Response: Not available
+Cab Id: 0
+
+Problem signature:
+P1: launcher.exe_Vermintide 2
+P2: 1.0.448.0
+P3: 608113ed
+P4: KERNELBASE.dll
+P5: 10.0.19041.906
+P6: 26452a2a
+P7: c000041d
+P8: 0012a6e2
+P9: 
+P10: 
+
+Attached files:
+\\?\L:\Steam\steamapps\common\Warhammer Vermintide 2\launcher\video\launcher_right_panel_video.mp4
+\\?\L:\Steam\steamapps\common\Warhammer Vermintide 2\launcher\video\launcher_background_video.mp4
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WERF4CA.tmp.dmp
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WERF6A0.tmp.WERInternalMetadata.xml
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WERF6B0.tmp.xml
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WERF6B0.tmp.csv
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WERF6D1.tmp.txt
+
+These files may be available here:
+\\?\C:\ProgramData\Microsoft\Windows\WER\ReportArchive\AppCrash_launcher.exe_Ver_edb3b39f80b8357e85c0ccd654f31d219be13dc_5ae97d18_c9d1fc14-6ec0-48a6-8dce-dd997cdacf68
+
+Analysis symbol: 
+Rechecking for solution: 0
+Report Id: 3b6ce446-3b59-4a0f-9dc0-dba2fb6e4f72
+Report Status: 268435456
+Hashed bucket: a66ba71c4dd7647a1b0edd8cf487d93d
+Cab Guid: 0
+</code></pre> <p><strong>Information Event Two:</strong></p> <pre><code>Fault bucket 2111930067114060523, type 5
+Event Name: CLR20r3
+Response: Not available
+Cab Id: 0
+
+Problem signature:
+P1: launcher.exe
+P2: 1.0.448.0
+P3: 608113ed
+P4: WindowsBase
+P5: 4.8.4341.0
+P6: 60230dd6
+P7: a7
+P8: 10
+P9: System.ComponentModel.Win32
+P10: 
+
+Attached files:
+\\?\L:\Steam\steamapps\common\Warhammer Vermintide 2\launcher\video\launcher_right_panel_video.mp4
+\\?\L:\Steam\steamapps\common\Warhammer Vermintide 2\launcher\video\launcher_background_video.mp4
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WEREBC1.tmp.dmp
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WEREE53.tmp.WERInternalMetadata.xml
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WEREE63.tmp.xml
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WEREE61.tmp.csv
+\\?\C:\ProgramData\Microsoft\Windows\WER\Temp\WEREE82.tmp.txt
+
+These files may be available here:
+\\?\C:\ProgramData\Microsoft\Windows\WER\ReportArchive\AppCrash_launcher.exe_b13486ce46f878ffabdc18147c8a5cad26bc95e_5ae97d18_b3fc9658-7a53-49af-aa24-c3770552d88e
+
+Analysis symbol: 
+Rechecking for solution: 0
+Report Id: 96af4728-bc4a-4d12-a9f2-f6c40a25924a
+Report Status: 268435456
+Hashed bucket: 69de29e91359263dbd4f1534e0cceaeb
+Cab Guid: 0
+</code></pre> <p>I also have the crash dmp here <em>(I would normally paste the contents but I no longer have Visual Studio installed)</em>:<br><a class="attachment" href="/uploads/short-url/5bAs8dcF8kuZzNXGi6yqEg1C3Su.dmp">crash_dump-2021-04-30-13.38.49-78cd74f5-6bd3-454d-b008-41711d80c6c1.dmp</a> (710.1 KB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/aaronth07/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/aaronth07/">aaronth07</a></strong> &bull; 2021-04-30 14:46:25 </div><div class="cooked"><p>Just happened again. Something interesting to note is that it doesn’t seem to happen when i’m not hosting. New logs:</p><p><a class="attachment" href="/uploads/short-url/7gb5EkKVf9zxA2WQgvyjqMWuGXF.log">vermintide2_launcher.log</a> (678.2 KB)</p><p><a class="attachment" href="/uploads/short-url/lXIIKOK70HqWVcgqWRBLDqCBdg3.log">console-2021-04-30-14.19.42-2e383ada-e085-4b7c-9979-e0e0a8e67d7e.log</a> (1.1 MB)</p><p><a class="attachment" href="/uploads/short-url/djpi3F6Kf7WZPP2PrsoWKVFz6Gq.dmp">crash_dump-2021-04-30-14.19.42-2e383ada-e085-4b7c-9979-e0e0a8e67d7e.dmp</a> (704.6 KB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/aaronth07/" style="color:#fff;text-decoration:none;">a</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/aaronth07/">aaronth07</a></strong> &bull; 2021-04-30 19:25:12 </div><div class="cooked"><p>Actually, it seems like this is related to Spawn Tweaks. Switching to True Solo QoL doesn’t crash (so far).</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2021-05-07 19:26:07 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>

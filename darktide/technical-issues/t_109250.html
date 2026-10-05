@@ -1,0 +1,75 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Warhammer Darktide Backend Error - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer 40,000: Darktide &raquo; <a href="index.html">Technical Support</a></div><h1><span class="accent">Warhammer Darktide Backend Error</span></h1><div class="meta">4 Posts &bull; 358 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/fogeater/" style="color:#fff;text-decoration:none;">f</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fogeater/">fogeater</a></strong> &bull; 2025-06-23 00:22:31 </div><div class="cooked"><h3><a name="p-651321-issue-type-required-1" class="anchor" href="#p-651321-issue-type-required-1" aria-label="Heading link"></a>Issue Type (Required):</h3><p>Error - Backend Error</p><h3><a name="p-651321-issue-description-required-2" class="anchor" href="#p-651321-issue-description-required-2" aria-label="Heading link"></a>Issue Description (Required):</h3><p>When I try to login at home, it works without any problem.<br> However, when I try to login at compan, it always shows backend error.</p><p>The problem is, my company is game developing company, so they do not block any game network or server.</p><p>I have tried most solutions shown on the internet, reinstalled, adding the darktide and Easy Anti Cheat Service (EOS) in the Windows defender, checked for Ipv6 only option in the launcher.</p><h3><a name="p-651321-pc-do-you-use-mods-optional-3" class="anchor" href="#p-651321-pc-do-you-use-mods-optional-3" aria-label="Heading link"></a>[PC] Do You Use Mods? (Optional):</h3><p>No, I don’t use mods</p><h3><a name="p-651321-reproduction-rate-required-4" class="anchor" href="#p-651321-reproduction-rate-required-4" aria-label="Heading link"></a>Reproduction Rate (Required):</h3><p>Constant (100%)</p><h3><a name="p-651321-platform-required-5" class="anchor" href="#p-651321-platform-required-5" aria-label="Heading link"></a>Platform (Required):</h3><p>PC - Steam<br><a class="attachment" href="/uploads/short-url/rXFfjsyj6QxzxH3TE5Sb0nDW9kF.log">console-2025-06-04-00.19.31-ffd86044-4861-4c4c-b29c-7ccaefc93f93.log</a> (21.5 KB)<br><a class="attachment" href="/uploads/short-url/pVToNALaA7HafHcvBX5z44rcIuC.log">console-2025-06-04-00.34.03-129d58e8-d750-4996-8aae-ff764f45e532.log</a> (27.5 KB)<br><a class="attachment" href="/uploads/short-url/tUalkTeTgazThfKoCphFMGCvHup.log">console-2025-06-23-00.07.30-5be1b2ce-c058-49af-83e0-d5b774f7f7fb.log</a> (53.1 KB)<br><a class="attachment" href="/uploads/short-url/d8SeEVcGnkeYPFzs3jzlLhdWHop.log">console-2025-06-23-00.08.45-e2bcfb77-aab5-45f2-ad27-1bfc94dc3599.log</a> (24.3 KB)<br><a class="attachment" href="/uploads/short-url/l2wOXG7Nj1OdQPFF2yP3aZpQx1a.log">darktide_launcher.log</a> (373.3 KB)</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/gpkgpk/" style="color:#fff;text-decoration:none;">g</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/gpkgpk/">gpkgpk</a></strong> &bull; 2025-06-23 01:36:41 </div><div class="cooked"><aside class="quote no-group" data-username="fogeater" data-post="1" data-topic="109250"><div class="title"><div class="quote-controls"></div><a href="../../users/fogeater/">fogeater</a>:</div><blockquote><p>The problem is, my company is game developing company, so they do not block any game network or server.</p></blockquote></aside><p>They’re doing something looks like, proxy and self-signed certs?<br> I may be reading it wrong, but at a glance your logs are showing 0x80092012:</p> <pre><code class="lang-auto">CRYPT_E_NO_REVOCATION_CHECK 	The revocation function was unable to check revocation for the certificate. 	0x80092012
+</code></pre> <p>It seems your work may be capturing/analyzing traffic for security/development purpose and are interfering with the authentication routines trying to establish a secure connection and check for TLS (SSL) certificate revocation.</p><p>Google it and you’ll see similar issues with some insight.</p><aside class="onebox allowlistedgeneric" data-onebox-src="https://www.google.com/search?q=%22InitializeSecurityContext%2Bfailed%22%2B%220x80092012%22"><header class="source"><a href="https://www.google.com/search?q=%22InitializeSecurityContext%2Bfailed%22%2B%220x80092012%22" target="_blank" rel="noopener">google.com</a></header><article class="onebox-body"><h3><a href="https://www.google.com/search?q=%22InitializeSecurityContext%2Bfailed%22%2B%220x80092012%22" target="_blank" rel="noopener">Google Search</a></h3></article><div class="onebox-metadata"></div><div style="clear: both"></div></aside><p>Your logs show:</p> <pre><code class="lang-auto">00:08:00.528 [Lua] INFO [StateTitle] Changing state account_signin -&gt; signing_in
+00:08:00.846 [Backend] Making SD request to https://bsp-sup-sd.atoma-discovery.com/bishop/steam_1361210_default
+00:08:01.105 warning: [HTTP System] Failed sending request: schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - 
+00:08:01.112 error:   [Backend] Auth operation 1 error: 1000 schannel: next InitializeSecurityContext failed: Unknown error (0x80092012) - 
+00:08:01.129 warning: [Lua] WARNING [ErrorManager] Error "SignInError"
+stack traceback:
+	scripts/managers/error/error_manager.lua:32: in function '_log_error'
+	scripts/managers/error/error_manager.lua:139: in function 'report_error'
+	scripts/managers/data_service/services/account_service.lua:177: in function &lt;scripts/managers/data_service/services/account_service.lua:151&gt;
+	[C]: in function 'xpcall'
+	scripts/foundation/utilities/promise.lua:244: in function 'async'
+	scripts/foundation/utilities/promise.lua:359: in function 'update'
+	scripts/game_states/state_game.lua:573: in function 'update'
+	scripts/foundation/utilities/game_state_machine.lua:123: in function 'update'
+	scripts/main.lua:142: in function 'update'
+	scripts/main.lua:204: in function &lt;scripts/main.lua:203&gt;
+, message: {
+	__locals = "
+[1] x = Backend error:
+Code: 1000
+</code></pre> <p>Talk to your company’s sys/network admins.</p><p>P.S. EAC isn’t in the picture since mods got added ages ago.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2025-06-23 10:14:41 </div><div class="cooked"><p><a class="mention" href="../../users/gpkgpk/">@gpkgpk</a> has said it better than I ever could! <img src="https://emoji.discourse-cdn.com/twitter/slight_smile.png?v=14" title=":slight_smile:" class="emoji" alt=":slight_smile:" loading="lazy" width="20" height="20"> Thanks for helping out!</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/fatsharkjulia/" style="color:#fff;text-decoration:none;">F</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/fatsharkjulia/">FatsharkJulia</a></strong><span style="color:var(--accent);font-weight:bold;margin-left:5px;">Community Support</span> &bull; 2025-09-26 15:12:53 </div><div class="cooked"><p>A post was split to a new topic: <a href="/t/error-2011-t/112939">Error 2011 t</a></p></div></div></div></div></div></body></html>

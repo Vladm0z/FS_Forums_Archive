@@ -1,0 +1,54 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>List of various Ps4 bugs since "WOM" Patch updates - FS Archive</title> <style>
+:root{--bg:#f8f9fa;--card:#fff;--text:#222;--muted:#6a737c;--border:#e1e4e8;--accent:#d35400;--link:#0366d6;--quote:#f6f8fa;--input-bg:#fff}
+[data-theme="dark"]{--bg:#1e1e1e;--card:#2d2d2d;--text:#e4e4e4;--muted:#a0a0a0;--border:#444;--accent:#e67e22;--link:#6cb6ff;--quote:#333;--input-bg:#3a3a3a}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);transition:background .3s,color .3s;margin:0;padding:0;line-height:1.5}
+.container{max-width:1000px;margin:0 auto;padding:20px}
+.theme-toggle{position:fixed;top:15px;right:15px;background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 12px;border-radius:2px;cursor:pointer;font-family:monospace;font-size:.9rem;z-index:100;box-shadow:2px 2px 0 var(--border);user-select:none;transition:all .2s}
+.theme-toggle:hover{border-color:var(--accent);color:var(--accent);box-shadow:2px 2px 0 var(--accent)}
+.theme-toggle:active{box-shadow:0 0 0 var(--accent);transform:translate(2px,2px)}
+.breadcrumbs{font-size:.85rem;color:var(--muted);margin-bottom:10px}
+.breadcrumbs a{color:var(--muted);text-decoration:none}
+.breadcrumbs a:hover{color:var(--accent)}
+h1{color:var(--text);margin-top:0}
+h2{color:var(--text);margin-top:40px;margin-bottom:10px;border-bottom:1px solid var(--border);padding-bottom:5px}
+h1 .accent,h2 .accent{color:var(--accent)}
+h1 .meta-text{font-size:1rem;color:var(--muted);font-weight:normal}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+.topic-list,.post-list,.sub-card{background:var(--card);border:1px solid var(--border);border-radius:4px}
+.topic-list{border-collapse:collapse;width:100%}
+.topic-list th{background:var(--quote);text-align:left;padding:12px;border-bottom:2px solid var(--border);color:var(--muted)}
+.topic-list td{padding:12px;border-bottom:1px solid var(--border)}
+.meta{color:var(--muted);font-size:.85rem}
+.cooked blockquote{border-left:4px solid var(--border);background:var(--quote);padding:10px 15px;margin:15px 0;border-radius:0 4px 4px 0}
+.cooked pre{background:#24292e;color:#f6f8fa;padding:15px;border-radius:4px;overflow-x:auto}
+[data-theme="dark"] .cooked pre{background:#111;color:#e6e6e6}
+.cooked .lightbox-wrapper{display:block;max-width:100%;margin:15px 0}
+.cooked .lightbox-wrapper .meta,.cooked .lightbox-wrapper .informations,.cooked .lightbox-wrapper .filename,.cooked .lightbox-wrapper svg{display:none !important}
+.cooked .lightbox-wrapper a{display:inline-block;line-height:0;background:transparent !important;border:none !important;padding:0 !important;text-decoration:none}
+.cooked .lightbox-wrapper img{margin:0;max-width:100%;height:auto;border-radius:4px}
+.cooked aside.quote .title{color:var(--muted);font-size:.9rem;font-weight:bold;margin-bottom:5px}
+.cooked aside.quote .title a{color:var(--muted);text-decoration:none}
+.cooked aside.quote .title a:hover{color:var(--accent)}
+.cooked aside.quote .quote-controls,.cooked aside.quote .title svg{display:none}
+.post{padding:20px;border-bottom:1px solid var(--border);display:flex;gap:15px}
+.post:last-child{border-bottom:none}
+.avatar{width:45px;height:45px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:1.2rem;flex-shrink:0;text-transform:uppercase}
+.avatar-large{width:80px;height:80px;font-size:2.5rem;margin-bottom:15px}
+.pagination{margin-top:20px;text-align:center;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:5px}
+.pagination a,.pagination span.ellipsis{display:inline-block;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:4px;text-decoration:none;color:var(--text);min-width:20px}
+.pagination a.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.pagination a.disabled{color:var(--muted);pointer-events:none;opacity:.5}
+.pagination .jump-box{margin-left:15px;font-size:.9rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.pagination input{padding:6px;width:60px;border-radius:4px;border:1px solid var(--border);background:var(--input-bg);color:var(--text)}
+.pagination button{padding:6px 12px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.sub-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:15px;margin-top:5px;margin-bottom:20px}
+.sub-card{padding:15px;text-decoration:none;color:var(--text);transition:border-color .2s;display:block}
+.sub-card:hover{border-color:var(--accent)}
+</style> <script>
+(function(){var s=localStorage.getItem('fs-theme')||'light';document.documentElement.setAttribute('data-theme',s)})();
+</script> </head><body><div class="theme-toggle" onclick="toggleTheme()" id="theme-switch" title="Toggle Theme"></div> <script>
+(function(){var c=document.documentElement.getAttribute('data-theme');var e=document.getElementById('theme-switch');e.innerHTML=c==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'})();
+function toggleTheme(){var c=document.documentElement.getAttribute('data-theme');var n=c==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);localStorage.setItem('fs-theme',n);var e=document.getElementById('theme-switch');e.innerHTML=n==='dark'?'[ ○ Light | ● Dark ]':'[ ● Light | ○ Dark ]'}
+function jumpPage(max){var p=parseInt(document.getElementById('jump-input').value);if(p>=1&&p<=max){window.location.href=(p===1)?'index.html':'page_'+p+'.html'}}
+</script> <div class="container" style="max-width:850px"><div class="breadcrumbs"><a href="../../index.html">Archive Home</a> &raquo; Warhammer: Vermintide 2 &raquo; <a href="index.html">Bugs</a></div><h1><span class="accent">List of various Ps4 bugs since "WOM" Patch updates</span></h1><div class="meta">2 Posts &bull; 574 Views</div><div class="post-list"><div class="post"><div class="avatar"><a href="../../users/chaoskid/" style="color:#fff;text-decoration:none;">C</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/chaoskid/">ChaosKid</a></strong> &bull; 2020-01-07 08:52:48 </div><div class="cooked"><p>I have experienced so many bugs since the new patch, I’m just going to list them here. Most of these bugs are pervasive, and common so i won’t list on level they happen because they happen everywhere. The Bugs that are level specific will mention what level the bug was experienced in.</p><ul><li><p>There is a massive amount of enemies popping in out of nowhere, very close to the player. The can pop in infront/ behind or even within pillars. This generally didn’t happen before that patch</p></li><li><p>Attack “Whoosh” sound is inconsistent. This is very detrimental on PS4, with the inability to expand the FOV. And it’s even more important with the increased multi-directional spawns, increased enemy targeting, and decreased dash of the new patch. Not having the out-of-view incoming attack sound makes the game feel very unfair. This wasn’t a issue with the old patch.</p></li><li><p>Enemies Attacking through walls. Mostly overhead swinging enemies (Elites), using overhead attack. I don’t remember this happening before the patch, and it’s happening alot now.</p></li></ul><p>*Elites have a massive amount of “Skating/Sliding” with attacks, especially overheads. Most notable in CW. I not sure if this is due to the change in enemy attack tracking and is intended, but it both ridiculous looking, difficult to dodge and frustrating.</p><p>*Special spawn in sound effect and walking effects are very loud. I don’t know if this was done to ensure that they would be heard, but it’s hard to tell how far away they are with Surround Sound because they are always loud when walking regardless of their distance</p><p>*Battle Wizard seems to get “Stuck” in a crowd after using special dash ability. It doesn’t happen all the time, but it happens enough to make it unreliable. Also it doesn’t reliably stagger all enemies(normal enemies, not elites), which probably explains why she gets “stuck” but it should stagger all nearby enemies, it did before the patch.</p><p>*Server and connection issues abound since the patch. Before the patch the connection of the game was relatively stable (except for the relatively rare “ever joining player” problem), but now it’s anything but. Almost every game that I had played with other players has had connectivity issues. If it wasn’t everyone being DCed from the host, it was severe spiking lag. And after about half the games that are played, the game disconnects from the server and kicks it back out to menu. I’m having so many problems lately that the only way to reliably play the game is a private match with no one joining.</p><p>*visual fire glitches. This is a minor one, but on almost every run has fire animations (like enemies being on fire), but no enemies. Just fire dancing in the air, until it disappears. That didn’t happen before the patch.</p><p>*Skittergate- This level has alot of glitches. You know about the bot-gate thing, but there are more. I experinced random death jumping on the glaciers to get the second tome. No enemies around, 3/4 health, in the middle of the glacier, and just crumpled and died.<br> Also had a player get stuck in a wall in the Ice cave before the second tome. Player got grabbed by a spawn, and the spawn threw him in the wall. He was unable to move, and was only able to get out because he was able to kill himself via over heat.<br> Also had a player fall through the floor, after one of the little jump down ledges in norsca, but before the cave. I can’t remember which ledge though.<br> All these happened on the same run. I’m basically avoid skittergate for now, the map feels broken.</p><p>*Righteous Stand- At the end of the “Nightmare event” when the gate opens and everything is killed, the hoards and specials keep spawning. The end event did kill everything that was spawned, but the hordes keep coming in large number. That never happened before the patch. This only happened once, but I’ve only played the map once since the patch.</p></div></div></div><div class="post"><div class="avatar"><a href="../../users/system/" style="color:#fff;text-decoration:none;">s</a></div><div class="post-body"><div class="meta" style="margin-bottom:10px"><strong><a href="../../users/system/">system</a></strong> &bull; 2020-01-14 08:52:48 </div><div class="cooked"><p>This topic was automatically closed 7 days after the last reply. New replies are no longer allowed.</p></div></div></div></div></div></body></html>
